@@ -7,7 +7,7 @@ server.get('/', (req,res) => {
     res.send("Homepage Update")
 })
 server.get('/html', (req,res) => {
-    res.sendFile(path.join(__dirname + '/index_c.html'));
+    res.sendFile(path.join(__dirname + '/public/index_c.html'));
 })
 server.get('/sec', (req,res) => {
     res.send("Homepage Update sec")
