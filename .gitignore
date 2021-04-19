@@ -1,6 +1,3 @@
-# dir ignore
-node/tut/
-
 # Logs
 logs
 *.log
