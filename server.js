@@ -8,7 +8,6 @@ server.get('/', (req,res) => {
 })
 server.get('/html', (req,res) => {
     res.sendFile(path.join(__dirname + '/index_c.html'));
-    res.send("Homepage Update sec")
 })
 server.get('/sec', (req,res) => {
     res.send("Homepage Update sec")
