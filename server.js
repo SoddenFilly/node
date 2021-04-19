@@ -3,12 +3,12 @@ const server = express();
 const path = require('path')
 
 server.get('/', (req,res) => {
-    res.sendFile(path.join(__dirname + '/index.html'));
-    //res.send("Homepage Update")
+    //res.sendFile(path.join(__dirname + '/index.html'));
+    res.send("Homepage Update")
 })
-server.get('/', (req,res) => {
-    res.sendFile(path.join(__dirname + '/style.css'));
-    //res.send("Homepage Update")
+server.get('/bb', (req,res) => {
+    //res.sendFile(path.join(__dirname + '/style.css'));
+    res.send("Homepage Update bb")
 })
 
 const port = process.env.port || 3000;
