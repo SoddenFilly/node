@@ -22,8 +22,14 @@ server.all('/dis/html', (req,res) => {
     res.sendFile(path.join(__dirname + '/index.html'));
 })
 server.all('/dis/css', (req,res) => {
-    res.sendFile(path.join(__dirname + '/index.html' + '/style.css'));
+    res.sendFile(path.join(__dirname + '/style.css'));
 })
+
+
+server.all('/html', (req,res) => {
+    server.use(express.static("public"));
+})
+
 
 const port = process.env.port || 3000;
 server.listen(port, () => {
