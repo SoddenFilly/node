@@ -10,8 +10,12 @@ server.get('/sec', (req,res) => {
     //res.sendFile(path.join(__dirname + '/style.css'));
     res.send("Homepage Update sec")
 })
-server.get('/secret', (req, res) => {
-    console.log('Accessing the secret section ...')
+server.get('/sec', (req,res) => {
+    res.send("Homepage Update sec")
+})
+server.get('/secret', (req,res) => {
+    res.send("Accessing ...")
+    console.log("Accessing the secret section ...")
 })
 
 const port = process.env.port || 3000;
