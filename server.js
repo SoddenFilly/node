@@ -1,9 +1,10 @@
 const express = require('express')
 const server = express();
+const path = require('path')
 
 server.get('/', (req,res) => {
-    res.send("Homepage Update0")
-    res.send("Homepage Update1")
+    res.sendFile(path.join(__dirname + '/index.html'));
+    //res.send("Homepage Update")
 })
 
 const port = process.env.port || 3000;
