@@ -6,13 +6,12 @@ server.get('/', (req,res) => {
     //res.sendFile(path.join(__dirname + '/index.html'));
     res.send("Homepage Update")
 })
-server.get('/bb', (req,res) => {
+server.get('/sec', (req,res) => {
     //res.sendFile(path.join(__dirname + '/style.css'));
-    res.send("Homepage Update bb")
+    res.send("Homepage Update sec")
 })
 server.all('/secret', (req, res) => {
     console.log('Accessing the secret section ...')
-    next() // pass control to the next handler
 })
 
 const port = process.env.port || 3000;
