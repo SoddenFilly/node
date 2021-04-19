@@ -10,7 +10,7 @@ server.get('/sec', (req,res) => {
     //res.sendFile(path.join(__dirname + '/style.css'));
     res.send("Homepage Update sec")
 })
-server.post('/secret', (req, res) => {
+server.get('/secret', (req, res) => {
     console.log('Accessing the secret section ...')
 })
 
