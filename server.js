@@ -10,7 +10,7 @@ server.get('/bb', (req,res) => {
     //res.sendFile(path.join(__dirname + '/style.css'));
     res.send("Homepage Update bb")
 })
-server.all('/secret', function (req, res, next) {
+server.all('/secret', (req, res) => {
     console.log('Accessing the secret section ...')
     next() // pass control to the next handler
 })
