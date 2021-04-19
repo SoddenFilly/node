@@ -16,8 +16,13 @@ server.get('/sec', (req,res) => {
 server.all('/secret', (req,res) => {
     res.send("Accessing the secret section ...")
 })
-server.all('/secret all', (req,res) => {
-    res.send("sec all")
+
+
+server.all('/dis/html', (req,res) => {
+    res.sendFile(path.join(__dirname + '/index.html'));
+})
+server.all('/dis/css', (req,res) => {
+    res.sendFile(path.join(__dirname + '/style.css'));
 })
 
 const port = process.env.port || 3000;
