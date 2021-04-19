@@ -1,3 +1,6 @@
+# dir ignore
+tut/
+
 # Logs
 logs
 *.log
