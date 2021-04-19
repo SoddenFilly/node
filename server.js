@@ -13,9 +13,8 @@ server.get('/sec', (req,res) => {
 server.get('/sec', (req,res) => {
     res.send("Homepage Update sec")
 })
-server.get('/secret', (req,res) => {
-    res.send("Accessing ...")
-    console.log("Accessing the secret section ...")
+server.post('/secret', (req,res) => {
+    res.send("Accessing the secret section ...")
 })
 
 const port = process.env.port || 3000;
