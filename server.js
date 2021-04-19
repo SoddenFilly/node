@@ -19,10 +19,10 @@ server.all('/secret', (req,res) => {
 
 
 server.all('/dis/html', (req,res) => {
-    res.sendFile(path.join(__dirname + '/index.html'));
+    res.sendFile(path.join(__dirname + '/public/index.html'));
 })
 server.all('/dis/css', (req,res) => {
-    res.sendFile(path.join(__dirname + '/style.css'));
+    res.sendFile(path.join(__dirname + '/public/style.css'));
 })
 
 server.use('/static', express.static(path.join(__dirname, 'public')))
