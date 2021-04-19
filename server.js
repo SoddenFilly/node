@@ -25,10 +25,8 @@ server.all('/dis/css', (req,res) => {
     res.sendFile(path.join(__dirname + '/style.css'));
 })
 
+server.use('/static', express.static(path.join(__dirname, 'public')))
 
-server.all('/html', (req,res) => {
-    server.use(express.static("public"));
-})
 
 
 const port = process.env.port || 3000;
