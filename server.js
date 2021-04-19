@@ -6,8 +6,8 @@ server.get('/', (req,res) => {
     //res.sendFile(path.join(__dirname + '/index.html'));
     res.send("Homepage Update")
 })
-server.get('/sec', (req,res) => {
-    //res.sendFile(path.join(__dirname + '/style.css'));
+server.get('/html', (req,res) => {
+    res.sendFile(path.join(__dirname + '/index_c.html'));
     res.send("Homepage Update sec")
 })
 server.get('/sec', (req,res) => {
@@ -18,7 +18,7 @@ server.all('/secret', (req,res) => {
 })
 
 
-server.all('/dis/html', (req,res) => {
+server.all('/html/css', (req,res) => {
     res.sendFile(path.join(__dirname + '/public/index.html'));
 })
 server.all('/dis/css', (req,res) => {
