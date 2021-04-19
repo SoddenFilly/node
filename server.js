@@ -6,6 +6,6 @@ server.get('/', (req,res) => {
 })
 
 const port = process.env.port || 3000;
-app.listen(port, () => {
+server.listen(port, () => {
     console.log("bobayah")
 })
