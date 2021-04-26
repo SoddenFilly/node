@@ -17,10 +17,5 @@ server.get('/game', (req,res) => {
     res.sendFile('./public/game.html', { root: __dirname });
 })
 
-
-
-
 const port = process.env.port || 3000;
-server.listen(port, () => {
-    console.log("Bobayah")
-})
+
