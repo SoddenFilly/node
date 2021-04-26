@@ -24,11 +24,22 @@ input[type="password"] {
     z-index: 1;
     background-color:rgba(0, 0, 0, 0);
 }
-#img {
+#login {
     background-image: url("resources/userpass.png");
     background-repeat: no-repeat;
     background-size: contain;
     z-index: -1;
+    width: 462px;
+    height: 462px;
+    margin: auto;
+}
+#login_inputs {
+    height: 117px;
+    padding-top: 342px;
+    z-index: 1;
+}
+.input_color {
+    color: #576574;
 }
 #myVideo {
     opacity: 0.8;

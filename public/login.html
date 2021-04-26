@@ -4,27 +4,19 @@
     <head>
         <link rel="stylesheet" href="style.css">
     </head>
-    <body style="height: 95vh;background-color: #000;">
+    <body style="background-color: #000;">
         <video autoplay muted loop id="myVideo">
             <source src="resources/passing_trees.mp4" type="video/mp4">
             Your browser does not support HTML5 video.
         </video>
-
-        <div id="img" style="width: 462px;height: 462px; margin: auto;">
-            <form action="game" style="height: 100%;" autocomplete="off">
-                <!-- <img id="login" src="try.png" alt="HTML5 Icon" width="100%"> -->
-                <div style="display:none">
-                    <input type="password" tabindex="-1"/>
-                </div>
-                <div style="height: 117px;padding-top: 342px;z-index: 1;">
-                    <input type="text" id="username_id" maxlength="12" style="color: #576574;" spellcheck="false"><br>
-                    <!-- <div style="height: 1px;"></div> -->
-                    <input type="password" id="password_id" maxlength="12" style="color: #576574;">
-                </div>
-                <img id="eye_blind" src="resources/eye_blind.jpg" alt="eye_blind" width="40px" onclick="myFunction()">
-                <img id="eye_see" src="resources/eye_see.jpg" alt="eye_see" width="40px" style="display:none;" onclick="myFunction()">
-                <input type="submit"/>
-            </form>
-        </div>
+        <form id="login" action="game" autocomplete="off">
+            <div id="login_inputs">
+                <input class="input_color" type="text" id="username_id" maxlength="12" spellcheck="false"><br>  
+                <input class="input_color" type="password" id="password_id" maxlength="12">
+            </div>
+            <img id="eye_blind" src="resources/eye_blind.jpg" alt="eye_blind" width="40px" onclick="myFunction()">
+            <img id="eye_see" src="resources/eye_see.jpg" alt="eye_see" width="40px" style="display:none;" onclick="myFunction()">
+            <input type="submit"/>
+        </form>
     </body>
 </html>
