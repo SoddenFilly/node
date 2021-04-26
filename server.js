@@ -2,6 +2,9 @@ const express = require('express')
 const server = express();
 const path = require('path')
 
+// server.use('/static', express.static(path.join(__dirname, 'public')))
+server.use(express.static(__dirname+'/public'));
+
 server.get('/', (req,res) => {
     //res.sendFile(path.join(__dirname + '/index.html'));
     res.send("Homepage Update")
@@ -14,7 +17,7 @@ server.get('/game', (req,res) => {
     res.sendFile('./public/game.html', { root: __dirname });
 })
 
-server.use('/static', express.static(path.join(__dirname, 'public')))
+
 
 
 const port = process.env.port || 3000;
