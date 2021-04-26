@@ -1,0 +1,40 @@
+@font-face {
+    font-family: myFirstFont;
+    src:url("resources/pixfont.otf");
+}
+input[type="text"] {
+    font-family: myFirstFont;
+    width:250px;
+    font-size:17pt;
+    height: 57px;
+    padding: 0px 0px 0px 198px;
+    border: none;
+    outline: none;
+    z-index: 1;
+    background-color:rgba(0, 0, 0, 0);
+}
+input[type="password"] {
+    font-family: myFirstFont;
+    width:250px;
+    font-size:17pt;
+    height: 58px;
+    padding: 0px 0px 0px 198px;
+    border: none;
+    outline: none;
+    z-index: 1;
+    background-color:rgba(0, 0, 0, 0);
+}
+#img {
+    background-image: url("resources/userpass.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    z-index: -1;
+}
+#myVideo {
+    opacity: 0.8;
+    object-fit: none;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: -2;
+}
