@@ -94,16 +94,15 @@
                     }
                     function onmobile() {
                         if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
-                            var mobile = "mobile";
                             location.replace("http://node-env.eba-gnikufyj.ap-southeast-2.elasticbeanstalk.com")
+                            // var mobile = "mobile";
                         }
-                        else{
-                            var mobile = "not mobile";
-                        }
-                        return mobile;
-                    }
-
-                    document.getElementById("onmobile").innerHTML = onmobile();
+                    //  else{
+                    //         var mobile = "not mobile";
+                    //     }
+                    //     return mobile;
+                    // }
+                    // document.getElementById("onmobile").innerHTML = onmobile();
 
                 </script>
             </form>
