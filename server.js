@@ -6,8 +6,11 @@ server.get('/', (req,res) => {
     //res.sendFile(path.join(__dirname + '/index.html'));
     res.send("Homepage Update")
 })
-server.get('/html', (req,res) => {
+server.get('/login', (req,res) => {
     res.sendFile(path.join(__dirname + '/public/login.html'));
+})
+server.get('/game', (req,res) => {
+    res.sendFile(path.join(__dirname + '/public/game.html'));
 })
 
 server.use('/static', express.static(path.join(__dirname, 'public')))
