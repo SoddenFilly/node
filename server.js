@@ -8,7 +8,7 @@ server.use(express.static(__dirname+'/public'));
 
 server.get('/', (req,res) => {
     //res.sendFile(path.join(__dirname + '/index.html'));
-    res.send("Homepage Update")
+    res.send("Homepage")
 })
 server.get('/login', (req,res) => {
     res.sendFile('./public/login.html', { root: __dirname });
