@@ -36,7 +36,6 @@
                 background-image: url("resources/userpass.png");
                 background-repeat: no-repeat;
                 background-size: contain;
-                position: absolute;
                 z-index: -1;
             }
 
@@ -92,6 +91,14 @@
                         document.getElementById('eye_see').style.display = 'none';
                       }
                       
+                    }
+                    function onmobile() {
+                        if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+                            document.write("mobile");
+                        }
+                        else{
+                            document.write("not mobile");
+                        }
                     }
                 </script>
             </form>
