@@ -4,7 +4,7 @@ const path = require('path')
 const port = process.env.port || 3000;
 
 // server.use('/static', express.static(path.join(__dirname, 'public')))
-server.use(express.static(__dirname+'/node'));
+server.use(express.static(__dirname));
 
 server.get('/', function (req,res) {
     //res.sendFile(path.join(__dirname + '/index.html'));
