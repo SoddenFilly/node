@@ -67,18 +67,18 @@
         </video>
 
         <div id="img" style="width: 462px;height: 462px; margin: auto;">
-            MOBILE
             <form action="game" style="height: 100%;" autocomplete="off">
                 <!-- <img id="login" src="try.png" alt="HTML5 Icon" width="100%"> -->
                 <div style="height: 117px;padding-top: 342px;z-index: 1;">
                     <input type="text" id="username_id" maxlength="12" style="color: #576574;" spellcheck="false"><br>
                     <!-- <div style="height: 1px;"></div> -->
-                    <input type="password" id="password_id" maxlength="12" style="color: #576574;">
+                    <input type="password" id="password_id" maxlength="12" placeholder="onmobile()" style="color: #576574;">
                 </div>
                 <img id="eye_blind" src="resources/eye_blind.jpg" alt="eye_blind" width="40px" onclick="myFunction()">
                 <img id="eye_see" src="resources/eye_see.jpg" alt="eye_see" width="40px" style="display:none;" onclick="myFunction()">
                 <input type="submit"/>
-
+                MOBILE
+                document.write("djcn")
                 <script>
                     function myFunction() {
                       var x = document.getElementById("password_id");
@@ -95,10 +95,10 @@
                     }
                     function onmobile() {
                         if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
-                            mobile = "mobile";
+                            var mobile = "mobile";
                         }
                         else{
-                            mobile = "not mobile";
+                            var mobile = "not mobile";
                         }
                         return mobile;
                     }
