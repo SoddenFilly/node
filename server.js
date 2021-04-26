@@ -10,7 +10,8 @@ server.get('/login', (req,res) => {
     res.sendFile(path.join(__dirname + '/public/login.html'));
 })
 server.get('/game', (req,res) => {
-    res.sendFile(path.join(__dirname + '/public/game.html'));
+    // res.sendFile(path.join(__dirname + '/public/game.html'));
+    res.sendFile('./public/game.html', { root: __dirname });
 })
 
 server.use('/static', express.static(path.join(__dirname, 'public')))
