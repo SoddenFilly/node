@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+    <script type="text/javascript" src="script.js"></script>
     <head>
         <style>
             @font-face {
@@ -77,24 +78,6 @@
                 <img id="eye_blind" src="resources/eye_blind.jpg" alt="eye_blind" width="40px" onclick="myFunction()">
                 <img id="eye_see" src="resources/eye_see.jpg" alt="eye_see" width="40px" style="display:none;" onclick="myFunction()">
                 <input type="submit"/>
-
-                <script>
-                    if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
-                        location.replace("http://node-env.eba-gnikufyj.ap-southeast-2.elasticbeanstalk.com")
-                    }
-                    function myFunction() {
-                      var x = document.getElementById("password_id");
-                      if (x.type === "password") {
-                        x.type = "text";
-                        document.getElementById('eye_blind').style.display = 'none';
-                        document.getElementById('eye_see').style.display = 'inline';
-                      } else {
-                        x.type = "password";
-                        document.getElementById('eye_blind').style.display = 'inline';
-                        document.getElementById('eye_see').style.display = 'none';
-                      }
-                    }
-                </script>
             </form>
         </div>
     </body>
