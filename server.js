@@ -7,25 +7,10 @@ server.get('/', (req,res) => {
     res.send("Homepage Update")
 })
 server.get('/html', (req,res) => {
-    res.sendFile(path.join(__dirname + '/public/index_c.html'));
-})
-server.get('/sec', (req,res) => {
-    res.send("Homepage Update sec")
-})
-server.all('/secret', (req,res) => {
-    res.send("Accessing the secret section ...")
-})
-
-
-server.all('/html/css', (req,res) => {
-    res.sendFile(path.join(__dirname + '/public/index.html'));
-})
-server.all('/dis/css', (req,res) => {
-    res.sendFile(path.join(__dirname + '/public/style.css'));
+    res.sendFile(path.join(__dirname + '/public/login.html'));
 })
 
 server.use('/static', express.static(path.join(__dirname, 'public')))
-
 
 
 const port = process.env.port || 3000;
