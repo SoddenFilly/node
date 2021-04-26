@@ -12,13 +12,10 @@ server.get('/', (req,res) => {
 server.get('/login', (req,res) => {
     res.sendFile('./public/login.html', { root: __dirname });
 })
-server.get('/game', (req,res) => {
+server.get('/game', function (req,res) {
     // res.sendFile(path.join(__dirname + '/public/game.html'));
     res.sendFile('./public/game.html', { root: __dirname });
 })
-
-
-
 
 const port = process.env.port || 3000;
 server.listen(port, () => {
