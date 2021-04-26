@@ -67,6 +67,7 @@
         </video>
 
         <div id="img" style="width: 462px;height: 462px; margin: auto;">
+            MOBILE
             <form action="game" style="height: 100%;" autocomplete="off">
                 <!-- <img id="login" src="try.png" alt="HTML5 Icon" width="100%"> -->
                 <div style="height: 117px;padding-top: 342px;z-index: 1;">
@@ -94,11 +95,12 @@
                     }
                     function onmobile() {
                         if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
-                            document.write("mobile");
+                            mobile = "mobile";
                         }
                         else{
-                            document.write("not mobile");
+                            mobile = "not mobile";
                         }
+                        return mobile;
                     }
                 </script>
             </form>
