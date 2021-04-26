@@ -10,7 +10,7 @@ server.get('/', (req,res) => {
     res.send("Homepage Update")
 })
 server.get('/login', (req,res) => {
-    res.sendFile(path.join(__dirname + '/public/login.html'));
+    res.sendFile('./public/login.html', { root: __dirname });
 })
 server.get('/game', (req,res) => {
     // res.sendFile(path.join(__dirname + '/public/game.html'));
