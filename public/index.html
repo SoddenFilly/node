@@ -5,13 +5,21 @@
 </head>
 <body>
 <h3>HOMEPAGE - COMING SOON</h3>
-<button onclick="login('login')">Login</button>
+<button onclick="buttons('login')">Login</button>
+<button onclick="buttons('game1')">Game1</button>
+<button onclick="buttons('game2')">Game2</button>
+<!-- <button onclick="buttons('')"></button> -->
 </body>
 <script>
     const root_url = "http://node-env.eba-gnikufyj.ap-southeast-2.elasticbeanstalk.com"
-    function login(spes) {
+    function buttons(spes) {
         if (spes === 'login') {
             location.replace(root_url + "/login")
+        }
+        elif (spes === 'game1');{
+            location.replace(root_url + "/game1")
+        } elif (spes === 'game2');{
+            location.replace(root_url + "/game2")
         }
     }
 </script>
