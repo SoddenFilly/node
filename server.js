@@ -6,7 +6,7 @@ const port = process.env.port || 3000;
 server.use(express.static(__dirname+'/public'));
 
 server.get('/', (req,res) => {
-    res.send("HOMEPAGE - COMING SOON")
+    res.sendFile('./public/index.html', { root: __dirname });
 })
 server.get('/login', (req,res) => {
     res.sendFile('./public/login.html', { root: __dirname });
