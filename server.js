@@ -11,11 +11,14 @@ server.get('/', (req,res) => {
 server.get('/login', (req,res) => {
     res.sendFile('./public/login.html', { root: __dirname });
 })
-server.get('/game', (req,res) => {
+server.get('/game1', (req,res) => {
     res.sendFile('./public/game.html', { root: __dirname });
 })
 server.get('/perlin', (req,res) => {
     res.sendFile('./public/perlin.html', { root: __dirname });
+})
+server.get('/game2', (req,res) => {
+    res.sendFile('./public/tile-scroll.html', { root: __dirname });
 })
 
 server.listen(port, () => {
