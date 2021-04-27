@@ -4,7 +4,8 @@
 </head>
 <body>
 <canvas id='cnvs'></canvas>
-<p id="list"></p>
+<p id="list"></p><br>
+<p id="list_sorted"></p>
 <script>
 'use strict';
 let cnvs = document.getElementById('cnvs');
@@ -19,24 +20,31 @@ let pixel_size = cnvs.width / RESOLUTION;
 let num_pixels = GRID_SIZE / RESOLUTION;
 
 var coords = []
+var coords2 = []
 
 for (let y = 0; y < GRID_SIZE; y += num_pixels / GRID_SIZE){
     // coords.push("--Y_"+y+"_Y--")
     for (let x = 0; x < GRID_SIZE; x += num_pixels / GRID_SIZE){
         let v = parseInt(perlin.get(x, y) * COLOR_SCALE);
-        coords.push(v);
         let sep = 10
+
         if (v > sep || v < -sep){
         ctx.fillStyle = 'hsl('+v+',100%,50%)';
         ctx.fillRect(
             x / GRID_SIZE * cnvs.width,
             y / GRID_SIZE * cnvs.width,
             pixel_size, pixel_size
-        );}
+        );
+        coords2.push(v)
+        } else {
+        let v = 'w'
+        coords2.push(v)
+        }
+        coords.push(v);
     }
 }
-// let li = coords.sort
-document.getElementById("list").innerHTML = coords.sort(function(a, b){return a - b});
+document.getElementById("list").innerHTML = coords2;
+document.getElementById("list_sorted").innerHTML = coords.sort(function(a, b){return a - b});
 </script>
 </body>
 </html>
