@@ -3,22 +3,21 @@ const server = express();
 const path = require('path')
 const port = process.env.port || 3000;
 
-// server.use('/static', express.static(path.join(__dirname, 'public')))
 server.use(express.static(__dirname+'/public'));
 
 server.get('/', (req,res) => {
-    //res.sendFile(path.join(__dirname + '/index.html'));
-    res.send("Homepage")
+    res.send("HOMEPAGE - COMING SOON")
 })
 server.get('/login', (req,res) => {
     res.sendFile('./public/login.html', { root: __dirname });
 })
 server.get('/game', (req,res) => {
-    // res.sendFile(path.join(__dirname + '/public/game.html'));
     res.sendFile('./public/game.html', { root: __dirname });
 })
-
+server.get('/perlin', (req,res) => {
+    res.sendFile('./public/perlin.html', { root: __dirname });
+})
 
 server.listen(port, () => {
-    console.log("Bobayah")
+    console.log("Boobayah")
 })

@@ -1,0 +1,42 @@
+<html>
+<head>
+<script src='perlin.js'></script>
+</head>
+<body>
+<canvas id='cnvs'></canvas>
+<p id="list"></p>
+<script>
+'use strict';
+let cnvs = document.getElementById('cnvs');
+cnvs.width = cnvs.height = 512;
+let ctx = cnvs.getContext('2d');
+
+const GRID_SIZE = 2;
+const RESOLUTION = 50;
+const COLOR_SCALE = 255;
+
+let pixel_size = cnvs.width / RESOLUTION;
+let num_pixels = GRID_SIZE / RESOLUTION;
+
+var coords = []
+
+for (let y = 0; y < GRID_SIZE; y += num_pixels / GRID_SIZE){
+    // coords.push("--Y_"+y+"_Y--")
+    for (let x = 0; x < GRID_SIZE; x += num_pixels / GRID_SIZE){
+        let v = parseInt(perlin.get(x, y) * COLOR_SCALE);
+        coords.push(v);
+        let sep = 10
+        if (v > sep || v < -sep){
+        ctx.fillStyle = 'hsl('+v+',100%,50%)';
+        ctx.fillRect(
+            x / GRID_SIZE * cnvs.width,
+            y / GRID_SIZE * cnvs.width,
+            pixel_size, pixel_size
+        );}
+    }
+}
+// let li = coords.sort
+document.getElementById("list").innerHTML = coords.sort(function(a, b){return a - b});
+</script>
+</body>
+</html>
