@@ -5,12 +5,14 @@
 </head>
 <body>
 <h3>HOMEPAGE - COMING SOON</h3>
-<button onclick="login()">Login</button>
+<button onclick="login('login')">Login</button>
 </body>
 <script>
     const root_url = "http://node-env.eba-gnikufyj.ap-southeast-2.elasticbeanstalk.com"
-    function login() {
-        location.replace(root_url + "/login")
+    function login(spes) {
+        if (spes === 'login') {
+            location.replace(root_url + "/login")
+        }
     }
 </script>
 </html>
