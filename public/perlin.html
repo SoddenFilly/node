@@ -28,9 +28,9 @@ var coords2 = []
 for (let y = 0; y < GRID_SIZE; y += num_pixels / GRID_SIZE){
     for (let x = 0; x < GRID_SIZE; x += num_pixels / GRID_SIZE){
         let v = parseInt(perlin.get(x, y) * COLOR_SCALE);
-        let sep = 2
+        let sep = 0
 
-        if (v > sep || v < -sep){
+        if (v >= sep || v <= -sep){
             ctx.fillStyle = 'hsl('+v+',100%,50%)';
             ctx.fillRect(
                 x / GRID_SIZE * cnvs.width,
