@@ -21,6 +21,4 @@ server.get('/game2', (req,res) => {
     res.sendFile('./public/tile-scroll.html', { root: __dirname });
 })
 
-server.listen(port, () => {
-    console.log("Boobayah")
-})
+server.listen(port, () => {})

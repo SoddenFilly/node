@@ -1,5 +1,5 @@
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
-    location.replace("http://node-env.eba-gnikufyj.ap-southeast-2.elasticbeanstalk.com")
+  location.replace("http://node-env.eba-gnikufyj.ap-southeast-2.elasticbeanstalk.com")
 }
 function myFunction() {
   var x = document.getElementById("password_id");
