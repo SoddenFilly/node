@@ -1,1 +1,1 @@
-git status && git add . && git status && git commit -m -name_here- && git push origin
+git status && git add . && git status && git commit -m -name_here- && git push origin main
