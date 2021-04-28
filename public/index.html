@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Homepageq</title>
+<title>Homepage</title>
 </head>
 <body>
 <h3>HOMEPAGE - COMING SOON</h3>
@@ -11,16 +11,16 @@
 <button onclick="buttons('game2')">Game2</button>
 </body>
 <script>
-    const root_url = "http://node-env.eba-gnikufyj.ap-southeast-2.elasticbeanstalk.com"
+    const root_url = "http://node-env.eba-gnikufyj.ap-southeast-2.elasticbeanstalk.com/"
     function buttons(spes) {
         if (spes === 'login') {
-            location.replace(root_url + "/login")
+            window.location.href = root_url + "login"
         } else if (spes === 'perlin') {
-            window.location.href = "http://node-env.eba-gnikufyj.ap-southeast-2.elasticbeanstalk.com/perlin"
+            window.location.href = root_url + "perlin"
         } else if (spes === 'game1') {
-            location.replace(root_url + "/game1")
+            window.location.href = root_url + "game1"
         } else if (spes === 'game2') {
-            location.replace(root_url + "/game2")
+            window.location.href = root_url + "game2"
         }
         
     }
