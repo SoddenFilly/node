@@ -15,8 +15,8 @@ let cnvs = document.getElementById('cnvs');
 cnvs.width = cnvs.height = 512;
 let ctx = cnvs.getContext('2d');
 
-const GRID_SIZE = 2;
-const RESOLUTION = 50;
+const GRID_SIZE = 10;
+const RESOLUTION = 100;
 const COLOR_SCALE = 255;
 
 let pixel_size = cnvs.width / RESOLUTION;
@@ -26,10 +26,9 @@ var coords = []
 var coords2 = []
 
 for (let y = 0; y < GRID_SIZE; y += num_pixels / GRID_SIZE){
-    // coords.push("--Y_"+y+"_Y--")
     for (let x = 0; x < GRID_SIZE; x += num_pixels / GRID_SIZE){
         let v = parseInt(perlin.get(x, y) * COLOR_SCALE);
-        let sep = 0
+        let sep = 2
 
         if (v > sep || v < -sep){
             ctx.fillStyle = 'hsl('+v+',100%,50%)';
