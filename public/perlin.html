@@ -29,19 +29,19 @@ for (let y = 0; y < GRID_SIZE; y += num_pixels / GRID_SIZE){
     // coords.push("--Y_"+y+"_Y--")
     for (let x = 0; x < GRID_SIZE; x += num_pixels / GRID_SIZE){
         let v = parseInt(perlin.get(x, y) * COLOR_SCALE);
-        let sep = 10
+        let sep = 0
 
         if (v > sep || v < -sep){
-        ctx.fillStyle = 'hsl('+v+',100%,50%)';
-        ctx.fillRect(
-            x / GRID_SIZE * cnvs.width,
-            y / GRID_SIZE * cnvs.width,
-            pixel_size, pixel_size
-        );
-        coords2.push(v)
+            ctx.fillStyle = 'hsl('+v+',100%,50%)';
+            ctx.fillRect(
+                x / GRID_SIZE * cnvs.width,
+                y / GRID_SIZE * cnvs.width,
+                pixel_size, pixel_size
+            );
+            coords2.push(v)
         } else {
-        let v = 'w'
-        coords2.push(v)
+            let v = 'w'
+            coords2.push(v)
         }
         coords.push(v);
     }
