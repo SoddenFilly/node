@@ -10,12 +10,23 @@
 <h3>HSL color values, sorted descending:</h3>
 <p id="list_sorted"></p>
 <script>
+//FUNCTIONS
+function fill(color_val, x, y){
+    ctx.fillStyle = 'hsl('+color_val+',100%,50%)';
+    ctx.fillRect(
+        x / GRID_SIZE * cnvs.width,
+        y / GRID_SIZE * cnvs.width,
+        pixel_size, pixel_size
+    );
+}
+
+
 'use strict';
 let cnvs = document.getElementById('cnvs');
 cnvs.width = cnvs.height = 512;
 let ctx = cnvs.getContext('2d');
 
-const GRID_SIZE = 10;
+const GRID_SIZE = 4;
 const RESOLUTION = 100;
 const COLOR_SCALE = 255;
 
@@ -27,24 +38,21 @@ var coords2 = []
 
 for (let y = 0; y < GRID_SIZE; y += num_pixels / GRID_SIZE){
     for (let x = 0; x < GRID_SIZE; x += num_pixels / GRID_SIZE){
-        let v = parseInt(perlin.get(x, y) * COLOR_SCALE);
-        let sep = 0
+        let color_val = parseInt(perlin.get(x, y) * COLOR_SCALE);
+        let sep = 50
+        let sep_range = 1000
 
-        if (v >= sep || v <= -sep){
-            ctx.fillStyle = 'hsl('+v+',100%,50%)';
-            ctx.fillRect(
-                x / GRID_SIZE * cnvs.width,
-                y / GRID_SIZE * cnvs.width,
-                pixel_size, pixel_size
-            );
-            coords2.push(v)
+        if (color_val >= sep && color_val <= sep + sep_range){
+            fill(color_val, x, y)
+            coords2.push(color_val)
         } else {
-            let v = 'w'
-            coords2.push(v)
+            let color_val = 'w'
+            coords2.push(color_val)
         }
-        coords.push(v);
+        coords.push(color_val);
     }
 }
+
 document.getElementById("list").innerHTML = coords2;
 document.getElementById("list_sorted").innerHTML = coords.sort(function(a, b){return a - b});
 </script>
