@@ -10,6 +10,18 @@
 <h3>HSL color values, sorted descending:</h3>
 <p id="list_sorted"></p>
 <script>
+//FUNCTIONS
+function fill(color_val, x, y, color){
+    // ctx.fillStyle = 'hsl('+color_val+',100%,50%)';
+    ctx.fillStyle = color;
+    ctx.fillRect(
+        x / GRID_SIZE * cnvs.width,
+        y / GRID_SIZE * cnvs.width,
+        pixel_size, pixel_size
+    );
+}
+
+
 'use strict';
 let cnvs = document.getElementById('cnvs');
 cnvs.width = cnvs.height = 512;
@@ -27,26 +39,46 @@ var coords2 = []
 
 for (let y = 0; y < GRID_SIZE; y += num_pixels / GRID_SIZE){
     for (let x = 0; x < GRID_SIZE; x += num_pixels / GRID_SIZE){
-        let v = parseInt(perlin.get(x, y) * COLOR_SCALE);
-        let sep = 0
+        let color_val = parseInt(perlin.get(x, y) * COLOR_SCALE);
 
-        if (v >= sep || v <= -sep){
-            ctx.fillStyle = 'hsl('+v+',100%,50%)';
-            ctx.fillRect(
-                x / GRID_SIZE * cnvs.width,
-                y / GRID_SIZE * cnvs.width,
-                pixel_size, pixel_size
-            );
-            coords2.push(v)
-        } else {
-            let v = 'w'
-            coords2.push(v)
+        let stone = 110;
+        let grass = -20;
+        let grass_deep = -100
+        let sand = -115;
+     
+
+        if (color_val >= stone){
+            var color = '#888c8d'
+            fill(color_val, x, y, color)
+            //coords2.push(color_val)
         }
-        coords.push(v);
+        // else {
+        //     let color_val = 'w'
+        //     coords2.push(color_val)
+        // }
+        // coords.push(color_val);
+        if (color_val >= grass && color_val <= stone){
+            var color = '#21b81c'
+            fill(color_val, x, y, color)
+        }
+        if (color_val >= grass_deep && color_val <= grass){
+            var color = '#1eaa1a'
+            fill(color_val, x, y, color)
+        }
+        if (color_val >= sand && color_val <= grass_deep){
+            var color = '#c2b280'
+            fill(color_val, x, y, color)
+        }
+        if (color_val <= sand){
+            var color = '#3056bf'
+            fill(color_val, x, y, color)
+        }
     }
 }
+
 document.getElementById("list").innerHTML = coords2;
 document.getElementById("list_sorted").innerHTML = coords.sort(function(a, b){return a - b});
 </script>
 </body>
 </html>
+
