@@ -17,15 +17,14 @@
     background-color:rgb(206, 206, 206);
     /* background-color: #845533; */
     /* position:relative; */
-    /* top:15px; */
+    margin-top:57px;
     padding: 10px;
-    margin-top: 0%;
 }
 
 .navbar {
     background-color:rgb(48, 48, 48);
     overflow:hidden;
-    /* position:fixed; */
+    position:fixed;
     top:0;
     width:100%;
 }
