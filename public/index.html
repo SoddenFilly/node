@@ -7,7 +7,7 @@
 <body style="margin: 0 0 0 0;">
     <div class="navbar">
         <a class="active" href="http://node-env.eba-gnikufyj.ap-southeast-2.elasticbeanstalk.com/">Homepage</a>
-        <a href="http://node-env.eba-gnikufyj.ap-southeast-2.elasticbeanstalk.com/contact">Contact Us</a>
+        <a onclick="buttons('contact')">Contact Us</a>
         <a href="#about">About the Creators</a>
         <a style="float:right;" href="/login">Login</a>
     </div>
@@ -44,6 +44,8 @@
             window.location.href = root_url + "game1"
         } else if (spes === 'game2') {
             window.location.href = root_url + "game2"
+        } else if (spes === 'contact') {
+            window.location.href = root_url + "contact"
         }
     }
 </script>

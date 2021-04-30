@@ -7,7 +7,7 @@
 <body>
     <div class="navbar">
         <a href="http://node-env.eba-gnikufyj.ap-southeast-2.elasticbeanstalk.com/">Homepage</a>
-        <a class="active" href="#contact">Contact Us</a>
+        <a class="active" onclick="buttons('contact')">Contact Us</a>
         <a href="#about">About the Creators</a>
         <a style="float:right;" href="/login">Login</a>
     </div>
@@ -16,4 +16,20 @@
     <p style="font-size:16px;">You can reach us by email at <a href="https://mail.google.com/mail/u/0/#inbox">aidanmachue@gmail.com</a></p>
     <p>You can contact us to ask questions (although we recommend visiting the FAQ page first), give your thoughts on the game, suggest new content, or just say hi!  We'd love to hear from you (the development studio gets lonely some times).</p>
 </body>
+<script>
+    const root_url = "http://node-env.eba-gnikufyj.ap-southeast-2.elasticbeanstalk.com/"
+    function buttons(spes) {
+        if (spes === 'login') {
+            window.location.href = root_url + "login"
+        } else if (spes === 'perlin') {
+            window.location.href = root_url + "perlin"
+        } else if (spes === 'game1') {
+            window.location.href = root_url + "game1"
+        } else if (spes === 'game2') {
+            window.location.href = root_url + "game2"
+        } else if (spes === 'contact') {
+            window.location.href = root_url + "contact"
+        }
+    }
+</script>
 </html>

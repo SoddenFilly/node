@@ -20,6 +20,9 @@ server.get('/perlin', (req,res) => {
 server.get('/game2', (req,res) => {
     res.sendFile('./public/tile-scroll.html', { root: __dirname });
 })
+server.get('/contact', (req,res) => {
+    res.sendFile('./public/contact.html', { root: __dirname });
+})
 
 server.listen(port, () => {})
 
