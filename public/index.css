@@ -3,3 +3,33 @@
     color: #000000;
     background-color: #5e5e5e;
 }
+
+.title {
+    font-size:60px;
+    background-color:rgb(206, 206, 206);
+}
+
+.navbar {
+    background-color:rgb(48, 48, 48);
+    overflow:hidden;
+}
+
+.navbar a {
+    float:left;
+    color:#f2f2f2;
+    background-color: rgb(48, 48, 48);
+    text-align:center;
+    padding:14px 16px;
+    text-decoration:none;
+    font-size:17px;
+}
+
+.navbar a:hover {
+    background-color: #ddd;
+    color:black;
+}
+
+.navbar a.active {
+    background-color: #029660;
+    color:white;
+}
