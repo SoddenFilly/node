@@ -23,6 +23,9 @@ server.get('/game2', (req,res) => {
 server.get('/contact', (req,res) => {
     res.sendFile('./public/contact.html', { root: __dirname });
 })
+server.get('/about', (req,res) => {
+    res.sendFile('./public/about.html', { root: __dirname });
+})
 
 server.listen(port, () => {})
 

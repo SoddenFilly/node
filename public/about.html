@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>About the Developers</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body style="margin: 0 0 0 0;">
+    <div class="navbar">
+        <a href="http://node-env.eba-gnikufyj.ap-southeast-2.elasticbeanstalk.com/">Homepage</a>
+        <a onclick="buttons('contact')">Contact Us</a>
+        <a class="active" href="#about">About the Creators</a>
+        <a style="float:right;" href="/login">Login</a>
+    </div>
+    <h1 class="title">[gamename] - About the Developers</h1>
+    <p>This game was made by two digital tech students - one in Year 11 and one in Year 12 - who decided to make a game while puzzling over a maths workbook. Both choose to remain anonymous, but go under the tsudonyms of Tarzan and Echo.</p>
+    <h3>The aim of the game</h3>
+    <p>Why did we make this game?  And why did we make the game like this?  Well, it all started in a maths classroom on a cloudy afternoon...</p>
+    <p>Maths is boring. Most people can admit to that with certainty. So, while pretending to work on their maths assignments, Tarzan and Echo were actually discussing much more interesting things.  The discussion wandered here and there and settled on the topic of coding, which both our characters were interested in.  In fact, they shared the same Digital Tech teacher. Bored half to tears by their maths work, the two hatched a plan for the design of a jointly-produced video game.  They never settled on a name, but thought of a whole lot of concepts and ideas, the majority of which are included in the game today.</p>
+    <p>Why did we make the game?  Two reasons, one a little more sophisticated than the other.  Reason One: Boredom. Reason Two: Neither of us had ever jointy designed a program before, much less a game, and we thought it'd be a learning experience, if not just a fun project.</p> <br><br>
+    <p><i>Want to find out more about the development of the game, or the people that made it? Visit our Contact Us page and send us an email!</i></p>
+
+</body>
+<script>
+    const root_url = "http://node-env.eba-gnikufyj.ap-southeast-2.elasticbeanstalk.com/"
+    function buttons(spes) {
+        if (spes === 'login') {
+            window.location.href = root_url + "login"
+        } else if (spes === 'perlin') {
+            window.location.href = root_url + "perlin"
+        } else if (spes === 'game1') {
+            window.location.href = root_url + "game1"
+        } else if (spes === 'game2') {
+            window.location.href = root_url + "game2"
+        } else if (spes === 'contact') {
+            window.location.href = root_url + "contact"
+        } else if (spes === 'about') {
+            window.location.href = root_url + "about"
+        }
+    }
+</script>
+</html>
