@@ -1,3 +1,8 @@
+@font-face {
+    font-family: myFirstFont;
+    src:url("resources/pixfont.otf");
+}
+
 * {
     text-align: center;
     color: #000000;
@@ -5,6 +10,7 @@
 }
 
 .title {
+    font-family: myFirstFont;
     font-size:60px;
     background-color:rgb(206, 206, 206);
 }
