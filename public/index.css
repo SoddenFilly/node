@@ -12,6 +12,9 @@
 .navbar {
     background-color:rgb(48, 48, 48);
     overflow:hidden;
+    position:fixed;
+    top:0;
+    width:100%
 }
 
 .navbar a {
