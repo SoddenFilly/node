@@ -56,6 +56,9 @@ img {
     margin-right: auto;
     background-color: transparent;
   }
+.fade {
+    opacity: 0;
+}
 
 .tabodd {
     width:100%;

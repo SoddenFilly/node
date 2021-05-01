@@ -10,33 +10,47 @@
         <a class="active" onclick="buttons('')">Homepage</a>
         <a onclick="buttons('contact')">Contact Us</a>
         <a style="float:right;" onclick="buttons('login')">Login</a>
-        <a style="float:right;" onclick="buttons('about')">About the Developers</a>
+        <a style="float:right;" onclick="fade()">About the Developers</a>
         
         <!-- <a style="float:right;" href="/login">Login</a> -->
     </div>
 
     <h1 class="title">HOMEPAGE [Replace with the name of the game once it's made]</h1>
-    <p style="font-size:20px;"><b>Welcome to the homepage of the [gamename] project!  Currently, the game is in version [gameversion], and is open for play.</b></p><br>
-    <div class=tab>
-        <h2 style="background-color:rgb(206, 206, 206);">What is [gamename]?</h2>
-        <p style="background-color:rgb(206, 206, 206);">[gamename] is a procedurally-generated strategy game which pits two players, each playing as the leader of their nation, against each other in a battle of strategy, positioning, and brute strength.  Players are dropped down far away from one another on a randomly-generated world which includes many different biomes and gatherable resources. They must stockpile materials and weapons, recruit AI allies, and build up forts and cities to gain the edge over the other player.  After a grace period, the two players are allowed to attack each other, and the match ends when one of the players is killed. Each player uses their fortifications and armies to eliminate the other player before they get eliminated themselves.</p><br>
+    <p class="fade" style="font-size:20px;"><b>Welcome to the homepage of the [gamename] project!  Currently, the game is in version [gameversion], and is open for play.</b></p><br>
+    <div class="tab fade">
+        <h2 class="fade" style="background-color:rgb(206, 206, 206);">What is [gamename]?</h2>
+        <p class="fade" style="background-color:rgb(206, 206, 206);">[gamename] is a procedurally-generated strategy game which pits two players, each playing as the leader of their nation, against each other in a battle of strategy, positioning, and brute strength.  Players are dropped down far away from one another on a randomly-generated world which includes many different biomes and gatherable resources. They must stockpile materials and weapons, recruit AI allies, and build up forts and cities to gain the edge over the other player.  After a grace period, the two players are allowed to attack each other, and the match ends when one of the players is killed. Each player uses their fortifications and armies to eliminate the other player before they get eliminated themselves.</p><br>
     </div>
-    <div class=tabodd>
-        <h2>How to Play</h2>
-        <p>[gamename] is completely free to play, and will take nothing from you but a bit of your time.  To start playing, simply click or tap the "login" button on the right-hand side of the top navbar (your right, not its).  If you don't already have an account, you can make a new one.  All you need is an email, a username, and a password.  Once you've inputted this information, you'll have an account!</p>
-        <p>Once you've created your account, you can click on the little head symbol in the middle of the navbar at the top of the screen, which will bring up your profile.  Here you can edit your bio (an optional paragraph of text describing yourself), change your username if needed, or view your stats, such as how many games you've played, wins and losses you've tallied, and what achievements you've gotten. You can also pick an avatar that will be displayed to others using the chat function.</p>
+    <div class="tabodd fade">
+        <h2 class="fade">How to Play</h2>
+        <p class="fade">[gamename] is completely free to play, and will take nothing from you but a bit of your time.  To start playing, simply click or tap the "login" button on the right-hand side of the top navbar (your right, not its).  If you don't already have an account, you can make a new one.  All you need is an email, a username, and a password.  Once you've inputted this information, you'll have an account!</p>
+        <p class="fade">Once you've created your account, you can click on the little head symbol in the middle of the navbar at the top of the screen, which will bring up your profile.  Here you can edit your bio (an optional paragraph of text describing yourself), change your username if needed, or view your stats, such as how many games you've played, wins and losses you've tallied, and what achievements you've gotten. You can also pick an avatar that will be displayed to others using the chat function.</p>
     </div>
-    <button onclick="buttons('login')">Login</button><br>
-    <button onclick="buttons('perlin')">Perlin</button><br>
-    <button onclick="buttons('game1')">Game1</button><br>
-    <button onclick="buttons('game2')">Game2</button>
-    <br><button style="height: 1000px"></button>
+    <button class="fade" onclick="buttons('login')">Login</button><br>
+    <button class="fade" onclick="buttons('perlin')">Perlin</button><br>
+    <button class="fade" onclick="buttons('game1')">Game1</button><br>
+    <button class="fade" onclick="buttons('game2')">Game2</button>
+    <div class="fade" id="fade" style="background-color: lawngreen; padding: 10px 10px 10px 10px;"></div>
+    <br><button class="fade" style="height: 1000px"></button>
     
 </body>
+<style>
+.fadeable {
+    opacity: 0;
+}
+
+.fade-in {
+    opacity: 1;
+    transition: opacity 2s;
+}
+</style>
 <script>
     const root_url = "http://node-env.eba-gnikufyj.ap-southeast-2.elasticbeanstalk.com/"
     function buttons(spes) {
         window.location.href = root_url + spes
+    }
+    function fade() {
+        document.getElementById("fade").className += '-in';
     }
 </script>
 </html>
