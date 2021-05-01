@@ -27,6 +27,7 @@
     position:fixed;
     top:0;
     width:100%;
+    z-index: 0;
 }
 
 .navbar a {
@@ -36,6 +37,7 @@
     padding:14px 16px;
     text-decoration:none;
     font-size:17px;
+    z-index: 1;
 }
 
 .navbar a:hover {
@@ -48,6 +50,14 @@
     color:white;
 }
 
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: transparent;
+  }
+
+<<<<<<< HEAD
 .tabodd {
     width:100%;
 }
@@ -56,3 +66,11 @@
     background-color:rgb(206, 206, 206);
     width:100%;
 }
+=======
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: transparent;
+  }
+>>>>>>> 7a5477bd2a68ef32bec25169a087939f1139e4c7
