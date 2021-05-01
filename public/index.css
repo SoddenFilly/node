@@ -10,6 +10,7 @@
     background-color: #4f6781;
     /* background-color: #1d6db5; */
     font-family: myFirstFont;
+    z-index: -1;
 }
 
 .title {
@@ -43,6 +44,7 @@
 .navbar a:hover {
     background-color: #ddd;
     color:black;
+    z-index: 1;
 }
 
 .navbar a.active {

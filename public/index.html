@@ -6,16 +6,16 @@
 </head>
 <body style="margin: 0 0 0 0;">
     <div class="navbar">
-        <img id="profile_img" onclick="buttons('profile')" src="resources/profile_blank.png" alt="profile pic" style="z-index: 2;width: 57.6px;position: fixed; left: 0;right: 0;">
+        <img id="profile_img" onclick="fade()" src="resources/profile_blank.png" alt="profile pic" style="z-index: 2;width: 57.6px;position: fixed; left: 0;right: 0;">
         <a class="active" onclick="buttons('')">Homepage</a>
         <a onclick="buttons('contact')">Contact Us</a>
         <a style="float:right;" onclick="buttons('login')">Login</a>
-        <a style="float:right;" onclick="fade()">About the Developers</a>
+        <a style="float:right;" onclick="buttons('about')">About the Developers</a>
         
         <!-- <a style="float:right;" href="/login">Login</a> -->
     </div>
 
-    <h1 class="title">HOMEPAGE [Replace with the name of the game once it's made]</h1>
+    <h1 class="title fade">HOMEPAGE [Replace with the name of the game once it's made]</h1>
     <p class="fade" style="font-size:20px;"><b>Welcome to the homepage of the [gamename] project!  Currently, the game is in version [gameversion], and is open for play.</b></p><br>
     <div class="tab fade">
         <h2 class="fade" style="background-color:rgb(206, 206, 206);">What is [gamename]?</h2>
@@ -30,7 +30,6 @@
     <button class="fade" onclick="buttons('perlin')">Perlin</button><br>
     <button class="fade" onclick="buttons('game1')">Game1</button><br>
     <button class="fade" onclick="buttons('game2')">Game2</button>
-    <div class="fade" id="fade" style="background-color: lawngreen; padding: 10px 10px 10px 10px;"></div>
     <br><button class="fade" style="height: 1000px"></button>
     
 </body>
@@ -51,6 +50,16 @@
     }
     function fade() {
         document.getElementById("fade").className += '-in';
+    }
+    function fade() {
+    var x = document.querySelectorAll('.fade,.fade-in');
+    for (let i = 0; i < x.length; i++) { 
+        console.log("len"+x.length)
+        console.log(i)
+        
+        x[i].className += '-in';
+    }
+    console.log("END")
     }
 </script>
 </html>
