@@ -50,3 +50,10 @@
     background-color: #029660;
     color:white;
 }
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: transparent;
+  }
