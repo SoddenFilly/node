@@ -33,7 +33,6 @@
     float:left;
     color:#f2f2f2;
     background-color: rgb(48, 48, 48);
-    text-align:center;
     padding:14px 16px;
     text-decoration:none;
     font-size:17px;
@@ -47,4 +46,13 @@
 .navbar a.active {
     background-color: #029660;
     color:white;
+}
+
+.tabodd {
+    width:100%;
+}
+
+.tab {
+    background-color:rgb(206, 206, 206);
+    width:100%;
 }
