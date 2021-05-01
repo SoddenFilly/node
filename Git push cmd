@@ -1,1 +1,1 @@
-git pull origin main && git status && git add . && git status && git commit -m -name_here- && git push origin main
+git pull origin main && git status && git add . && git status && git commit -m -name__here- && git push origin main
