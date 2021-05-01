@@ -6,10 +6,13 @@
 </head>
 <body style="margin: 0 0 0 0;">
     <div class="navbar">
+        <img id="profile_img" src="resources/profile_blank.png" alt="profile pic" style="z-index: 2;position: fixed;height: 57.6px;">
         <a class="active" href="http://node-env.eba-gnikufyj.ap-southeast-2.elasticbeanstalk.com/">Homepage</a>
         <a onclick="buttons('contact')">Contact Us</a>
-        <a onclick="buttons('about')">About the Developers</a>
-        <a style="float:right;" href="/login">Login</a>
+        <a style="float:right;" onclick="buttons('login')">Login</a>
+        <a style="float:right;" onclick="buttons('about')">About the Developers</a>
+        
+        <!-- <a style="float:right;" href="/login">Login</a> -->
     </div>
 
     <h1 class="title">HOMEPAGE [Replace with the name of the game once it's made]</h1>
@@ -18,36 +21,13 @@
     <button onclick="buttons('perlin')">Perlin</button><br>
     <button onclick="buttons('game1')">Game1</button><br>
     <button onclick="buttons('game2')">Game2</button>
-    <br><button></button>
-    <br><button></button>
-    <br><button></button>
-    <br><button></button>
-    <br><button></button>
-    <br><button></button>
-    <br><button></button>
-    <br><button></button>
-    <br><button></button>
-    <br><button></button>
-    <br><button></button>
-    <br><button></button>
+    <br><button style="height: 1000px"></button>
     
 </body>
 <script>
     const root_url = "http://node-env.eba-gnikufyj.ap-southeast-2.elasticbeanstalk.com/"
     function buttons(spes) {
-        if (spes === 'login') {
-            window.location.href = root_url + "login"
-        } else if (spes === 'perlin') {
-            window.location.href = root_url + "perlin"
-        } else if (spes === 'game1') {
-            window.location.href = root_url + "game1"
-        } else if (spes === 'game2') {
-            window.location.href = root_url + "game2"
-        } else if (spes === 'contact') {
-            window.location.href = root_url + "contact"
-        } else if (spes === 'about') {
-            window.location.href = root_url + "about"
-        }
+        window.location.href = root_url + spes
     }
 </script>
 </html>
