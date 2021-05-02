@@ -15,8 +15,8 @@
 
 .title {
     font-size:60px;
-    background-color:rgb(206, 206, 206);
-    /* background-color: #845533; */
+    /* background-color:rgb(206, 206, 206); */
+    background-color: #CECECE;
     /* position:relative; */
     margin-top:57px;
     padding: 10px;
@@ -33,7 +33,8 @@
 
 .navbar a {
     float:left;
-    color:#f2f2f2;
+    /* color:#f2f2f2; */
+    color: #CECECE;
     background-color: rgb(48, 48, 48);
     padding:14px 16px;
     text-decoration:none;
@@ -42,14 +43,16 @@
 }
 
 .navbar a:hover {
-    background-color: #ddd;
+    /* background-color: #ddd; */
+    background-color: #CECECE;
     color:black;
     z-index: 1;
 }
 
 .navbar a.active {
     background-color: #029660;
-    color:white;
+    /* color:white; */
+    color: #CECECE;
 }
 
 img {
@@ -78,6 +81,7 @@ img {
 }
 
 .tab {
-    background-color:rgb(206, 206, 206);
+    /* background-color:rgb(206, 206, 206); */
+    background-color: #CECECE;
     width:100%;
 }
