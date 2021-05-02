@@ -2,7 +2,7 @@ const root_url = "http://node-env.eba-gnikufyj.ap-southeast-2.elasticbeanstalk.c
 function buttons(spes) {
     window.location.href = root_url + spes
 }
-
+ 
 var fade_active = "True"
 function fade() {
     if (fade_active === "True"){
