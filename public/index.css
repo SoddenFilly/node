@@ -10,7 +10,7 @@
     background-color: #4f6781;
     /* background-color: #1d6db5; */
     font-family: myFirstFont;
-    z-index: -1;
+    z-index: -2;
 }
 
 .title {
@@ -77,6 +77,24 @@ img {
     opacity: 0;
     transition: opacity 2s;
     pointer-events: none;
+}
+
+.veil {
+    position: fixed;
+    z-index: 0;
+    background-color: black;
+    width: 100%;
+    height: 0%;
+    transition: height 2s;
+}
+
+.veil-in {
+    position: fixed;
+    z-index: 0;
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    transition: height 2s;
 }
 
 .tabodd {
