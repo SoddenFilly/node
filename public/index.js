@@ -34,21 +34,11 @@ function fade() {
                 console.log(split)
                 console.log(x[i].className)
                 x[i].className = split
-                x[i].className += ' fade-in';
+                x[i].className += ' * fade-in';
             }
-            reloadCss()
         }, 2000)
     // fade_active = "False"
     } else {
         document.querySelectorAll('.veil-in')[0].className = "veil"
-    }
-}
-function reloadCss(){
-    var links = document.getElementsByTagName("link");
-    for (var cl in links)
-    {
-        var link = links[cl];
-        if (link.rel === "stylesheet")
-            link.href += "";
     }
 }
