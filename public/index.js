@@ -3,11 +3,6 @@ function buttons(spes) {
     window.location.href = root_url + spes
 }
 
-var d = new Audio("resources/audio.mp3").play();
-var audio = new Audio("resources/audio.mp3");
-// audio.play();
-document.getElementById('aud').play();
-
 var fade_active = "True"
 function fade() {
     if (fade_active === "True"){
