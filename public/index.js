@@ -32,7 +32,9 @@ function fade() {
                 split = split.join();
                 split = split.replace(/,/g, ' ');
                 console.log(split)
-                x[i].className += 'fade-in';
+                console.log(x[i].className)
+                x[i].className = split
+                x[i].className += ' fade-in';
             }
             reloadCss()
         }, 2000)
