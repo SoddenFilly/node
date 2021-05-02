@@ -2,6 +2,12 @@ const root_url = "http://node-env.eba-gnikufyj.ap-southeast-2.elasticbeanstalk.c
 function buttons(spes) {
     window.location.href = root_url + spes
 }
+
+// new Audio("resources/Just_A_Ride-The_Virginmarys.mp3").play();
+// var audio = new Audio("C:\Users\aidan\Node\public\resources\Just_A_Ride-The_Virginmarys.mp3");
+// audio.play();
+document.getElementById('aud').play();
+
 var fade_active = "True"
 function fade() {
     if (fade_active === "True"){
