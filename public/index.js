@@ -23,9 +23,16 @@ function fade() {
             }
             document.querySelectorAll('.veil-in')[0].className = "veil"
             var x = document.querySelectorAll('.fade,.fade-out');
-            for (let i = 0; i < x.length; i++) { 
+            for (let i = 0; i < x.length; i++) {
+                console.log("new")
                 x[i].style.display = 'block';
-                x[i].className = 'fade-in';
+                var split = x[i].className.split(" ")
+                console.log(split)
+                split.pop();
+                split = split.join();
+                split = split.replace(/,/g, ' ');
+                console.log(split)
+                x[i].className += 'fade-in';
             }
             reloadCss()
         }, 2000)
