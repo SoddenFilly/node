@@ -25,7 +25,7 @@ function fade() {
             var x = document.querySelectorAll('.fade,.fade-out');
             for (let i = 0; i < x.length; i++) { 
                 x[i].style.display = 'block';
-                x[i].className += ' fade-in';
+                x[i].className = 'fade-in';
             }
             reloadCss()
         }, 2000)
