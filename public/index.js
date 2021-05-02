@@ -5,8 +5,8 @@ function buttons(spes) {
  
 // document.getElementById("audio").src = "resources/Just_A_Ride.mp3";
 
-var audio = document.getElementById("audio");
-audio.play()
+// var audio = document.getElementById("audio");
+// audio.play() 
 
 
 var fade_active = "True"
