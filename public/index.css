@@ -57,9 +57,20 @@ img {
     margin-left: auto;
     margin-right: auto;
     background-color: transparent;
-  }
+}
+
 .fade {
+    opacity: 1;
+}
+
+.fade-in {
+    opacity: 1;
+    transition: opacity 2s;
+}
+
+.fade-out {
     opacity: 0;
+    transition: opacity 2s;
 }
 
 .tabodd {

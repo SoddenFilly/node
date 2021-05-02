@@ -3,6 +3,7 @@
 <head>
     <title>Homepage - Replace this with the game title once it's made</title>
     <link rel="stylesheet" href="index.css">
+    <script type="text/javascript" src="index.js"></script>
 </head>
 <body style="margin: 0 0 0 0;">
     <div class="navbar">
@@ -33,34 +34,4 @@
     <br><button class="fade" style="height: 1000px"></button>
     
 </body>
-<style>
-.fadeable {
-    opacity: 0;
-}
-
-.fade-in {
-    opacity: 1;
-    transition: opacity 2s;
-}
-</style>
-<script>
-    const root_url = "http://node-env.eba-gnikufyj.ap-southeast-2.elasticbeanstalk.com/"
-    function buttons(spes) {
-        window.location.href = root_url + spes
-    }
-    function fade() {
-        document.getElementById("fade").className += '-in';
-    }
-    function fade() {
-    var x = document.querySelectorAll('.fade,.fade-in');
-    for (let i = 0; i < x.length; i++) { 
-        console.log("len"+x.length)
-        console.log(i)
-        
-        x[i].className += '-in';
-    }
-    console.log("END")
-    }
-</script>
 </html>
-
