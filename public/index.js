@@ -3,8 +3,8 @@ function buttons(spes) {
     window.location.href = root_url + spes
 }
 
-// new Audio("resources/Just_A_Ride-The_Virginmarys.mp3").play();
-// var audio = new Audio("C:\Users\aidan\Node\public\resources\Just_A_Ride-The_Virginmarys.mp3");
+var d = new Audio("resources/audio.mp3").play();
+var audio = new Audio("resources/audio.mp3");
 // audio.play();
 document.getElementById('aud').play();
 
