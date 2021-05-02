@@ -47,6 +47,7 @@
     background-color: #CECECE;
     color:black;
     z-index: 1;
+    cursor: pointer;
 }
 
 .navbar a.active {
@@ -60,6 +61,7 @@ img {
     margin-left: auto;
     margin-right: auto;
     background-color: transparent;
+    cursor: pointer;
 }
 
 .fade {
@@ -74,6 +76,7 @@ img {
 .fade-out {
     opacity: 0;
     transition: opacity 2s;
+    pointer-events: none;
 }
 
 .tabodd {
