@@ -1,0 +1,42 @@
+{
+	"$baseURI": "https://yal.cc/r/20/pixelfont/",
+	"$version": "1.0",
+	"in-glyphs": [
+		"ABCDEFGHIJKLMONPQRSTUVWXYZ",
+		"abcdefghijklmnopqrstuvwxyz",
+		"0123456789",
+		":*(){}[]?!.,-_'\""
+	],
+	"glyph-color": "auto",
+	"in-kerning": [
+		""
+	],
+	"glyph-width": 6,
+	"glyph-height": 14,
+	"glyph-ofs-x": 0,
+	"glyph-ofs-y": 0,
+	"glyph-sep-x": 1,
+	"glyph-sep-y": 2,
+	"glyph-base-x": 0,
+	"glyph-baseline": 11,
+	"glyph-spacing": 1,
+	"font-is-mono": false,
+	"font-em-square": 1920,
+	"font-line-gap": 0,
+	"font-ascend": 1408,
+	"font-descend": -512,
+	"font-px-size": 128,
+	"font-name": "pixelfont",
+	"font-author": "Aidan Machue",
+	"font-copy": "(c)",
+	"font-version": "Version 1.0",
+	"font-desc": "Sweet fonts to leave your worries behind you",
+	"font-license": "You have the permission",
+	"font-license-url": "",
+	"font-sample-text": "Hello!",
+	"font-preview-text": [
+		"THE QUICK BROWN FOX JUMPS OVER A LAZY DOG.",
+		"the quick brown fox jumps over a lazy dog.",
+		"0123456789"
+	]
+}
