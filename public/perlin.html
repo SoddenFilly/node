@@ -4,13 +4,30 @@
 <title>Perlin</title>
 </head>
 <body>
-<canvas id='cnvs'></canvas>
-<h3>HSL color values: (w = white/blank)</h3>
+<canvas id='cnvs1' onclick="go('cnvs1',10,10,255)"></canvas>
+<canvas id='cnvs2' onclick="go('cnvs2',20,10,255)"></canvas>
+<canvas id='cnvs3' onclick="go('cnvs3',10,20,255)"></canvas>
+<canvas id='cnvs4' onclick="go('cnvs4',20,20,255)"></canvas>
+<canvas id='cnvs5' onclick="go('cnvs5',10,20,255)"></canvas>
+<canvas id='cnvs6' onclick="go('cnvs6',20,20,255)"></canvas>
+<!-- <h3>HSL color values: (w = white/blank)</h3>
 <p id="list"></p>
 <h3>HSL color values, sorted descending:</h3>
-<p id="list_sorted"></p>
+<p id="list_sorted"></p> -->
 <script>
+// go('cnvs1',10,10,255)
+// go('cnvs2',10,10,255)
+// go('cnvs3',10,10,255)
+// go('cnvs4',10,10,255)
+canv_num = 6
+for (i=1; i <= canv_num; i++){
+    go('cnvs'+i,10,10,255);
+    console.log('cnvs'+i,10,10,255)
+}
 //FUNCTIONS
+function go(canvas_id,GRID_SIZE,RESOLUTION,COLOR_SCALE){
+perlin.seed()
+
 function fill(color_val, x, y, color){
     // ctx.fillStyle = 'hsl('+color_val+',100%,50%)';
     ctx.fillStyle = color;
@@ -23,13 +40,17 @@ function fill(color_val, x, y, color){
 
 
 'use strict';
-let cnvs = document.getElementById('cnvs');
-cnvs.width = cnvs.height = 512;
+let cnvs = document.getElementById(canvas_id);
+cnvs.height = cnvs.width = window.innerWidth/2.1;
 let ctx = cnvs.getContext('2d');
 
-const GRID_SIZE = 10;
-const RESOLUTION = 100;
-const COLOR_SCALE = 255;
+// const GRID_SIZE = 10;
+// const RESOLUTION = 100;
+// const COLOR_SCALE = 255;
+
+// const GRID_SIZE = 10;
+// const RESOLUTION = 10;
+// const COLOR_SCALE = 255;
 
 let pixel_size = cnvs.width / RESOLUTION;
 let num_pixels = GRID_SIZE / RESOLUTION;
@@ -38,6 +59,7 @@ var coords = []
 var coords2 = []
 
 for (let y = 0; y < GRID_SIZE; y += num_pixels / GRID_SIZE){
+    // console.log(y)
     for (let x = 0; x < GRID_SIZE; x += num_pixels / GRID_SIZE){
         let color_val = parseInt(perlin.get(x, y) * COLOR_SCALE);
 
@@ -74,7 +96,10 @@ for (let y = 0; y < GRID_SIZE; y += num_pixels / GRID_SIZE){
         }
     }
 }
+}
 
+
+// go()
 document.getElementById("list").innerHTML = coords2;
 document.getElementById("list_sorted").innerHTML = coords.sort(function(a, b){return a - b});
 </script>
