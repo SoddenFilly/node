@@ -4,12 +4,13 @@
 <title>Perlin</title>
 </head>
 <body>
+<!-- '' = canvas name, var1 = canvas map scale, var2 = canvas block scale, var3 = color range - don't change -->
 <canvas id='cnvs1' onclick="go('cnvs1',10,10,255)"></canvas>
 <canvas id='cnvs2' onclick="go('cnvs2',20,10,255)"></canvas>
 <canvas id='cnvs3' onclick="go('cnvs3',10,20,255)"></canvas>
 <canvas id='cnvs4' onclick="go('cnvs4',20,20,255)"></canvas>
-<canvas id='cnvs5' onclick="go('cnvs5',10,20,255)"></canvas>
-<canvas id='cnvs6' onclick="go('cnvs6',20,20,255)"></canvas>
+<canvas id='cnvs5' onclick="go('cnvs5',15,20,255)"></canvas>
+<canvas id='cnvs6' onclick="go('cnvs6',15,20,255)"></canvas>
 <!-- <h3>HSL color values: (w = white/blank)</h3>
 <p id="list"></p>
 <h3>HSL color values, sorted descending:</h3>
@@ -21,8 +22,8 @@
 // go('cnvs4',10,10,255)
 canv_num = 6
 for (i=1; i <= canv_num; i++){
-    go('cnvs'+i,10,10,255);
-    console.log('cnvs'+i,10,10,255)
+    go('cnvs'+i,1,1,255);
+    // console.log('cnvs'+i,10,10,255)
 }
 //FUNCTIONS
 function go(canvas_id,GRID_SIZE,RESOLUTION,COLOR_SCALE){
