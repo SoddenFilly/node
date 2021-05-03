@@ -83,7 +83,7 @@ canvas { height:100%; position:fixed; width:100%; z-index: 0; }</style>
               3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3];
 
   /* The drawing context of the on screen canvas */
-  var context = document.querySelector("canvas").getContext("2d");
+  var ctx = document.querySelector("canvas").getContext("2d");
 
   /* The width and height of the inside of the browser window */
   var height = document.documentElement.clientHeight;
@@ -102,10 +102,10 @@ canvas { height:100%; position:fixed; width:100%; z-index: 0; }</style>
       var width  = document.documentElement.clientWidth;
 
       /* Resize canvas on every frame */
-      context.canvas.height = height;
-      context.canvas.width  = width;
+      ctx.canvas.height = height;
+      ctx.canvas.width  = width;
 
-      context.imageSmoothingEnabled = false;// prevent antialiasing of drawn image
+      ctx.imageSmoothingEnabled = false;// prevent antialiasing of drawn image
 
       player.moveTo(pointer.x, pointer.y);
       viewport.scrollTo(player.x, player.y);
@@ -138,7 +138,7 @@ canvas { height:100%; position:fixed; width:100%; z-index: 0; }</style>
           let tile_y = Math.floor(y * scaled_size - viewport.y + height * 0.5 - viewport.h * 0.5);// Tile y destination for drawing
 
           // Draw tile from tile_sheet
-          context.drawImage(tile_sheet, value * sprite_size, 0, sprite_size, sprite_size, tile_x, tile_y, scaled_size, scaled_size);
+          ctx.drawImage(tile_sheet, value * sprite_size, 0, sprite_size, sprite_size, tile_x, tile_y, scaled_size, scaled_size);
 
         }
 
@@ -153,12 +153,22 @@ canvas { height:100%; position:fixed; width:100%; z-index: 0; }</style>
 
       /* Draw the player. Remember to offset by the viewport position and
       center screen position. */
-      context.drawImage(tile_sheet, 64, 0, sprite_size, sprite_size, Math.round(player.x - viewport.x + width * 0.5 - viewport.w * 0.5), Math.round(player.y - viewport.y + height * 0.5 - viewport.h * 0.5), scaled_size, scaled_size);
+      ctx.drawImage(tile_sheet, 64, 0, sprite_size, sprite_size, Math.round(player.x - viewport.x + width * 0.5 - viewport.w * 0.5), Math.round(player.y - viewport.y + height * 0.5 - viewport.h * 0.5), scaled_size, scaled_size);
 
       /* Draw the viewport rectangle. */
-      context.strokeStyle = "#ffffff";
-      context.rect(width * 0.5 - viewport.w * 0.5, height * 0.5 - viewport.h * 0.5, viewport.w, viewport.h);
-      context.stroke();
+      ctx.strokeStyle = "#ffffff";
+      ctx.rect(width * 0.5 - viewport.w * 0.5, height * 0.5 - viewport.h * 0.5, viewport.w, viewport.h);
+      ctx.stroke();
+      
+      ctx.fillStyle = "#000000";
+      // ctx.fillStyle = "#FF0000";
+      ctx.fillRect(0,0, width * 0.5 - viewport.w * 0.5, height);
+      // ctx.fillStyle = "#FFF000";
+      ctx.fillRect(0,0, width, height * 0.5 - viewport.h * 0.5);
+      // ctx.fillStyle = "#FFFFF0";
+      ctx.fillRect(width * 0.5 + viewport.w * 0.5,0, width, height);
+      // ctx.fillStyle = "#FFF000";
+      ctx.fillRect(0,height * 0.5 + viewport.h * 0.5, width, height);
 
   }
 
@@ -168,7 +178,7 @@ canvas { height:100%; position:fixed; width:100%; z-index: 0; }</style>
 
   tile_sheet.src = "tile-scroll.png";
 
-  context.canvas.addEventListener("click", (event) => {
+  ctx.canvas.addEventListener("click", (event) => {
 
     pointer.x = event.pageX + viewport.x - width * 0.5 + viewport.w * 0.5;
     pointer.y = event.pageY + viewport.y - height * 0.5 + viewport.h * 0.5;
