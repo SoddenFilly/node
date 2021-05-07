@@ -1,0 +1,31 @@
+++Unsorted++
+communication
+playtesting
+player-li
+debugging
+efficiency
+
+
+++Game-side++
+art
+color design
+design
+
+code
+
+
+++Web-side++
+art
+color design
+design
+
+code
+
+
+++Later++
+music
+
+chat moderation
+server moderation
+
+advertising
