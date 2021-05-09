@@ -4,6 +4,8 @@
 
 <head>
 
+<script src='perlin.js'></script>
+
 <meta charset = "utf-8">
 <meta name = "viewport" content = "width=device-width">
 
@@ -26,6 +28,8 @@ canvas { height:100%; position:fixed; width:100%; }
 <canvas></canvas>
 
 <script type = "text/javascript">
+
+
 
 const Player = function(x,y) {
     this.x = x; this.y = y;
@@ -92,10 +96,10 @@ function loop() {
             var tt = 0;
 
             if (1 == Math.floor(Math.random() * (5 - 1) + 1)) {
-                tt = 735;
+                tt = 10;
             }
 
-            context.drawImage(tile_sheet, value * sprite_size, 0, sprite_size, sprite_size, tile_x + tt, tile_y, scaled_size, scaled_size)
+            context.drawImage(tile_sheet, value * sprite_size, 0, sprite_size, sprite_size, tile_x, tile_y + tt, scaled_size, scaled_size)
 
             tt = 0;
 
