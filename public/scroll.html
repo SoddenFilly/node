@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset = "utf-8">
+<meta name = "viewport" content = "width=device-width">
+
+<title>Tile Scroll</title>
+
+<style>
+
+* { margin:0; padding:0; }
+
+html, body { background-color:#000000; height:100%; position:relative; width:100%; }
+
+canvas { height:100%; position:fixed; width:100%; }
+
+</style>
+
+</head>
+
+<body>
+
+<canvas></canvas>
+
+<script type = "text/javascript">
+
+const Player = function(x,y) {
+    this.x = x; this.y = y;
+};
+
+var scaled_size = 32;
+var sprite_size = 16;
+var columns   = 24;// columns and rows in map below
+var rows      = 24;
+var map = [3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,
+            3,2,1,1,0,0,3,3,3,2,1,0,3,0,0,0,3,0,0,1,2,2,2,3,
+            3,1,1,0,0,0,3,3,3,1,0,0,3,0,2,0,3,0,1,1,2,1,1,3,
+            3,0,0,0,0,0,3,3,2,0,0,0,3,0,0,0,3,1,2,2,2,1,1,3,
+            3,1,1,0,0,0,3,1,1,0,0,0,3,3,3,0,1,1,2,2,1,0,0,3,
+            3,0,0,1,2,1,3,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,3,
+            3,0,1,2,2,1,3,0,1,0,0,0,0,0,0,0,0,1,0,1,0,1,0,3,
+            3,0,0,1,1,1,3,1,1,1,0,1,0,0,0,3,0,0,3,3,3,0,0,3,
+            3,0,0,0,1,1,3,3,3,3,3,3,3,3,3,3,0,0,3,3,3,3,3,3,
+            3,3,0,3,3,3,3,3,3,3,3,1,0,0,0,3,0,0,3,3,3,2,1,3,
+            3,3,1,0,0,1,3,3,3,3,3,0,0,0,0,0,0,1,1,0,1,1,0,3,
+            3,3,3,3,1,1,3,3,3,3,3,1,0,0,0,0,1,1,2,2,1,0,0,3,
+            3,3,3,3,0,1,0,0,3,3,1,0,0,1,1,2,1,2,0,1,2,1,0,3,
+            3,2,3,0,0,0,1,0,1,1,0,0,1,0,0,2,1,2,2,1,2,1,1,3,
+            3,1,1,1,0,0,0,0,1,1,0,0,0,1,1,0,2,1,1,1,2,0,1,3,
+            3,1,1,1,1,1,0,1,3,3,1,0,0,0,1,1,1,2,2,2,1,1,2,3,
+            3,0,0,0,1,0,1,1,3,3,1,0,0,0,0,1,0,1,1,1,1,1,1,3,
+            3,1,1,0,0,0,0,3,3,3,1,1,2,2,0,0,3,3,3,3,3,3,3,3,
+            3,0,1,0,1,0,1,3,3,3,3,2,2,2,2,1,3,1,0,0,0,0,1,3,
+            3,1,0,0,0,1,3,3,3,2,1,0,1,2,0,1,0,0,0,1,1,0,0,3,
+            3,2,0,0,0,0,3,3,3,3,1,1,0,1,1,0,3,0,1,2,2,1,0,3,
+            3,3,1,0,1,1,3,3,3,3,3,3,0,0,1,1,3,0,0,1,1,0,0,3,
+            3,3,1,1,2,3,3,3,3,3,3,3,1,0,1,2,3,1,0,0,0,0,1,3,
+            3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3];
+
+var context = document.querySelector("canvas").getContext("2d");
+
+var height = document.documentElement.clientHeight;
+var width = document.documentElement.clientWidth;
+
+var player = new Player(100,100)
+
+function loop() {
+    window.requestAnimationFrame(loop);
+
+    var height = document.documentElement.clientHeight;
+    var width = document.documentElement.clientWidth;
+
+    context.canvas.height = height;
+    context.canvas.width = width;
+
+    context.fillStyle = "#008000";
+    context.fillRect(0, 0, width, height);
+
+    context.imageSmoothingEnabled = false;
+
+    for (let x = 0; x < columns; x ++) {
+        for (let y = 0; y < rows; y ++) {
+            
+            let value = map[y * columns + x];
+            
+            let tile_x = x * scaled_size;
+            let tile_y = y * scaled_size;
+
+            var tt = 0;
+
+            if (1 == Math.floor(Math.random() * (5 - 1) + 1)) {
+                tt = 735;
+            }
+
+            context.drawImage(tile_sheet, value * sprite_size, 0, sprite_size, sprite_size, tile_x + tt, tile_y, scaled_size, scaled_size)
+
+            tt = 0;
+
+        }
+    }
+
+    context.drawImage(tile_sheet, 64, 0, sprite_size, sprite_size, player.x, player.y, scaled_size, scaled_size)
+}
+
+
+var tile_sheet = new Image();
+
+tile_sheet.addEventListener("load", (event) => { loop(); });
+
+tile_sheet.src = "tilesheet.png";
+
+console.log(Math.floor(Math.random() * (5 - 1) + 1))
+
+    
+</script>
+
+</body>
+
+</html> 
