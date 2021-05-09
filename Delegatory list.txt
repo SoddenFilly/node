@@ -1,28 +1,28 @@
-++Unsorted++
-    communication
-    playtesting
-    player-li
-    debugging
-    efficiency
-
-++Game-side++
-    art
-    color design
-    design
-
-    code
-
-++Web-side++
-    art
-    color design
-    design
-
-    code
-
-++Later++
-    music
-
-    chat moderation
-    server moderation
-
-    advertising
+++Unsorted++    | -/-
+    communication       | 
+    playtesting         |
+    player-l            |
+    debugging           |
+    efficiency          |
+                        
+++Game-side++   | A/Z
+    art                 | A
+    design              | A/Z
+        color           | A/Z
+    code                | A/Z
+        javascript      | A/Z
+                        
+++Web-side++    | A/Z
+    art                 | A/Z
+    design              | A/Z
+        color           | A/Z
+    code                | A/Z
+        html            | A/Z
+                        
+++Later++       | -/-
+    music               |
+                        |
+    chat moderation     |
+    servermoderation    |
+                        |
+    advertising         |
