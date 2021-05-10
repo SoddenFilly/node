@@ -21,11 +21,13 @@ canvas { height:100%; position:fixed; width:100%; }
 
 </style>
 
+<script src='perlin_c.js'></script>
+
 </head>
 
 <body>
-
-<canvas></canvas>
+<!-- <div style="height: 100000px; opacity: 50%; position: absolute; background-color: cornsilk; width: 10px; z-index: 2;"></div> -->
+<canvas style="overflow: scroll;"></canvas>
 
 <script type = "text/javascript">
 
@@ -33,10 +35,9 @@ const Player = function(x,y) {
     this.x = x; this.y = y;
 };
 
-var scaled_size = 32;
+var scaled_size = 16;
 var sprite_size = 16;
-var columns   = 24;// columns and rows in map below
-var rows      = 24;
+var columns = rows = 41;// columns and rows in map below
 var map = [3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,
             3,2,1,1,0,0,3,3,3,2,1,0,3,0,0,0,3,0,0,1,2,2,2,3,
             3,1,1,0,0,0,3,3,3,1,0,0,3,0,2,0,3,0,1,1,2,1,1,3,
@@ -61,6 +62,7 @@ var map = [3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,
             3,3,1,0,1,1,3,3,3,3,3,3,0,0,1,1,3,0,0,1,1,0,0,3,
             3,3,1,1,2,3,3,3,3,3,3,3,1,0,1,2,3,1,0,0,0,0,1,3,
             3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3];
+map = go();
 
 var context = document.querySelector("canvas").getContext("2d");
 
@@ -93,27 +95,17 @@ function loop() {
 
             var tt = 0;
 
-            // if (1 == Math.floor(Math.random() * (50 - 1) + 1)) {
+            // if (x/2 == Math.round(x/2)) {
             //     tt = 10;
             // } else {
             //     tt = 0;
             // }
-            
-
-            if (x/2 == Math.round(x/2)) {
-                tt = 10;
-            } else {
-                tt = 0;
-            }
 
             context.drawImage(tile_sheet, value * sprite_size, 0, sprite_size, sprite_size, tile_x, tile_y + tt, scaled_size, scaled_size)
-
         }
     }
-
     context.drawImage(tile_sheet, 64, 0, sprite_size, sprite_size, player.x, player.y, scaled_size, scaled_size)
 }
-
 
 var tile_sheet = new Image();
 
@@ -123,7 +115,6 @@ tile_sheet.src = "tilesheet.png";
 
 console.log(Math.floor(Math.random() * (5 - 1) + 1))
 
-    
 </script>
 
 </body>
