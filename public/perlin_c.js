@@ -1,14 +1,3 @@
-<html>
-<head>
-<script src='perlin.js'></script>
-<title>Perlin</title>
-</head>
-<body>
-
-<div id="text_container"></div>
-<canvas id='cnvs1' onclick="go('cnvs1',10,10,255)"></canvas>
-
-<script>
 res = go('cnvs1',1,1,255)
 console.log(res)
 //FUNCTIONS
@@ -79,8 +68,3 @@ function go(canvas_id,GRID_SIZE,RESOLUTION,COLOR_SCALE){
     document.getElementById("text_container").innerHTML = arr;
     return arr
 }// func go
-
-</script>
-</body>
-</html>
-
