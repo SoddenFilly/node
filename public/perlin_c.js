@@ -1,12 +1,14 @@
 res = go()
-// console.log(res)
+console.log(res)
 //FUNCTIONS
 function go(){
     perlin.seed()
 
     var arr = []
-    const RES = 5;
-    const HIG = WID = 41;
+    const RES = 15;
+
+    const SIZE = 300;
+    var HIG = WID = SIZE;
   
     var count = 0;
     for (let y = 0; y < RES; y += RES / HIG){
@@ -20,12 +22,12 @@ function go(){
             let grass_deep = -100
             let sand = -115;
 
-            if (x >= RES*0.9){
-                arr = arr + [1]
-            }
+            // if (x >= RES*0.99){
+            //     arr = arr + [1]
+            // }
         
-            else if (color_val >= stone){
-                arr = arr + [2]
+            if (color_val >= stone){
+                arr = arr + [1]
             }
             else if (color_val >= grass && color_val <= stone){
                 arr = arr + [2]
