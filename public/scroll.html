@@ -84,9 +84,11 @@ function loop() {
     // context.fillRect(0, 0, width, height);
 
     context.imageSmoothingEnabled = false;
+    var count = 0;
 
-    for (let x = 0; x < columns; x ++) {
-        for (let y = 0; y < rows; y ++) {
+    for (let y = 0; y < rows; y++) {
+        for (let x = 0; x < columns; x++, count++) {
+
             
             let value = map[y * columns + x];
             
@@ -94,14 +96,16 @@ function loop() {
             let tile_y = y * scaled_size;
 
             var tt = 0;
-
+            index_y = 4
+            index_x = 4
             // if (x/2 == Math.round(x/2)) {
-            //     tt = 10;
-            // } else {
-            //     tt = 0;
-            // }
+            if (count == ((index_y-1) * columns) + index_x - 1) {
+                tt = 100;
+            } else {
+                tt = 0;
+            }
 
-            context.drawImage(tile_sheet, value * sprite_size, 0, sprite_size, sprite_size, tile_x, tile_y + tt, scaled_size, scaled_size)
+            context.drawImage(tile_sheet, value * sprite_size, 0, sprite_size, sprite_size, tile_x + tt, tile_y + tt, scaled_size, scaled_size)
         }
     }
     context.drawImage(tile_sheet, 64, 0, sprite_size, sprite_size, player.x, player.y, scaled_size, scaled_size)
