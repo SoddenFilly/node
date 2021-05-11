@@ -7,7 +7,8 @@ function go(){
     var arr = []
     const RES = 15;
 
-    const SIZE = 300;
+    // const SIZE = 300;
+    const SIZE = 30;
     var HIG = WID = SIZE;
   
     var count = 0;
@@ -46,5 +47,16 @@ function go(){
     }
     console.log(count)
     // document.getElementById("text_container").innerHTML = arr;
+
+    for (let i = 0; i < arr.length; i++) {
+        // console.log(i);
+        let temp = arr[i];
+        arr[i] = [[temp, 27]];
+    }
+    console.log("qq")
+    console.log(arr)
+    console.log(arr.length)
+    console.log("fffff")
+
     return arr
 }// func go
