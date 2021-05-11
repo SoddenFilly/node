@@ -1,5 +1,5 @@
 res = go()
-console.log(res)
+// console.log(res)
 //FUNCTIONS
 function go(){
     perlin.seed()
@@ -43,7 +43,7 @@ function go(){
                 arr = arr + [5]
             }
         }
-        console.log(x)
+        // console.log(x)
     }
     console.log(count)
     // document.getElementById("text_container").innerHTML = arr;
@@ -53,10 +53,10 @@ function go(){
         let temp = arr[i];
         arr[i] = [[temp, 27]];
     }
-    console.log("qq")
-    console.log(arr)
-    console.log(arr.length)
-    console.log("fffff")
+    // console.log("qq")
+    // console.log(arr)
+    // console.log(arr.length)
+    // console.log("fffff")
 
     return arr
 }// func go
