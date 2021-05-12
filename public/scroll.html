@@ -84,20 +84,16 @@ function loop() {
     // context.fillRect(0, 0, width, height);
 
     context.imageSmoothingEnabled = false;
-    var count = 0;
-    
 
+    
+    var count = 0;
     for (let y = 0; y < rows; y++) {
         // console.log(map[y])
         for (let x = 0; x < columns; x++, count++) {
-            console.log(map[count])
-            map[count] = [map[count], "height", "ad"]
+            // console.log(map[count])
+            map[count] = [map[count][0], "up", "right", "down", "left"]
             
-            
-            
-
-            
-            let value = map[y * columns + x];
+            let value = map[y * columns + x][0];
             
             let tile_x = x * scaled_size;
             let tile_y = y * scaled_size;
@@ -115,21 +111,45 @@ function loop() {
             context.drawImage(tile_sheet, value * sprite_size, 0, sprite_size, sprite_size, tile_x + tt, tile_y + tt, scaled_size, scaled_size)
         }
     }
-    context.drawImage(tile_sheet, 64, 0, sprite_size, sprite_size, player.x, player.y, scaled_size, scaled_size)
-}
+    context.drawImage(tile_sheet, 0, 0, sprite_size, sprite_size, player.x, player.y, scaled_size, scaled_size)
 
-var list = [1,2,3,4,5]
-    console.log("list",list)
-    list[2] = [list[2],"fff",5849]
-    console.log(list[2])
+    var count = 0;
+    for (let y = 0; y < rows; y++) {
+        // console.log(map[y])
+        for (let x = 0; x < columns; x++, count++) {
+            // console.log(map[count])
+            // map[count] = [map[count][0], "up", "right", "down", "left"]
+            
+            let value = map[y * columns + x][0];
+            
+            let tile_x = x * scaled_size;
+            let tile_y = y * scaled_size;
+
+            var tt = 0;
+            index_y = 4
+            index_x = 4
+            // if (x/2 == Math.round(x/2)) {
+            if (count == ((index_y-1) * columns) + index_x - 1) {
+                tt = 100;
+            } else {
+                tt = 0;
+            }
+        }
+    }
+}// loop()
+
+// var list = [1,2,3,4,5]
+//     console.log("list",list)
+//     list[2] = [list[2],"fff",5849]
+//     console.log(list[2])
 
 var tile_sheet = new Image();
 
 // console.log("sss",Array.from(map))
 map = Array.from(map)
 
-// tile_sheet.addEventListener("load", (event) => { loop(); });
-loop();
+tile_sheet.addEventListener("load", (event) => { loop(); });
+// loop();
 console.log(map)
 
 
