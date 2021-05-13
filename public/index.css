@@ -29,6 +29,7 @@
     top:0;
     width:100%;
     z-index: 0;
+    height:30px; 
 }
 
 .navbar a {
@@ -40,7 +41,6 @@
     text-decoration:none;
     font-size:17px;
     z-index: 1;
-    height:35px; 
 }
 
 .navbar a:hover {
