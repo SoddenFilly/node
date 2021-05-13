@@ -92,7 +92,11 @@ function loop() {
         for (let x = 0; x < columns; x++, index++) {
             // console.log(map[count])
             // map[index] = [map[index][0], "up", "right", "down", "left"]
-            map[index] = [map[index][0]]
+            // map[index] = ["up", "right", "down", "left"]
+            // map[index] = [map[index][0]]
+
+
+
             
             let value = map[y * columns + x][0];
             
@@ -113,48 +117,40 @@ function loop() {
         }
     }
     context.drawImage(tile_sheet, 0, 0, sprite_size, sprite_size, player.x, player.y, scaled_size, scaled_size)
-
-    var index = 0;
-    for (let y = 0; y < rows; y++) {
-        // console.log(map[y])
-        for (let x = 0; x < columns; x++, index++) {
-            // console.log(map[count])
-            // map[count] = [map[count][0], "up", "right", "down", "left"]
-            // let t = index;
-            if (index <= 10) {
-                findAdjacent(index);
-            }
-            
-            // console.log(vari);
-        }
-    }
 }// loop()
-
-function findAdjacent(center) {
-    // map = map[center][0].pop
-    // map[center][1] = 374
-    map[center][1] = '3746'
-    map[center][2] = 3746
-    map[center][3] = 3746
-    map[center][4] = 3746
-
-    // map[center][1] = 3746
-    return center
-}
 
 var tile_sheet = new Image();
 
 // console.log("sss",Array.from(map))
-map = Array.from(map)
+// map = Array.from(map)
+mapstr = map
+map = []
+for (let l = 0;mapstr.length > 0; l++) {
+    // map.substring(1)
+    let char = mapstr.slice(0,1)
+    map += [char]
+    mapstr = mapstr.slice(1)
+    // console.log(char)
+
+}
+console.log("gg",map)
+console.log("skvjn")
+li = [1,2,[3,4,[5,6,7]]]
+console.log(li)
+li[2][2] = li.push([8,9,10]);
+// li += [1,3]
+console.log(li)
 
 tile_sheet.addEventListener("load", (event) => { loop(); });
 // loop();
 console.log(map)
-console.log(map[3][1])
+// map[2] = ["2", "3746", 3746, 3746, 3746]
+console.log(map)
+console.log(map[0][1])
 
-var list = [1,2,[11,12,13,[7,8,9]],4,5]
+let list = [1,2,[11,12,13,[7,8,9]],4,5]
 console.log(list)
-    console.log(list[2][3][1])
+console.log(list[2][3][1])
 
 
 tile_sheet.src = "tileset.png";
