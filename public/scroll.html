@@ -128,29 +128,54 @@ map = []
 for (let l = 0;mapstr.length > 0; l++) {
     // map.substring(1)
     let char = mapstr.slice(0,1)
-    map += [char]
+    map = map + [char]
     mapstr = mapstr.slice(1)
     // console.log(char)
 
 }
+
+var string = 19921
+string = string.toString()
+var array = []
+for (let l = 0;string.length > 0; l++) {
+    // map.substring(1)
+    let char = string.slice(0,1)
+    array = array + [parseInt(char)]
+    string = string.slice(1)
+    // console.log(char)
+    console.log({string})
+}
+console.log({array})
+console.log(array)
+console.log(string.length)
+
+let i = [1]
+console.log({i})
+i = i + [1]
+console.log({i})
+
 console.log("gg",map)
 console.log("skvjn")
-li = [1,2,[3,4,[5,6,7]]]
-console.log(li)
-li[2][2] = li.push([8,9,10]);
-// li += [1,3]
-console.log(li)
+// li = [1,2,[3,4,[5,6,7]]]
+// console.log(li)
+// li[2][2] = li.push([8,9,10]);
+// // li += [1,3]
+// console.log(li)
 
 tile_sheet.addEventListener("load", (event) => { loop(); });
 // loop();
 console.log(map)
-// map[2] = ["2", "3746", 3746, 3746, 3746]
+map[2] = ["2", "3746", 3746, 3746, 3746]
+
 console.log(map)
 console.log(map[0][1])
 
-var list = [1,2,[11,12,13,[7,8,9]],4,5]
-console.log(list)
-console.log(list[2][3][1])
+// var list = [1,2,[11,12,13,[7,8,9]],4,5]
+// console.log(list)
+// console.log(list[2][3][1])
+
+let o = [0,9,0]
+console.log(o)
 
 
 tile_sheet.src = "tileset.png";
