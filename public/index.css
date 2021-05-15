@@ -108,3 +108,50 @@ img {
     background-color: #CECECE;
     width:100%;
 }
+
+.container .box {
+    width:100%;
+    display:table;
+}
+.container .box .box-row {
+    display:table-row;
+}
+.container .box .box-cell {
+    display:table-cell;
+    width:50%;
+    padding:10px;
+}
+.container .box .box-cell.box1 {
+    background:rgb(206, 206, 206);
+    color:white;
+    text-align:justify;
+ }
+.container .box .box-cell.box2 {
+    background:rgb(206, 206, 206);
+    text-align:justify
+}
+
+.bigtext {
+    font-size:40px;
+}
+
+.biggertext {
+    font-size:50px
+}
+
+.gfg {
+    margin:3%;
+    position:relative;
+}
+
+.first-txt {
+    position:absolute;
+    top:17px;
+    left:50px;
+}
+
+.second-txt {
+    position:absolute;
+    bottom: 20px;
+    left: 10px;
+}
