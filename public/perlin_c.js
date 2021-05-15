@@ -28,19 +28,24 @@ function go(){
             // }
         
             if (color_val >= stone){
-                arr = arr + [1]
+                // arr = arr + [1]
+                arr[arr.length] = 1
             }
             else if (color_val >= grass && color_val <= stone){
-                arr = arr + [2]
+                // arr = arr + [2]
+                arr[arr.length] = 2
             }
             else if (color_val >= grass_deep && color_val <= grass){
-                arr = arr + [3]
+                // arr = arr + [3]
+                arr[arr.length] = 3
             }
             else if (color_val >= sand && color_val <= grass_deep){
-                arr = arr + [4]
+                // arr = arr + [4]
+                arr[arr.length] = 4
             }
             else if (color_val <= sand){
-                arr = arr + [5]
+                // arr = arr + [5]
+                arr[arr.length] = 5
             }
         }
         // console.log(x)
@@ -48,11 +53,11 @@ function go(){
     console.log(count)
     // document.getElementById("text_container").innerHTML = arr;
 
-    for (let i = 0; i < arr.length; i++) {
-        // console.log(i);
-        let temp = arr[i];
-        arr[i] = [[temp, 27]];
-    }
+    // for (let i = 0; i < arr.length; i++) {
+    //     // console.log(i);
+    //     let temp = arr[i];
+    //     arr[i] = [[temp, 27]];
+    // }
     // console.log("qq")
     // console.log(arr)
     // console.log(arr.length)

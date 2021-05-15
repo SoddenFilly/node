@@ -87,18 +87,23 @@ function loop() {
 
     
     var index = 0;
+    // console.log("dd",map[5]);
+    // console.log(map[1])
     for (let y = 0; y < rows; y++) {
         // console.log(map[y])
         for (let x = 0; x < columns; x++, index++) {
-            // console.log(map[count])
-            // map[index] = [map[index][0], "up", "right", "down", "left"]
+            // var oo = map[index]
+            // console.log(oo)
+
+            map[index] = ["up", "right", "down", "left"]
             // map[index] = ["up", "right", "down", "left"]
-            // map[index] = [map[index][0]]
+            // map[index] = map[index]
 
 
 
             
-            let value = map[y * columns + x][0];
+            let value = map[y * columns + x];
+            // console.log(value)
             
             let tile_x = x * scaled_size;
             let tile_y = y * scaled_size;
@@ -123,39 +128,39 @@ var tile_sheet = new Image();
 
 // console.log("sss",Array.from(map))
 // map = Array.from(map)
-mapstr = map
-map = []
-for (let l = 0;mapstr.length > 0; l++) {
-    // map.substring(1)
-    let char = mapstr.slice(0,1)
-    map = map + [char]
-    mapstr = mapstr.slice(1)
-    // console.log(char)
+// mapstr = map
+// map = []
+// for (let l = 0;mapstr.length > 0; l++) {
+//     // map.substring(1)
+//     let char = mapstr.slice(0,1)
+//     map = map + [char]
+//     mapstr = mapstr.slice(1)
+//     // console.log(char)
 
-}
+// }
 
-var string = 19921
-string = string.toString()
-var array = []
-for (let l = 0;string.length > 0; l++) {
-    // map.substring(1)
-    let char = string.slice(0,1)
-    array = array + [parseInt(char)]
-    string = string.slice(1)
-    // console.log(char)
-    console.log({string})
-}
-console.log({array})
-console.log(array)
-console.log(string.length)
+// var string = 19921
+// string = string.toString()
+// var array = []
+// for (let l = 0;string.length > 0; l++) {
+//     // map.substring(1)
+//     let char = string.slice(0,1)
+//     array = array + [parseInt(char)]
+//     string = string.slice(1)
+//     // console.log(char)
+//     console.log({string})
+// }
+// console.log({array})
+// console.log(array)
+// console.log(string.length)
 
-let i = [1]
-console.log({i})
-i = i + [1]
-console.log({i})
+// let i = [1]
+// console.log({i})
+// i[1] = 1
+// console.log({i})
 
 console.log("gg",map)
-console.log("skvjn")
+// console.log("skvjn")
 // li = [1,2,[3,4,[5,6,7]]]
 // console.log(li)
 // li[2][2] = li.push([8,9,10]);
@@ -164,18 +169,18 @@ console.log("skvjn")
 
 tile_sheet.addEventListener("load", (event) => { loop(); });
 // loop();
-console.log(map)
-map[2] = ["2", "3746", 3746, 3746, 3746]
+// console.log(map)
+// map[2] = ["2", "3746", 3746, 3746, 3746]
 
 console.log(map)
-console.log(map[0][1])
+console.log(map[5])
 
 // var list = [1,2,[11,12,13,[7,8,9]],4,5]
 // console.log(list)
 // console.log(list[2][3][1])
 
-let o = [0,9,0]
-console.log(o)
+// let o = [0,9,0]
+// console.log(o)
 
 
 tile_sheet.src = "tileset.png";
