@@ -139,19 +139,16 @@ img {
     font-size:50px
 }
 
-.gfg {
-    margin:3%;
-    position:relative;
-}
+.background {
+    position: relative;
+    text-align: center;
+    color: white;
+  }
 
-.first-txt {
-    position:absolute;
-    top:17px;
-    left:50px;
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
-
-.second-txt {
-    position:absolute;
-    bottom: 20px;
-    left: 10px;
-}
+  
