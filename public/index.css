@@ -121,12 +121,12 @@ img {
     width:50%;
     padding:10px;
 }
-.container .box .box-cell.box1 {
+.container .box .box-cell .box1 {
     background:rgb(206, 206, 206);
     color:white;
     text-align:justify;
  }
-.container .box .box-cell.box2 {
+.container .box .box-cell .box2 {
     background:rgb(206, 206, 206);
     text-align:justify
 }
