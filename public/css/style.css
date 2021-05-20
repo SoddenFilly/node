@@ -1,6 +1,6 @@
 @font-face {
     font-family: myFirstFont;
-    src:url("resources/fonts/pixelfont.otf");
+    src:url("../resources/fonts/pixelfont.otf");
 }
 input[type="text"] {
     font-family: myFirstFont;
