@@ -30,5 +30,11 @@ server.get('/about', (req,res) => {
     res.sendFile('./public/about.html', { root: __dirname });
 })
 
+// --------------
+
+server.get('/t', (req,res) => {
+    res.sendFile('./public/about.html', { root: __dirname });
+})
+
 server.listen(port, () => {})
 
