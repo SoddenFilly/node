@@ -136,7 +136,11 @@ img {
 }
 
 .biggertext {
-    font-size:50px
+    font-size:50px;
+}
+
+.biggertext2 {
+    font-size: 100px;
 }
 
 .background {
@@ -151,4 +155,3 @@ img {
     left: 50%;
     transform: translate(-50%, -50%);
 }
-  
