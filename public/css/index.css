@@ -143,12 +143,9 @@ img {
     font-size: 100px;
 }
 
-.flexcontainer {
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    height: 1000px;
-    background-color:DodgerBlue;
+.grid {
+    display: grid;
+    place-items: center;
 }
 
 .flexcontainer>div {
