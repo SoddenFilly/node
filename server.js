@@ -9,25 +9,25 @@ server.get('/', (req,res) => {
     res.sendFile('./public/html/index.html', { root: __dirname });
 })
 server.get('/login', (req,res) => {
-    res.sendFile('./public/login.html', { root: __dirname });
+    res.sendFile('./public/html/login.html', { root: __dirname });
 })
 server.get('/game1', (req,res) => {
-    res.sendFile('./public/game.html', { root: __dirname });
+    res.sendFile('./public/html/game.html', { root: __dirname });
 })
 server.get('/perlintest', (req,res) => {
-    res.sendFile('./public/perlin.html', { root: __dirname });
+    res.sendFile('./public/html/perlin.html', { root: __dirname });
 })
 server.get('/perlin', (req,res) => {
-    res.sendFile('./public/scroll.html', { root: __dirname });
+    res.sendFile('./public/html/scroll.html', { root: __dirname });
 })
 server.get('/game2', (req,res) => {
-    res.sendFile('./public/tile-scroll.html', { root: __dirname });
+    res.sendFile('./public/html/tile-scroll.html', { root: __dirname });
 })
 server.get('/contact', (req,res) => {
-    res.sendFile('./public/contact.html', { root: __dirname });
+    res.sendFile('./public/html/contact.html', { root: __dirname });
 })
 server.get('/about', (req,res) => {
-    res.sendFile('./public/about.html', { root: __dirname });
+    res.sendFile('./public/html/about.html', { root: __dirname });
 })
 
 
