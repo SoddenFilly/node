@@ -4,7 +4,7 @@
 
 <head>
 
-<script src='perlin.js'></script>
+<script src='../js/perlin.js'></script>
 
 <meta charset = "utf-8">
 <meta name = "viewport" content = "width=device-width">
@@ -21,7 +21,7 @@ canvas { height:100%; position:fixed; width:100%; }
 
 </style>
 
-<script src='perlin_c.js'></script>
+<script src='../js/perlin_c.js'></script>
 
 </head>
 
@@ -36,9 +36,9 @@ const Player = function(x,y) {
 };
 
 var map = go();
-var scaled_size = 32; //2.5
+var scaled_size = 2.5; //2.5
 var sprite_size = 16;
-var columns = rows = 30;// columns and rows in map below
+var columns = rows = 300;// columns and rows in map below
 // var map = [3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,
 //             3,2,1,1,0,0,3,3,3,2,1,0,3,0,0,0,3,0,0,1,2,2,2,3,
 //             3,1,1,0,0,0,3,3,3,1,0,0,3,0,2,0,3,0,1,1,2,1,1,3,
@@ -95,7 +95,16 @@ function loop() {
             // var oo = map[index]
             // console.log(oo)
 
-            map[index] = ["up", "right", "down", "left"]
+
+
+
+
+            // map[index] = ["up", "right", "down", "left"]
+
+
+
+
+
             // map[index] = ["up", "right", "down", "left"]
             // map[index] = map[index]
 
@@ -182,8 +191,7 @@ console.log(map[5])
 // let o = [0,9,0]
 // console.log(o)
 
-
-tile_sheet.src = "tileset.png";
+tile_sheet.src = "../resources/images/tileset.png";
 
 // console.log(Math.floor(Math.random() * (5 - 1) + 1))
 

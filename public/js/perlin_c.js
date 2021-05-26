@@ -8,7 +8,7 @@ function go(){
     const RES = 15;
 
     // const SIZE = 300;
-    const SIZE = 30;
+    const SIZE = 300;
     var HIG = WID = SIZE;
   
     var count = 0;
