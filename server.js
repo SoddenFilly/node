@@ -29,7 +29,7 @@ server.get('/contact', (req,res) => {
 server.get('/about', (req,res) => {
     res.sendFile('./public/html/about.html', { root: __dirname });
 })
-
+ 
 
 
 
