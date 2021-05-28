@@ -94,11 +94,11 @@ for (let y = 0; y < GRID_SIZE; y += num_pixels / GRID_SIZE){
             var color = '#ffffff'
             fill(elevation, x, y, color)
         }
-        if ((elevation >= e_high) && ((rainfall >= r_low) || (temperature >= t_high))){
+        if ((elevation >= e_high) && ((rainfall >= r_low && rainfall < r_medium) || (temperature >= t_high && temperature < t_medium))){
             var color = '#737373'
             fill(elevation, x, y, color)
         } else {
-            var color = '#254383'
+            var color = '#2B4162'
             fill(elevation, x, y, color)
         }
     }
