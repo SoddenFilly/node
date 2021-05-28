@@ -90,6 +90,7 @@ for (let y = 0; y < GRID_SIZE; y += num_pixels / GRID_SIZE){
         // }
         // coords.push(color_val);
         
+        //some test stuff - the first two should make snowy (medium-high rainfall, high elevation, medium-low temperature) mountains, non-snowy (low rainfall OR high temperature, high elevation), and water (anything without those specified conditions)
         if ((elevation >= e_high) && (rainfall >= r_medium) && (temperature >= t_medium)){
             var color = '#ffffff'
             fill(elevation, x, y, color)
