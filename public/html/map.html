@@ -26,14 +26,14 @@ var context = document.querySelector("canvas").getContext("2d");
 var height = document.documentElement.clientHeight;
 var width = document.documentElement.clientWidth;
 
-for (let m = 0; m < 2; m++) {
+
 
     var map = go(); 
     var scaled_size = 2.4; //2.5
     var sprite_size = 16;
     var columns = rows = 300;
 
-    function loop() {
+    function loop(m) {
         window.requestAnimationFrame(loop);
 
         var height = document.documentElement.clientHeight;
@@ -46,6 +46,22 @@ for (let m = 0; m < 2; m++) {
 
         
         var index = 0;
+        
+        for (let y = 0; y < rows; y++) {
+
+            for (let x = 0; x < columns; x++, index++) {
+                
+                let value = map[y * columns + x];
+                
+                let tile_x = x * scaled_size;
+                let tile_y = y * scaled_size;
+
+                index_y = 4
+                index_x = 4
+                
+                context.drawImage(tile_sheet, value * sprite_size, 0, sprite_size, sprite_size, tile_x, tile_y, scaled_size, scaled_size)
+            }
+        }
 
         for (let y = 0; y < rows; y++) {
 
@@ -58,13 +74,13 @@ for (let m = 0; m < 2; m++) {
 
                 index_y = 4
                 index_x = 4
-
-                context.drawImage(tile_sheet, value * sprite_size, 0, sprite_size, sprite_size, tile_x + m*100, tile_y, scaled_size, scaled_size)
+                
+                context.drawImage(tile_sheet, value * sprite_size, 0, sprite_size, sprite_size, tile_x + 700, tile_y, scaled_size, scaled_size)
             }
         }
     }
-}
 
+console.log("f")
 var tile_sheet = new Image();
 
 tile_sheet.addEventListener("load", (event) => { loop(); });
