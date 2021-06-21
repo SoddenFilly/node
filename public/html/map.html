@@ -1,39 +1,28 @@
 <!DOCTYPE html>
-
 <html>
-
 <head>
-
-<script src='../js/perlin.js'></script>
-
 <meta charset = "utf-8">
 <meta name = "viewport" content = "width=device-width">
-
 <title>Tile Scroll</title>
-
 <style>
-
 * { margin:0; padding:0; }
-
 html, body { background-color:#000000; height:100%; position:relative; width:100%; }
-
 canvas { height:100%; position:fixed; width:100%; }
-
 </style>
 
+<!-- perlin complex -->
+<script src='../js/perlin.js'></script>
+<!-- perlin colour range config -->
 <script src='../js/perlin_c.js'></script>
 
 </head>
 
 <body>
-<!-- <div style="height: 100000px; opacity: 50%; position: absolute; background-color: cornsilk; width: 10px; z-index: 2;"></div> -->
 <canvas style="overflow: scroll;"></canvas>
 
 <script type = "text/javascript">
 
-const Player = function(x,y) {
-    this.x = x; this.y = y;
-};
+
 
 var map = go(); 
 var scaled_size = 2.4; //2.5
@@ -130,7 +119,6 @@ function loop() {
             context.drawImage(tile_sheet, value * sprite_size, 0, sprite_size, sprite_size, tile_x + tt, tile_y + tt, scaled_size, scaled_size)
         }
     }
-    context.drawImage(tile_sheet, 0, 0, sprite_size, sprite_size, player.x, player.y, scaled_size, scaled_size)
 }// loop()
 
 var tile_sheet = new Image();
