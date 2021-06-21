@@ -69,24 +69,15 @@ perlin.seed();
 for (let y = 0; y < GRID_SIZE; y+= num_pixels / GRID_SIZE){
     for (let x = 0; x < GRID_SIZE; x += num_pixels / GRID_SIZE){
         elevation = parseInt(perlin.get(x,y) * COLOR_SCALE);
-    }
-}
-perlin.seed();
-for (let y = 0; y < GRID_SIZE; y+= num_pixels / GRID_SIZE){
-    for (let x = 0; x < GRID_SIZE; x += num_pixels / GRID_SIZE){
-        rainfall = parseInt(perlin.get(x,y) * COLOR_SCALE);
-    }
-}
-perlin.seed();
-for (let y = 0; y < GRID_SIZE; y+= num_pixels / GRID_SIZE){
-    for (let x = 0; x < GRID_SIZE; x += num_pixels / GRID_SIZE){
-        temperature = parseInt(perlin.get(x,y) * COLOR_SCALE);
-    }
-}
+
 
 for (let y = 0; y < GRID_SIZE; y += num_pixels / GRID_SIZE){
     // console.log(y)
     for (let x = 0; x < GRID_SIZE; x += num_pixels / GRID_SIZE){
+
+        elevation = parseInt(perlin.get(x,y) * COLOR_SCALE);
+        rainfall = parseInt(perlin.get(x,y) * COLOR_SCALE);
+        temperature = parseInt(perlin.get(x,y) * COLOR_SCALE); 
 
         //Elevation values
         let e_high = 100;
