@@ -47,9 +47,9 @@ var coords2 = []
 for (let y = 0; y < GRID_SIZE; y += num_pixels / GRID_SIZE){
     for (let x = 0; x < GRID_SIZE; x += num_pixels / GRID_SIZE){
 
-        elevation = parseInt(perlin.get(x,y) * COLOR_SCALE);
-        rainfall = parseInt(perlin.get(x,y) * COLOR_SCALE);
-        temperature = parseInt(perlin.get(x,y) * COLOR_SCALE); 
+        let elevation = parseInt(perlin.get(x,y) * COLOR_SCALE);
+        let rainfall = parseInt(perlin.get(x,y) * COLOR_SCALE);
+        let temperature = parseInt(perlin.get(x,y) * COLOR_SCALE); 
 
         //Elevation values
         let e_high = 100;
@@ -102,6 +102,7 @@ for (let y = 0; y < GRID_SIZE; y += num_pixels / GRID_SIZE){
             fill(temperature, x, y, color)
         }
     }
+}
 }
 
 document.getElementById("list").innerHTML = coords2;
