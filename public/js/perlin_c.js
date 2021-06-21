@@ -50,7 +50,7 @@ function go(){
         }
         // console.log(x)
     }
-    console.log(count)
+    // console.log(count)
     // document.getElementById("text_container").innerHTML = arr;
 
     // for (let i = 0; i < arr.length; i++) {
