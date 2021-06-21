@@ -61,15 +61,6 @@ let num_pixels = GRID_SIZE / RESOLUTION;
 var coords = []
 var coords2 = []
 
-var elevation;
-var rainfall;
-var temperature;
-
-perlin.seed();
-for (let y = 0; y < GRID_SIZE; y+= num_pixels / GRID_SIZE){
-    for (let x = 0; x < GRID_SIZE; x += num_pixels / GRID_SIZE){
-        elevation = parseInt(perlin.get(x,y) * COLOR_SCALE);
-
 
 for (let y = 0; y < GRID_SIZE; y += num_pixels / GRID_SIZE){
     // console.log(y)
@@ -137,7 +128,6 @@ for (let y = 0; y < GRID_SIZE; y += num_pixels / GRID_SIZE){
             fill(temperature, x, y, color)
         }
     }
-}
 }
 
 // go()
