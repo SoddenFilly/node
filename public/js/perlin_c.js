@@ -1,11 +1,11 @@
 res = go()
 // console.log(res)
 //FUNCTIONS
-function go(){
+function go(RES){
     perlin.seed()
 
     var arr = []
-    const RES = 15;
+    // const RES = 15;
 
     // const SIZE = 300;
     const SIZE = 300;

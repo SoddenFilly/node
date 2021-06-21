@@ -28,10 +28,17 @@ var width = document.documentElement.clientWidth;
 
 
 
-    var map = go(); 
-    var scaled_size = 2.4; //2.5
+    var terrain = go(15); 
+    var temperature = go(5.5)
+    var scaled_size = 2.4; //2.4
     var sprite_size = 16;
     var columns = rows = 300;
+    
+    // var terrain = {
+    //     "perlin":go(5.5),
+    //     "scaled_size":2.4,
+        
+    // }
 
     function loop(m) {
         window.requestAnimationFrame(loop);
@@ -51,7 +58,7 @@ var width = document.documentElement.clientWidth;
 
             for (let x = 0; x < columns; x++, index++) {
                 
-                let value = map[y * columns + x];
+                let value = terrain[y * columns + x];
                 
                 let tile_x = x * scaled_size;
                 let tile_y = y * scaled_size;
@@ -62,12 +69,12 @@ var width = document.documentElement.clientWidth;
                 context.drawImage(tile_sheet, value * sprite_size, 0, sprite_size, sprite_size, tile_x, tile_y, scaled_size, scaled_size)
             }
         }
-
+        
         for (let y = 0; y < rows; y++) {
 
             for (let x = 0; x < columns; x++, index++) {
                 
-                let value = map[y * columns + x];
+                let value = temperature[y * columns + x];
                 
                 let tile_x = x * scaled_size;
                 let tile_y = y * scaled_size;
@@ -75,7 +82,7 @@ var width = document.documentElement.clientWidth;
                 index_y = 4
                 index_x = 4
                 
-                context.drawImage(tile_sheet, value * sprite_size, 0, sprite_size, sprite_size, tile_x + 700, tile_y, scaled_size, scaled_size)
+                context.drawImage(tile_sheet, value * sprite_size, 0, sprite_size, sprite_size, tile_x + 725, tile_y, scaled_size, scaled_size)
             }
         }
     }
