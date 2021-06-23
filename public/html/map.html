@@ -30,6 +30,7 @@ var width = document.documentElement.clientWidth;
 
     var terrain = go(15); 
     var temperature = go(5.5)
+    var rainfall = go(10)
     var scaled_size = 2.4; //2.4
     var sprite_size = 16;
     var columns = rows = 300;
@@ -57,8 +58,16 @@ var width = document.documentElement.clientWidth;
         for (let y = 0; y < rows; y++) {
 
             for (let x = 0; x < columns; x++, index++) {
-                
-                let value = terrain[y * columns + x];
+
+                let temperature2 = temperature[y * columns + x];
+                let terrain2 = terrain[y * columns + x];
+                let rainfall2 = rainfall[y * columns + x];
+
+                if (temperature2 == 4 && terrain2 == 3 && rainfall2 > 1){
+                    value = 1
+                } else {
+                    value = 2
+                }
                 
                 let tile_x = x * scaled_size;
                 let tile_y = y * scaled_size;
@@ -83,6 +92,22 @@ var width = document.documentElement.clientWidth;
                 index_x = 4
                 
                 context.drawImage(tile_sheet, value * sprite_size, 0, sprite_size, sprite_size, tile_x + 725, tile_y, scaled_size, scaled_size)
+            }
+        }
+
+        for (let y = 0; y < rows; y++) {
+
+            for (let x = 0; x < columns; x++, index++) {
+    
+                let value = rainfall[y * columns + x];
+    
+                let tile_x = x * scaled_size;
+                let tile_y = y * scaled_size;
+
+                index_y = 4
+                index_x = 4
+    
+                context.drawImage(tile_sheet, value * sprite_size, 0, sprite_size, sprite_size, tile_x, tile_y + 725, scaled_size, scaled_size)
             }
         }
     }
