@@ -29,9 +29,10 @@ var width = document.documentElement.clientWidth;
 
 
 
-    var terrain = go(15); 
+    var elevation = go(15); 
     var temperature = go(5.5)
     var rainfall = go(10)
+
     var scaled_size = 1.4; //2.4
     var sprite_size = 16;
     var columns = rows = 300;
@@ -60,15 +61,46 @@ var width = document.documentElement.clientWidth;
 
             for (let x = 0; x < columns; x++, index++) {
 
-                let temperature2 = temperature[y * columns + x];
-                let terrain2 = terrain[y * columns + x];
-                let rainfall2 = rainfall[y * columns + x];
+                let temp = temperature[y * columns + x];
+                let elev = elevation[y * columns + x];
+                let rain = rainfall[y * columns + x];
 
-                if (temperature2 == 4 && terrain2 == 3 && rainfall2 > 1){
+                if (elev == 5 && rain >= 3 && temp <= 2) {
+                    //snowy mountain
                     value = 1
-                } else {
+                } else if (elev == 5) {
+                    //normal mountain
                     value = 2
-                }
+                } else if (elev == 4 && rain >= 3 && temp <= 2) {
+                    //snowy highlands
+                    value = 3
+                } else if (elev == 4 && rain >= 3) {
+                    //forest highlands
+                    value = 4
+                } else if (elev == 4) {
+                    //barren highlands
+                    value = 5
+                } else if (elev == 3 && rain >= 3 && temp < 4) {
+                    //forest
+                    value = 6
+                } else if ((elev <= 3 && rain < 3 && temp == 5) || (elev <= 3 && rain == 1 && temp >= 3)) {
+                    //desert
+                    value = 7
+                } else if (elev == 3) {
+                    //plains
+                    value = 8
+                } else if (elev == 2 && rain < 2 && temp < 4) {
+                    //lowland plains
+                    value = 9
+                } else if (elev == 2) {
+                    //wastes
+                    value = 10
+                } else if (elev == 1 && rain < 3) {
+                    //lakes and rivers
+                    value == 11
+                } else {
+                    value = 10
+                };
                 
                 let tile_x = x * scaled_size;
                 let tile_y = y * scaled_size;
@@ -77,38 +109,6 @@ var width = document.documentElement.clientWidth;
                 index_x = 4
                 
                 context.drawImage(tile_sheet, value * sprite_size, 0, sprite_size, sprite_size, tile_x, tile_y, scaled_size, scaled_size)
-            }
-        }
-        
-        for (let y = 0; y < rows; y++) {
-
-            for (let x = 0; x < columns; x++, index++) {
-                
-                let value = temperature[y * columns + x];
-                
-                let tile_x = x * scaled_size;
-                let tile_y = y * scaled_size;
-
-                index_y = 4
-                index_x = 4
-                
-                context.drawImage(tile_sheet, value * sprite_size, 0, sprite_size, sprite_size, tile_x + 500, tile_y, scaled_size, scaled_size)
-            }
-        }
-
-        for (let y = 0; y < rows; y++) {
-
-            for (let x = 0; x < columns; x++, index++) {
-    
-                let value = rainfall[y * columns + x];
-    
-                let tile_x = x * scaled_size;
-                let tile_y = y * scaled_size;
-
-                index_y = 4
-                index_x = 4
-    
-                context.drawImage(tile_sheet, value * sprite_size, 0, sprite_size, sprite_size, tile_x + 1000, tile_y, scaled_size, scaled_size)
             }
         }
     }
@@ -121,7 +121,7 @@ tile_sheet.addEventListener("load", (event) => { loop(); });
 // console.log(map)
 // console.log(map[5])
 
-tile_sheet.src = "../resources/images/tileset.png";
+tile_sheet.src = "../resources/images/tilesetz.png";
 
 </script>
 

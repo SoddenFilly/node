@@ -18,34 +18,34 @@ function go(RES){
             let color_val = parseInt(perlin.get(x, y) * 255);
             count ++;
 
-            let stone = 110;
-            let grass = -20;
-            let grass_deep = -100
-            let sand = -115;
+            let veryHigh = 110;
+            let high = -20;
+            let medium = -100
+            let low = -115;
 
             // if (x >= RES*0.99){
             //     arr = arr + [1]
             // }
         
-            if (color_val >= stone){
+            if (color_val >= veryHigh){
                 // arr = arr + [1]
-                arr[arr.length] = 1
+                arr[arr.length] = 5
             }
-            else if (color_val >= grass && color_val <= stone){
+            else if (color_val >= high && color_val <= veryHigh){
                 // arr = arr + [2]
-                arr[arr.length] = 2
+                arr[arr.length] = 4
             }
-            else if (color_val >= grass_deep && color_val <= grass){
+            else if (color_val >= medium && color_val <= high){
                 // arr = arr + [3]
                 arr[arr.length] = 3
             }
-            else if (color_val >= sand && color_val <= grass_deep){
+            else if (color_val >= low && color_val <= medium){
                 // arr = arr + [4]
-                arr[arr.length] = 4
+                arr[arr.length] = 2
             }
-            else if (color_val <= sand){
+            else if (color_val <= low){
                 // arr = arr + [5]
-                arr[arr.length] = 5
+                arr[arr.length] = 1
             }
         }
         // console.log(x)
