@@ -18,6 +18,7 @@ canvas { height:100%; position:fixed; width:100%; }
 </head>
 
 <body>
+<button style="height: 1000px;position: absolute;"></button>
 <canvas style="overflow: scroll;"></canvas>
 <script type = "text/javascript">
 
@@ -31,7 +32,7 @@ var width = document.documentElement.clientWidth;
     var terrain = go(15); 
     var temperature = go(5.5)
     var rainfall = go(10)
-    var scaled_size = 2.4; //2.4
+    var scaled_size = 1.4; //2.4
     var sprite_size = 16;
     var columns = rows = 300;
     
@@ -91,7 +92,7 @@ var width = document.documentElement.clientWidth;
                 index_y = 4
                 index_x = 4
                 
-                context.drawImage(tile_sheet, value * sprite_size, 0, sprite_size, sprite_size, tile_x + 725, tile_y, scaled_size, scaled_size)
+                context.drawImage(tile_sheet, value * sprite_size, 0, sprite_size, sprite_size, tile_x + 500, tile_y, scaled_size, scaled_size)
             }
         }
 
@@ -107,7 +108,7 @@ var width = document.documentElement.clientWidth;
                 index_y = 4
                 index_x = 4
     
-                context.drawImage(tile_sheet, value * sprite_size, 0, sprite_size, sprite_size, tile_x, tile_y + 725, scaled_size, scaled_size)
+                context.drawImage(tile_sheet, value * sprite_size, 0, sprite_size, sprite_size, tile_x + 1000, tile_y, scaled_size, scaled_size)
             }
         }
     }
