@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset = "utf-8">
+<meta name = "viewport" content = "width=device-width">
+<title>Tile Scroll</title>
+<style>
+* { margin:0; padding:0; }
+html, body { background-color:#000000; height:100%; position:relative; width:100%; }
+canvas { height:100%; position:fixed; width:100%; }
+</style>
+
+<!-- perlin complex -->
+<script src='../js/perlin.js'></script>
+<!-- perlin colour range config -->
+<script src='../js/perlin_c.js'></script>
+
+</head>
+
+<body>
+<button style="height: 1000px;position: absolute;"></button>
+<canvas style="overflow: scroll;"></canvas>
+<script type = "text/javascript">
+
+var context = document.querySelector("canvas").getContext("2d");
+
+var height = document.documentElement.clientHeight;
+var width = document.documentElement.clientWidth;
+
+
+
+    var terrain = go(15); 
+    var temperature = go(5.5)
+    var rainfall = go(10)
+    var scaled_size = 1.4; //2.4
+    var sprite_size = 16;
+    var columns = rows = 300;
+    
+    // var terrain = {
+    //     "perlin":go(5.5),
+    //     "scaled_size":2.4,
+        
+    // }
+
+    function loop(m) {
+        window.requestAnimationFrame(loop);
+
+        var height = document.documentElement.clientHeight;
+        var width = document.documentElement.clientWidth;
+
+        context.canvas.height = height;
+        context.canvas.width = width;
+
+        context.imageSmoothingEnabled = false;
+
+        
+        var index = 0;
+        
+        for (let y = 0; y < rows; y++) {
+
+            for (let x = 0; x < columns; x++, index++) {
+
+                let temperature2 = temperature[y * columns + x];
+                let terrain2 = terrain[y * columns + x];
+                let rainfall2 = rainfall[y * columns + x];
+
+                if (temperature2 == 4 && terrain2 == 3 && rainfall2 > 1){
+                    value = 1
+                } else {
+                    value = 2
+                }
+                
+                let tile_x = x * scaled_size;
+                let tile_y = y * scaled_size;
+
+                index_y = 4
+                index_x = 4
+                
+                context.drawImage(tile_sheet, value * sprite_size, 0, sprite_size, sprite_size, tile_x, tile_y, scaled_size, scaled_size)
+            }
+        }
+        
+        for (let y = 0; y < rows; y++) {
+
+            for (let x = 0; x < columns; x++, index++) {
+                
+                let value = temperature[y * columns + x];
+                
+                let tile_x = x * scaled_size;
+                let tile_y = y * scaled_size;
+
+                index_y = 4
+                index_x = 4
+                
+                context.drawImage(tile_sheet, value * sprite_size, 0, sprite_size, sprite_size, tile_x + 500, tile_y, scaled_size, scaled_size)
+            }
+        }
+
+        for (let y = 0; y < rows; y++) {
+
+            for (let x = 0; x < columns; x++, index++) {
+    
+                let value = rainfall[y * columns + x];
+    
+                let tile_x = x * scaled_size;
+                let tile_y = y * scaled_size;
+
+                index_y = 4
+                index_x = 4
+    
+                context.drawImage(tile_sheet, value * sprite_size, 0, sprite_size, sprite_size, tile_x + 1000, tile_y, scaled_size, scaled_size)
+            }
+        }
+    }
+
+console.log("f")
+var tile_sheet = new Image();
+
+tile_sheet.addEventListener("load", (event) => { loop(); });
+
+// console.log(map)
+// console.log(map[5])
+
+tile_sheet.src = "../resources/images/tileset.png";
+
+</script>
+
+</body>
+
+</html> 
