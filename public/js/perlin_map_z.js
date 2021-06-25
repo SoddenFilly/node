@@ -18,10 +18,10 @@ function go(RES){
             let color_val = parseInt(perlin.get(x, y) * 255);
             count ++;
 
-            let veryHigh = 110;
-            let high = -20;
-            let medium = -100
-            let low = -115;
+            let veryHigh = 80;
+            let high = 20;
+            let medium = -80;
+            let low = -80;
 
             // if (x >= RES*0.99){
             //     arr = arr + [1]

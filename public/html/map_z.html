@@ -13,7 +13,7 @@ canvas { height:100%; position:fixed; width:100%; }
 <!-- perlin complex -->
 <script src='../js/perlin.js'></script>
 <!-- perlin colour range config -->
-<script src='../js/perlin_c.js'></script>
+<script src='../js/perlin_map_z.js'></script>
 
 </head>
 
@@ -33,7 +33,7 @@ var width = document.documentElement.clientWidth;
     var temperature = go(5.5)
     var rainfall = go(10)
 
-    var scaled_size = 1.4; //2.4
+    var scaled_size = 10; //2.4
     var sprite_size = 16;
     var columns = rows = 300;
     
@@ -65,42 +65,67 @@ var width = document.documentElement.clientWidth;
                 let elev = elevation[y * columns + x];
                 let rain = rainfall[y * columns + x];
 
-                if (elev == 5 && rain >= 3 && temp <= 2) {
-                    //snowy mountain
-                    value = 1
-                } else if (elev == 5) {
-                    //normal mountain
-                    value = 2
-                } else if (elev == 4 && rain >= 3 && temp <= 2) {
-                    //snowy highlands
-                    value = 3
-                } else if (elev == 4 && rain >= 3) {
-                    //forest highlands
-                    value = 4
-                } else if (elev == 4) {
-                    //barren highlands
-                    value = 5
-                } else if (elev == 3 && rain >= 3 && temp < 4) {
-                    //forest
-                    value = 6
-                } else if ((elev <= 3 && rain < 3 && temp == 5) || (elev <= 3 && rain == 1 && temp >= 3)) {
-                    //desert
-                    value = 7
-                } else if (elev == 3) {
-                    //plains
-                    value = 8
-                } else if (elev == 2 && rain < 2 && temp < 4) {
-                    //lowland plains
-                    value = 9
-                } else if (elev == 2) {
-                    //wastes
-                    value = 10
-                } else if (elev == 1 && rain < 3) {
-                    //lakes and rivers
-                    value == 11
-                } else {
-                    value = 10
-                };
+                if (elev == 5){
+                    if (rain >= 3 && temp <= 2) {
+                        //snowy mountain
+                        value = 1
+                    } else {
+                        //normal mountains
+                        value = 2
+                    }
+                }
+
+                if (elev == 4){
+                    if (rain >= 3 && temp <= 2){
+                        //snowy highlands
+                        value = 3
+                    } else if (rain >= 3) {
+                        //forest highlands
+                        value = 4
+                    } else {
+                        //barren highlands
+                        value = 5
+                    }
+                }
+
+                if (elev == 3) {
+                    if (rain >= 3 && temp < 4) {
+                        //forest
+                        value = 6
+                    } else if ((rain < 3 && temp == 5) || (rain == 1 && temp >= 3)) {
+                        //desert
+                        value = 7
+                    } else {
+                        //plains
+                        value = 8
+                    }
+                }
+
+                if (elev == 2) {
+                    if (rain > 2 && temp < 4) {
+                        //lowland plains
+                        value = 9
+                    } else if ((rain <= 2 && temp >= 4) || (rain == 1 && temp >= 3)) {
+                        //lowland desert
+                        value = 7
+                    } else {
+                        //lowland wastes
+                        value = 10
+                    }
+                }
+
+                if (elev == 1) {
+                    if (rain >= 4) {
+                        //lakes and rivers
+                        value = 11
+                    } else if (rain > 2 && temp < 4) {
+                        //LOWland plains
+                        value = 9
+                    } else {
+                        //LOWland wastes
+                        value = 10
+                    }
+                }
                 
                 let tile_x = x * scaled_size;
                 let tile_y = y * scaled_size;
