@@ -21,6 +21,46 @@ canvas { height:100%; position:fixed; width:100%; }
 <button style="height: 1000px;position: absolute;"></button>
 <canvas style="overflow: scroll;"></canvas>
 <script type = "text/javascript">
+// FUNCTIONS
+
+    // let group1 = turn
+    function split_3(arr) {
+        var chunks = [], i = 0, len = Math.sqrt(arr.length);
+
+            while (i < arr.length) {
+                chunks.push(arr.slice(i, i += len));
+            }
+        return chunks;
+    }
+    // var pairs = split_3(turn);
+    // console.log(pairs)
+
+    // rotate right
+    function rotate_right (arr) {
+        var pairs = split_3(arr);
+        len = Math.sqrt(arr.length), arr = [];
+
+        for (let y = 0; y < len; y++) {
+
+            for (let x = len-1; x > -1; x--) {
+                arr.push(pairs[x][y])
+            }
+        }
+        return arr
+    }
+
+    function rotate_left (arr) {
+        var pairs = split_3(arr);
+        len = Math.sqrt(arr.length), arr = [];
+
+        for (let y = len-1; y > -1; y--) {
+
+            for (let x = 0; x < len; x++) {
+                arr.push(pairs[x][y])
+            }
+        }
+        return arr
+    }
 
 var context = document.querySelector("canvas").getContext("2d");
 
@@ -32,15 +72,23 @@ var width = document.documentElement.clientWidth;
     var terrain = go(15); 
     var temperature = go(5.5)
     var rainfall = go(11)
-    var scaled_size = 1.4; //2.4
+    var scaled_size = 20; //2.4
     var sprite_size = 16;
-    var columns = rows = 300;
+    var sprite_sizex = 16;
+    var sprite_sizey = 96;
+    // var columns = rows = 300;
+    var turn = [1,2,3,4,5,6,7,8,9].reverse()
+    // var turn = [1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7]
+    var columns = rows = len = Math.sqrt(turn.length);
+
+
     
-    // var terrain = {
-    //     "perlin":go(5.5),
-    //     "scaled_size":2.4,
-        
-    // }
+    
+
+    // turn = rotate_left(turn)
+    // turn = rotate_left(turn)
+    // turn = rotate_right(turn)
+    turn = rotate_right(turn)
 
     function loop(m) {
         window.requestAnimationFrame(loop);
@@ -54,13 +102,31 @@ var width = document.documentElement.clientWidth;
         context.imageSmoothingEnabled = false;
 
         
+        // var index = 0;
+        
+        // for (let y = 0; y < rows; y++) {
+
+        //     for (let x = 0; x < columns; x++, index++) {
+
+        //         let value = terrain[y * columns + x];
+                
+        //         let tile_x = x * scaled_size;
+        //         let tile_y = y * scaled_size;
+
+        //         index_y = 4
+        //         index_x = 4
+                
+        //         context.drawImage(tile_sheet, value * sprite_size, 0, sprite_size, sprite_size, tile_x, tile_y, scaled_size, scaled_size)
+        //     }
+        // }
+        
         var index = 0;
         
         for (let y = 0; y < rows; y++) {
 
             for (let x = 0; x < columns; x++, index++) {
 
-                let value = terrain[y * columns + x];
+                let value = turn[y * columns + x];
                 
                 let tile_x = x * scaled_size;
                 let tile_y = y * scaled_size;
@@ -68,42 +134,14 @@ var width = document.documentElement.clientWidth;
                 index_y = 4
                 index_x = 4
                 
-                context.drawImage(tile_sheet, value * sprite_size, 0, sprite_size, sprite_size, tile_x, tile_y, scaled_size, scaled_size)
+                context.drawImage(tile_sheet,  value * sprite_size, 0, sprite_sizex, sprite_sizey, tile_x, tile_y, scaled_size, scaled_size * 6)
+                // context.drawImage(tile_sheet,  value * sprite_size, 0, sprite_sizex, sprite_sizey, tile_x, tile_y, scaled_size, scaled_size)
             }
         }
-        
-        for (let y = 0; y < rows; y++) {
-
-            for (let x = 0; x < columns; x++, index++) {
-                
-                let value = temperature[y * columns + x];
-                
-                let tile_x = x * scaled_size;
-                let tile_y = y * scaled_size;
-
-                index_y = 4
-                index_x = 4
-                
-                context.drawImage(tile_sheet, value * sprite_size, 0, sprite_size, sprite_size, tile_x + 500, tile_y, scaled_size, scaled_size)
-            }
-        }
-
-        for (let y = 0; y < rows; y++) {
-
-            for (let x = 0; x < columns; x++, index++) {
-    
-                let value = rainfall[y * columns + x];
-    
-                let tile_x = x * scaled_size;
-                let tile_y = y * scaled_size;
-
-                index_y = 4
-                index_x = 4
-    
-                context.drawImage(tile_sheet, value * sprite_size, 0, sprite_size, sprite_size, tile_x + 1000, tile_y, scaled_size, scaled_size)
-            }
-        }
+        // context.drawImage(tile_sheet, 6*16, 0, 16, 96, 350, -100, 160, 960)
     }
+
+
 
 console.log("f")
 var tile_sheet = new Image();
@@ -113,7 +151,7 @@ tile_sheet.addEventListener("load", (event) => { loop(); });
 // console.log(map)
 // console.log(map[5])
 
-tile_sheet.src = "../resources/images/tileset.png";
+tile_sheet.src = "../resources/images/turn.png";
 
 </script>
 
