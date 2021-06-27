@@ -92,8 +92,9 @@ var scaled_sizex = 5*sprite_sizex; //2.4
 var scaled_sizey = 5*sprite_sizey; //2.4
 // var columns = rows = 300;
 // var turn = [2,3,4,5,4,7,6,8,5,8,3,2,6,4,9,1]
+var turn = [1,2,3,4,5,6,7,8,9]
 // var turn = [1,2,3,4,5,6,7,8,9].reverse()
-var turn = [1,2,3,4,5,6,7,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,2,3,4,5,6,7,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7]
+// var turn = [1,2,3,4,5,6,7,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,2,3,4,5,6,7,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7]
 var columns = rows = len = Math.sqrt(turn.length);
 
 // turn = rotate_left(turn)
@@ -103,13 +104,13 @@ var columns = rows = len = Math.sqrt(turn.length);
 
 
 var player = new Player(100,100);
-var viewport = new Viewport(100, 100, 300, 300)
+var viewport = new Viewport(0, 0, width, height)
 var pointer = { x:0, y:0 }
 
 
 
 function loop() {
-    viewport.x ++;
+    // viewport.x ++;
     window.requestAnimationFrame(loop);
 
     var height = document.documentElement.clientHeight;
@@ -138,7 +139,7 @@ function loop() {
     //     }
     // }
 
-    context.drawImage(tile_sheet, 16*4, 16, 1, 1, 0, 0, 640, 730)
+    // context.drawImage(tile_sheet, 16*4, 16, 1, 1, 0, 0, width, height)
     
     for (let y = y_min; y < y_max; y++) {
 
