@@ -18,8 +18,11 @@ canvas { height:100%; position:fixed; width:100%; }
 </head>
 
 <body>
-<button style="height: 1000px;position: absolute;"></button>
-<canvas style="overflow: scroll;"></canvas>
+<!-- <button style="height: 1000px;position: absolute;"></button> -->
+
+<div style="overflow: auto;">
+<canvas style="height:5000;width:5000"></canvas>
+</div>
 <script type = "text/javascript">
 // FUNCTIONS
 
@@ -72,7 +75,7 @@ var width = document.documentElement.clientWidth;
     var terrain = go(15); 
     var temperature = go(5.5)
     var rainfall = go(11)
-    var scaled_size = 20; //2.4
+    var scaled_size = 100; //2.4
     var sprite_size = 16;
     var sprite_sizex = 16;
     var sprite_sizey = 96;
@@ -140,7 +143,6 @@ var width = document.documentElement.clientWidth;
         }
         // context.drawImage(tile_sheet, 6*16, 0, 16, 96, 350, -100, 160, 960)
     }
-
 
 
 console.log("f")
