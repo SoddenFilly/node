@@ -99,7 +99,7 @@ var columns = rows = len = Math.sqrt(turn.length);
 // turn = rotate_left(turn)
 // turn = rotate_left(turn)
 // turn = rotate_right(turn)
-turn = rotate_right(turn)
+// turn = rotate_right(turn)
 
 
 var player = new Player(100,100);
@@ -146,8 +146,8 @@ function loop() {
 
             let value = turn[y * columns + x];
             
-            let tile_x = x * scaled_sizex - viewport.x;
-            let tile_y = y * scaled_sizey - viewport.y;
+            let tile_x = x * scaled_sizex - viewport.x + width * 0.5 - viewport.w * 0.5;
+            let tile_y = y * scaled_sizey - viewport.y + height * 0.5 - viewport.h * 0.5;
             
             // context.drawImage(tile_sheet,  value * sprite_size, 0, sprite_sizex, sprite_sizey, tile_x, tile_y, scaled_size, scaled_size * 6)
             context.drawImage(tile_sheet,  value * sprite_size, 0, sprite_sizex, sprite_sizey, tile_x, tile_y, scaled_sizex, scaled_sizey)
@@ -160,7 +160,7 @@ function loop() {
     player.moveTo(pointer.x, pointer.y)
     context.drawImage(tile_numbers, sprite_size, 0, sprite_sizex, sprite_sizey, player.x, player.y, scaled_sizex, scaled_sizey)
     context.strokeStyle = "#ffffff";
-    context.rect(0,0, viewport.w, viewport.h);
+    context.rect(width * 0.5 - viewport.w * 0.5, height * 0.5 - viewport.h * 0.5, viewport.w, viewport.h);
     context.stroke();
 }
 

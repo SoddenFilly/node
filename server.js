@@ -15,7 +15,7 @@ server.get('/game1', (req,res) => {
     res.sendFile('./public/html/game.html', { root: __dirname });
 })
 server.get('/perlintest', (req,res) => {
-    res.sendFile('./public/html/perlin.html', { root: __dirname });
+    res.sendFile('./public/html/map_a.html', { root: __dirname });
 })
 server.get('/perlin', (req,res) => {
     res.sendFile('./public/html/scroll.html', { root: __dirname });
