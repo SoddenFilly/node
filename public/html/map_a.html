@@ -124,39 +124,29 @@ function loop() {
     var x_max = Math.ceil((viewport.x + viewport.w) / scaled_sizex);
     var y_max = Math.ceil((viewport.y + viewport.h) / scaled_sizey);
     
-    // var index = 0;
-    
     // for (let y = 0; y < rows; y++) {
 
-    //     for (let x = 0; x < columns; x++, index++) {
+    //     for (let x = 0; x < columns; x++) {
 
     //         let value = terrain[y * columns + x];
             
     //         let tile_x = x * scaled_size;
     //         let tile_y = y * scaled_size;
-
-    //         index_y = 4
-    //         index_x = 4
             
     //         context.drawImage(tile_sheet, value * sprite_size, 0, sprite_size, sprite_size, tile_x, tile_y, scaled_size, scaled_size)
     //     }
     // }
 
     context.drawImage(tile_sheet, 16*4, 16, 1, 1, 0, 0, 640, 730)
-
-    var index = 0;
     
     for (let y = y_min; y < y_max; y++) {
 
-        for (let x = x_min; x < x_max; x++, index++) {
+        for (let x = x_min; x < x_max; x++) {
 
             let value = turn[y * columns + x];
             
             let tile_x = x * scaled_sizex - viewport.x;
             let tile_y = y * scaled_sizey - viewport.y;
-
-            index_y = 4
-            index_x = 4
             
             // context.drawImage(tile_sheet,  value * sprite_size, 0, sprite_sizex, sprite_sizey, tile_x, tile_y, scaled_size, scaled_size * 6)
             context.drawImage(tile_sheet,  value * sprite_size, 0, sprite_sizex, sprite_sizey, tile_x, tile_y, scaled_sizex, scaled_sizey)
