@@ -70,9 +70,9 @@ var context = document.querySelector("canvas").getContext("2d");
 var height = document.documentElement.clientHeight;
 var width = document.documentElement.clientWidth;
 
-    const player = function (x,y){
-        this.x = x;this.y = y;
-    };
+    // const player = function (x,y){
+    //     this.x = x;this.y = y;
+    // };
 
 
 
@@ -94,6 +94,8 @@ var width = document.documentElement.clientWidth;
     // turn = rotate_left(turn)
     // turn = rotate_right(turn)
     // turn = rotate_right(turn)
+
+    var pointer = { x:0, y:0 }
 
 
 
@@ -157,6 +159,11 @@ console.log("f")
 var tile_sheet = new Image();
 
 tile_sheet.addEventListener("load", (event) => { loop(); });
+context.canvas.addEventListener("click", (event) => {
+
+    pointer.x = event.pageX
+    pointer.y = event.pageY
+})
 
 // console.log(map)
 // console.log(map[5])
