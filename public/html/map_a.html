@@ -109,6 +109,7 @@ var pointer = { x:0, y:0 }
 
 
 function loop() {
+    viewport.x ++;
     window.requestAnimationFrame(loop);
 
     var height = document.documentElement.clientHeight;
@@ -145,8 +146,8 @@ function loop() {
 
             let value = turn[y * columns + x];
             
-            let tile_x = x * scaled_sizex - viewport.x;
-            let tile_y = y * scaled_sizey - viewport.y;
+            let tile_x = x * scaled_sizex - viewport.x + width * 0.5 - viewport.w * 0.5;
+            let tile_y = y * scaled_sizey - viewport.y + height * 0.5 - viewport.h * 0.5;
             
             // context.drawImage(tile_sheet,  value * sprite_size, 0, sprite_sizex, sprite_sizey, tile_x, tile_y, scaled_size, scaled_size * 6)
             context.drawImage(tile_sheet,  value * sprite_size, 0, sprite_sizex, sprite_sizey, tile_x, tile_y, scaled_sizex, scaled_sizey)
@@ -158,9 +159,10 @@ function loop() {
     // console.log("f")
     player.moveTo(pointer.x, pointer.y)
     context.drawImage(tile_numbers, sprite_size, 0, sprite_sizex, sprite_sizey, player.x, player.y, scaled_sizex, scaled_sizey)
+    context.strokeStyle = "#ffffff";
+    context.rect(width * 0.5 - viewport.w * 0.5, height * 0.5 - viewport.h * 0.5, viewport.w, viewport.h);
+    context.stroke();
 }
-
-
 
 var tile_sheet = new Image();
 var tile_numbers = new Image();
