@@ -70,28 +70,32 @@ var context = document.querySelector("canvas").getContext("2d");
 var height = document.documentElement.clientHeight;
 var width = document.documentElement.clientWidth;
 
+    const player = function (x,y){
+        this.x = x;this.y = y;
+    };
+
 
 
     var terrain = go(15); 
     var temperature = go(5.5)
     var rainfall = go(11)
-    var scaled_size = 100; //2.4
     var sprite_size = 16;
     var sprite_sizex = 16;
-    var sprite_sizey = 96;
+    var sprite_sizey = 20;
+    var scaled_sizex = 10*sprite_sizex; //2.4
+    var scaled_sizey = 10*sprite_sizey; //2.4
     // var columns = rows = 300;
-    var turn = [1,2,3,4,5,6,7,8,9].reverse()
-    // var turn = [1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7]
+    var turn = [2,3,4,5,4,7,6,8,5,8,3,2,6,4,9,1]
+    // var turn = [1,2,3,4,5,6,7,8,9].reverse()
+    // var turn = [1,2,3,4,5,6,7,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,2,3,4,5,6,7,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7]
     var columns = rows = len = Math.sqrt(turn.length);
-
-
-    
-    
 
     // turn = rotate_left(turn)
     // turn = rotate_left(turn)
     // turn = rotate_right(turn)
-    turn = rotate_right(turn)
+    // turn = rotate_right(turn)
+
+
 
     function loop(m) {
         window.requestAnimationFrame(loop);
@@ -122,7 +126,9 @@ var width = document.documentElement.clientWidth;
         //         context.drawImage(tile_sheet, value * sprite_size, 0, sprite_size, sprite_size, tile_x, tile_y, scaled_size, scaled_size)
         //     }
         // }
-        
+
+        context.drawImage(tile_sheet, 16*4, 16, 1, 1, 0, 0, 640, 730)
+
         var index = 0;
         
         for (let y = 0; y < rows; y++) {
@@ -131,17 +137,19 @@ var width = document.documentElement.clientWidth;
 
                 let value = turn[y * columns + x];
                 
-                let tile_x = x * scaled_size;
-                let tile_y = y * scaled_size;
+                let tile_x = x * scaled_sizex;
+                let tile_y = y * scaled_sizey;
 
                 index_y = 4
                 index_x = 4
                 
-                context.drawImage(tile_sheet,  value * sprite_size, 0, sprite_sizex, sprite_sizey, tile_x, tile_y, scaled_size, scaled_size * 6)
-                // context.drawImage(tile_sheet,  value * sprite_size, 0, sprite_sizex, sprite_sizey, tile_x, tile_y, scaled_size, scaled_size)
+                // context.drawImage(tile_sheet,  value * sprite_size, 0, sprite_sizex, sprite_sizey, tile_x, tile_y, scaled_size, scaled_size * 6)
+                context.drawImage(tile_sheet,  value * sprite_size, 0, sprite_sizex, sprite_sizey, tile_x, tile_y, scaled_sizex, scaled_sizey)
             }
         }
         // context.drawImage(tile_sheet, 6*16, 0, 16, 96, 350, -100, 160, 960)
+        // context.drawImage(tile_sheet, 1*16, 0, 16, 20, 350, 100, 160, 200)
+        // context.drawImage(tile_sheet, 3*16, 2*20, 16, 20, 350, 230, 160, 200)
     }
 
 
@@ -153,7 +161,9 @@ tile_sheet.addEventListener("load", (event) => { loop(); });
 // console.log(map)
 // console.log(map[5])
 
-tile_sheet.src = "../resources/images/turn.png";
+// tile_sheet.src = "../resources/images/turn.png";
+// tile_sheet.src = "../resources/images/tile-scroll-.png";
+tile_sheet.src = "../resources/images/testmodule1.png";
 
 </script>
 
