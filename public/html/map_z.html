@@ -43,7 +43,7 @@ var width = document.documentElement.clientWidth;
         
     // }
 
-    function loop() {
+    function loop(m) {
         window.requestAnimationFrame(loop);
 
         var height = document.documentElement.clientHeight;
@@ -55,88 +55,88 @@ var width = document.documentElement.clientWidth;
         context.imageSmoothingEnabled = false;
 
         
-        var index = 0;        
-    }
-
-    for (let y = 0; y < rows; y++) {
-
-    for (let x = 0; x < columns; x++, index++) {
-
-        let temp = temperature[y * columns + x];
-        let elev = elevation[y * columns + x];
-        let rain = rainfall[y * columns + x];
-
-        if (elev == 5){
-            if (rain >= 3 && temp <= 3) {
-                //snowy mountain
-                value = 1
-            } else {
-                //normal mountains
-                value = 2
-            }
-        }
-
-        if (elev == 4){
-            if (rain >= 3 && temp <= 2){
-                //snowy highlands
-                value = 3
-            } else if (rain >= 3) {
-                //forest highlands
-                value = 4
-            } else {
-                //barren highlands
-                value = 5
-            }
-        }
-
-        if (elev == 3) {
-            if (rain >= 3 && temp < 4) {
-                //forest
-                value = 6
-            } else if ((rain < 3 && temp == 5) || (rain == 1 && temp >= 3)) {
-                //desert
-                value = 7
-            } else {
-                //plains
-                value = 8
-            }
-        }
-
-        if (elev == 2) {
-            if (rain > 2 && temp < 4) {
-                //lowland plains
-                value = 9
-            } else if ((rain <= 2 && temp >= 4) || (rain == 1 && temp >= 3)) {
-                //lowland desert
-                value = 7
-            } else {
-                //lowland wastes
-                value = 10
-            }
-        }
-
-        if (elev == 1) {
-            if (rain >= 4) {
-                //lakes and rivers
-                value = 11
-            } else if (rain > 2 && temp < 4) {
-                //LOWland plains
-                value = 9
-            } else {
-                //LOWland wastes
-                value = 10
-            }
-        }
+        var index = 0;
         
-    let tile_x = x * scaled_size;
-    let tile_y = y * scaled_size;
+        for (let y = 0; y < rows; y++) {
 
-    index_y = 4
-    index_x = 4
-    
-    context.drawImage(tile_sheet, value * sprite_size, 0, sprite_size, sprite_size, tile_x, tile_y, scaled_size, scaled_size)
-}
-}
+            for (let x = 0; x < columns; x++, index++) {
+
+                let temp = temperature[y * columns + x];
+                let elev = elevation[y * columns + x];
+                let rain = rainfall[y * columns + x];
+
+                if (elev == 5){
+                    if (rain >= 3 && temp <= 3) {
+                        //snowy mountain
+                        value = 1
+                    } else {
+                        //normal mountains
+                        value = 2
+                    }
+                }
+
+                if (elev == 4){
+                    if (rain >= 3 && temp <= 2){
+                        //snowy highlands
+                        value = 3
+                    } else if (rain >= 3) {
+                        //forest highlands
+                        value = 4
+                    } else {
+                        //barren highlands
+                        value = 5
+                    }
+                }
+
+                if (elev == 3) {
+                    if (rain >= 3 && temp < 4) {
+                        //forest
+                        value = 6
+                    } else if ((rain < 3 && temp == 5) || (rain == 1 && temp >= 3)) {
+                        //desert
+                        value = 7
+                    } else {
+                        //plains
+                        value = 8
+                    }
+                }
+
+                if (elev == 2) {
+                    if (rain > 2 && temp < 4) {
+                        //lowland plains
+                        value = 9
+                    } else if ((rain <= 2 && temp >= 4) || (rain == 1 && temp >= 3)) {
+                        //lowland desert
+                        value = 7
+                    } else {
+                        //lowland wastes
+                        value = 10
+                    }
+                }
+
+                if (elev == 1) {
+                    if (rain >= 4) {
+                        //lakes and rivers
+                        value = 11
+                    } else if (rain > 2 && temp < 4) {
+                        //LOWland plains
+                        value = 9
+                    } else {
+                        //LOWland wastes
+                        value = 10
+                    }
+                }
+                
+                let tile_x = x * scaled_size;
+                let tile_y = y * scaled_size;
+
+                index_y = 4
+                index_x = 4
+                
+                context.drawImage(tile_sheet, value * sprite_size, 0, sprite_size, sprite_size, tile_x, tile_y, scaled_size, scaled_size)
+            }
+        }
+    }
 
 console.log("f")
 var tile_sheet = new Image();
