@@ -147,7 +147,7 @@ function loop() {
 var tile_sheet = new Image();
 var tile_numbers = new Image();
 
-tile_sheet.addEventListener("load", (event) => { loop(); });
+tile_sheet.addEventListener("load", () => { loop(); });
 ctx.canvas.addEventListener("click", (event) => {
 
     pointer.x = event.pageX
