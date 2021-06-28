@@ -1,5 +1,6 @@
 // FUNCTIONS
 
+// used by the rotate functions
 function split_3(arr) {
     var chunks = [], i = 0, len = Math.sqrt(arr.length);
 
@@ -35,11 +36,13 @@ function rotate_left (arr) {
     return arr
 }
 
-var context = document.querySelector("canvas").getContext("2d");
+var ctx = document.querySelector("canvas").getContext("2d");
 
+// max window width and height
 var height = document.documentElement.clientHeight;
 var width = document.documentElement.clientWidth;
 
+// player class
 const Player = function (x,y){
     this.x = x;this.y = y;
 };
@@ -90,10 +93,10 @@ function loop() {
     var height = document.documentElement.clientHeight;
     var width = document.documentElement.clientWidth;
 
-    context.canvas.height = height;
-    context.canvas.width = width;
+    ctx.canvas.height = height;
+    ctx.canvas.width = width;
 
-    context.imageSmoothingEnabled = false;
+    ctx.imageSmoothingEnabled = false;
 
     var x_min = Math.floor(viewport.x / scaled_sizex);
     var y_min = Math.floor(viewport.y / scaled_sizey);
@@ -109,49 +112,49 @@ function loop() {
     //         let tile_x = x * scaled_size;
     //         let tile_y = y * scaled_size;
             
-    //         context.drawImage(tile_sheet, value * sprite_size, 0, sprite_size, sprite_size, tile_x, tile_y, scaled_size, scaled_size)
+    //         ctx.drawImage(tile_sheet, value * sprite_size, 0, sprite_size, sprite_size, tile_x, tile_y, scaled_size, scaled_size)
     //     }
     // }
 
-    // context.drawImage(tile_sheet, 16*4, 16, 1, 1, 0, 0, width, height)
+    // ctx.drawImage(tile_sheet, 16*4, 16, 1, 1, 0, 0, width, height)
 
     for (let y = y_min; y < y_max; y++) {
 
         for (let x = x_min; x < x_max; x++) {
 
             let value = turn[y * columns + x];
+            console.log("x,y,value:",x,y,value)
+            let tile_x = x * scaled_sizex - viewport.x;
+            let tile_y = y * scaled_sizey - viewport.y;
             
-            let tile_x = x * scaled_sizex - viewport.x + width * 0.5 - viewport.w * 0.5;
-            let tile_y = y * scaled_sizey - viewport.y + height * 0.5 - viewport.h * 0.5;
-            
-            // context.drawImage(tile_sheet,  value * sprite_size, 0, sprite_sizex, sprite_sizey, tile_x, tile_y, scaled_size, scaled_size * 6)
-            context.drawImage(tile_sheet,  value * sprite_size, 0, sprite_sizex, sprite_sizey, tile_x, tile_y, scaled_sizex, scaled_sizey)
-            console.log(tile_x, tile_y)
+            // ctx.drawImage(tile_sheet,  value * sprite_size, 0, sprite_sizex, sprite_sizey, tile_x, tile_y, scaled_size, scaled_size * 6)
+            ctx.drawImage(tile_sheet,  value * sprite_size, 0, sprite_sizex, sprite_sizey, tile_x, tile_y, scaled_sizex, scaled_sizey)
+            console.log("x,y:",tile_x, tile_y)
         }
     }
 
-    // context.drawImage(tile_sheet, 6*16, 0, 16, 96, 350, -100, 160, 960)
-    // context.drawImage(tile_sheet, 1*16, 0, 16, 20, 350, 100, 160, 200)
-    // context.drawImage(tile_sheet, 3*16, 2*20, 16, 20, 350, 230, 160, 200)
+    // ctx.drawImage(tile_sheet, 6*16, 0, 16, 96, 350, -100, 160, 960)
+    // ctx.drawImage(tile_sheet, 1*16, 0, 16, 20, 350, 100, 160, 200)
+    // ctx.drawImage(tile_sheet, 3*16, 2*20, 16, 20, 350, 230, 160, 200)
     // console.log("f")
     player.moveTo(pointer.x, pointer.y)
-    context.drawImage(tile_numbers, sprite_size, 0, sprite_sizex, sprite_sizey, player.x, player.y, scaled_sizex, scaled_sizey)
-    context.strokeStyle = "#ffffff";
-    context.rect(width * 0.5 - viewport.w * 0.5, height * 0.5 - viewport.h * 0.5, viewport.w, viewport.h);
-    context.stroke();
+    ctx.drawImage(tile_numbers, sprite_size, 0, sprite_sizex, sprite_sizey, player.x, player.y, scaled_sizex, scaled_sizey)
+    // ctx.strokeStyle = "#ffffff";
+    // ctx.rect(width * 0.5 - viewport.w * 0.5, height * 0.5 - viewport.h * 0.5, viewport.w, viewport.h);
+    // ctx.stroke();
 }
 
 var tile_sheet = new Image();
 var tile_numbers = new Image();
 
 tile_sheet.addEventListener("load", (event) => { loop(); });
-context.canvas.addEventListener("click", (event) => {
+ctx.canvas.addEventListener("click", (event) => {
 
     pointer.x = event.pageX
     pointer.y = event.pageY
     // console.log(pointer.x,pointer.y)
 });
-// context.canvas.addEventListener("click", (event) => { loop(); });
+// ctx.canvas.addEventListener("click", (event) => { loop(); });
 
 // console.log(map)
 // console.log(map[5])
