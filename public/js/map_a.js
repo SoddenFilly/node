@@ -86,7 +86,7 @@ var pointer = { x:0, y:0 }
 
 function loop() {
 
-    console.log("LOOP START")
+    console.log("LOOP START======================================================================================================")
     // viewport.x ++;
     window.requestAnimationFrame(loop);
 
@@ -117,6 +117,13 @@ function loop() {
     // }
 
     // ctx.drawImage(tile_sheet, 16*4, 16, 1, 1, 0, 0, width, height)
+    var root = Math.sqrt(turn.length)
+    if (x_max > root){
+        x_max = root
+    }
+    if (y_max > root){
+        y_max = root
+    }
 
     for (let y = y_min; y < y_max; y++) {
 
@@ -124,6 +131,7 @@ function loop() {
 
             let value = turn[y * columns + x];
             console.log("x,y,value:",x,y,value)
+            console.log("x_min,x_max,y_min,y_max",x_min,x_max,y_min,y_max)
             let tile_x = x * scaled_sizex - viewport.x;
             let tile_y = y * scaled_sizey - viewport.y;
             
@@ -139,6 +147,10 @@ function loop() {
     // console.log("f")
     player.moveTo(pointer.x, pointer.y)
     ctx.drawImage(tile_numbers, sprite_size, 0, sprite_sizex, sprite_sizey, player.x, player.y, scaled_sizex, scaled_sizey)
+    // ctx.rect(scaled_sizex * 0, scaled_sizey * 0, 16, 20);
+    ctx.rect(640, scaled_sizey * 0, 16, 20);
+    ctx.fillStyle = "grey";
+    ctx.fill();
     // ctx.strokeStyle = "#ffffff";
     // ctx.rect(width * 0.5 - viewport.w * 0.5, height * 0.5 - viewport.h * 0.5, viewport.w, viewport.h);
     // ctx.stroke();
