@@ -41,18 +41,18 @@ var height = document.documentElement.clientHeight;
 var width = document.documentElement.clientWidth;
 
 const Player = function (x,y){
-this.x = x;this.y = y;
+    this.x = x;this.y = y;
 };
 
 Player.prototype = {
-moveTo:function(x, y){
-    this.x = x - scaled_sizex * 0.5;
-    this.y = y - scaled_sizey * 0.5;
-}
+    moveTo:function(x, y){
+        this.x = x - scaled_sizex * 0.5;
+        this.y = y - scaled_sizey * 0.5;
+    }
 }
 
 const Viewport = function(x, y, w, h) {
-this.x = x; this.y = y; this.w = w; this.h = h;
+    this.x = x; this.y = y; this.w = w; this.h = h;
 }
 
 
@@ -82,72 +82,76 @@ var viewport = new Viewport(0, 0, width, height)
 var pointer = { x:0, y:0 }
 
 function loop() {
-// viewport.x ++;
-window.requestAnimationFrame(loop);
 
-var height = document.documentElement.clientHeight;
-var width = document.documentElement.clientWidth;
+    console.log("LOOP START")
+    // viewport.x ++;
+    window.requestAnimationFrame(loop);
 
-context.canvas.height = height;
-context.canvas.width = width;
+    var height = document.documentElement.clientHeight;
+    var width = document.documentElement.clientWidth;
 
-context.imageSmoothingEnabled = false;
+    context.canvas.height = height;
+    context.canvas.width = width;
 
-var x_min = Math.floor(viewport.x / scaled_sizex);
-var y_min = Math.floor(viewport.y / scaled_sizey);
-var x_max = Math.ceil((viewport.x + viewport.w) / scaled_sizex);
-var y_max = Math.ceil((viewport.y + viewport.h) / scaled_sizey);
+    context.imageSmoothingEnabled = false;
 
-// for (let y = 0; y < rows; y++) {
+    var x_min = Math.floor(viewport.x / scaled_sizex);
+    var y_min = Math.floor(viewport.y / scaled_sizey);
+    var x_max = Math.ceil((viewport.x + viewport.w) / scaled_sizex);
+    var y_max = Math.ceil((viewport.y + viewport.h) / scaled_sizey);
 
-//     for (let x = 0; x < columns; x++) {
+    // for (let y = 0; y < rows; y++) {
 
-//         let value = terrain[y * columns + x];
-        
-//         let tile_x = x * scaled_size;
-//         let tile_y = y * scaled_size;
-        
-//         context.drawImage(tile_sheet, value * sprite_size, 0, sprite_size, sprite_size, tile_x, tile_y, scaled_size, scaled_size)
-//     }
-// }
+    //     for (let x = 0; x < columns; x++) {
 
-// context.drawImage(tile_sheet, 16*4, 16, 1, 1, 0, 0, width, height)
+    //         let value = terrain[y * columns + x];
+            
+    //         let tile_x = x * scaled_size;
+    //         let tile_y = y * scaled_size;
+            
+    //         context.drawImage(tile_sheet, value * sprite_size, 0, sprite_size, sprite_size, tile_x, tile_y, scaled_size, scaled_size)
+    //     }
+    // }
 
-for (let y = y_min; y < y_max; y++) {
+    // context.drawImage(tile_sheet, 16*4, 16, 1, 1, 0, 0, width, height)
 
-    for (let x = x_min; x < x_max; x++) {
+    for (let y = y_min; y < y_max; y++) {
 
-        let value = turn[y * columns + x];
-        
-        let tile_x = x * scaled_sizex - viewport.x + width * 0.5 - viewport.w * 0.5;
-        let tile_y = y * scaled_sizey - viewport.y + height * 0.5 - viewport.h * 0.5;
-        
-        // context.drawImage(tile_sheet,  value * sprite_size, 0, sprite_sizex, sprite_sizey, tile_x, tile_y, scaled_size, scaled_size * 6)
-        context.drawImage(tile_sheet,  value * sprite_size, 0, sprite_sizex, sprite_sizey, tile_x, tile_y, scaled_sizex, scaled_sizey)
-        console.log(tile_x, tile_y)
+        for (let x = x_min; x < x_max; x++) {
+
+            let value = turn[y * columns + x];
+            
+            let tile_x = x * scaled_sizex - viewport.x + width * 0.5 - viewport.w * 0.5;
+            let tile_y = y * scaled_sizey - viewport.y + height * 0.5 - viewport.h * 0.5;
+            
+            // context.drawImage(tile_sheet,  value * sprite_size, 0, sprite_sizex, sprite_sizey, tile_x, tile_y, scaled_size, scaled_size * 6)
+            context.drawImage(tile_sheet,  value * sprite_size, 0, sprite_sizex, sprite_sizey, tile_x, tile_y, scaled_sizex, scaled_sizey)
+            console.log(tile_x, tile_y)
+        }
     }
-}
-// context.drawImage(tile_sheet, 6*16, 0, 16, 96, 350, -100, 160, 960)
-// context.drawImage(tile_sheet, 1*16, 0, 16, 20, 350, 100, 160, 200)
-// context.drawImage(tile_sheet, 3*16, 2*20, 16, 20, 350, 230, 160, 200)
-// console.log("f")
-player.moveTo(pointer.x, pointer.y)
-context.drawImage(tile_numbers, sprite_size, 0, sprite_sizex, sprite_sizey, player.x, player.y, scaled_sizex, scaled_sizey)
-context.strokeStyle = "#ffffff";
-context.rect(width * 0.5 - viewport.w * 0.5, height * 0.5 - viewport.h * 0.5, viewport.w, viewport.h);
-context.stroke();
+
+    // context.drawImage(tile_sheet, 6*16, 0, 16, 96, 350, -100, 160, 960)
+    // context.drawImage(tile_sheet, 1*16, 0, 16, 20, 350, 100, 160, 200)
+    // context.drawImage(tile_sheet, 3*16, 2*20, 16, 20, 350, 230, 160, 200)
+    // console.log("f")
+    player.moveTo(pointer.x, pointer.y)
+    context.drawImage(tile_numbers, sprite_size, 0, sprite_sizex, sprite_sizey, player.x, player.y, scaled_sizex, scaled_sizey)
+    context.strokeStyle = "#ffffff";
+    context.rect(width * 0.5 - viewport.w * 0.5, height * 0.5 - viewport.h * 0.5, viewport.w, viewport.h);
+    context.stroke();
 }
 
 var tile_sheet = new Image();
 var tile_numbers = new Image();
 
-// tile_sheet.addEventListener("load", (event) => { loop(); });
-// context.canvas.addEventListener("click", (event) => {
+tile_sheet.addEventListener("load", (event) => { loop(); });
+context.canvas.addEventListener("click", (event) => {
 
-//     pointer.x = event.pageX
-//     pointer.y = event.pageY
-// });
-context.canvas.addEventListener("click", (event) => { loop(); });
+    pointer.x = event.pageX
+    pointer.y = event.pageY
+    // console.log(pointer.x,pointer.y)
+});
+// context.canvas.addEventListener("click", (event) => { loop(); });
 
 // console.log(map)
 // console.log(map[5])
