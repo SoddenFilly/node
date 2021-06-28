@@ -16,7 +16,7 @@ server.get('/game1', (req,res) => {
 })
 server.get('/perlintest', (req,res) => {
     res.sendFile('./public/html/map_a.html', { root: __dirname });
-})
+}) 
 server.get('/perlin', (req,res) => {
     res.sendFile('./public/html/scroll.html', { root: __dirname });
 })
