@@ -146,6 +146,7 @@ var width = document.documentElement.clientWidth;
         context.canvas.width = width;
 
         context.imageSmoothingEnabled = false;
+        z = 0;
 
         for (let y = 0; y < rows; y++) {
             for (let x = 0; x < columns; x++, index++) {
@@ -155,8 +156,9 @@ var width = document.documentElement.clientWidth;
 
                 index_y = 4
                 index_x = 4
-
-                context.drawImage(tile_sheet, valarr[(x*y) - 1] * sprite_size, 0, sprite_size, sprite_size, tile_x, tile_y, scaled_size, scaled_size)
+                
+                context.drawImage(tile_sheet, valarr[z] * sprite_size, 0, sprite_size, sprite_size, tile_x, tile_y, scaled_size, scaled_size)
+                z++
             }
         }
     }
