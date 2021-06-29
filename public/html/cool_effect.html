@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset = "utf-8">
+<meta name = "viewport" content = "width=device-width">
+<title>Tile Scroll</title>
+<style>
+* { margin:0; padding:0; }
+html, body { background-color:#000000; height:100%; position:relative; width:100%; }
+canvas { height:100%; position:fixed; width:100%; }
+</style>
+
+<!-- perlin complex -->
+<script src='../js/perlin.js'></script>
+<!-- perlin colour range config -->
+<script src='../js/perlin_map_z.js'></script>
+
+</head>
+
+<body>
+<button style="height: 1000px;position: absolute;"></button>
+<canvas style="overflow: scroll;"></canvas>
+<script type = "text/javascript">
+
+var context = document.querySelector("canvas").getContext("2d");
+
+var height = document.documentElement.clientHeight;
+var width = document.documentElement.clientWidth;
+
+
+
+    var elevation = go(15); 
+    var temperature = go(5.5)
+    var rainfall = go(10)
+
+    var scaled_size = 10; //2.4
+    var sprite_size = 16;
+    var columns = rows = 300;
+    
+    // var terrain = {
+    //     "perlin":go(5.5),
+    //     "scaled_size":2.4,
+        
+    // }
+
+    var index = 0;
+    var tile_sheet = new Image();
+    let valarr = [];
+
+    for (let y = 0; y < rows; y++) {
+
+        for (let x = 0; x < columns; x++, index++) {
+
+            let temp = temperature[y * columns + x];
+            let elev = elevation[y * columns + x];
+            let rain = rainfall[y * columns + x];
+
+            if (elev == 5){
+                if (rain >= 3 && temp <= 3) {
+                    //snowy mountain
+                    value = 1
+                    valarr[valarr.length] = 1
+                } else {
+                    //normal mountains
+                    value = 2
+                    valarr[valarr.length] = 2
+                }
+            }
+
+            if (elev == 4){
+                if (rain >= 3 && temp <= 2){
+                    //snowy highlands
+                    value = 3
+                    valarr[valarr.length] = 3
+                } else if (rain >= 3) {
+                    //forest highlands
+                    value = 4
+                    valarr[valarr.length] = 4
+                } else {
+                    //barren highlands
+                    value = 5
+                    valarr[valarr.length] = 5
+                }
+            }
+
+            if (elev == 3) {
+                if (rain >= 3 && temp < 4) {
+                    //forest
+                    value = 6
+                    valarr[valarr.length] = 6
+                } else if ((rain < 3 && temp == 5) || (rain == 1 && temp >= 3)) {
+                    //desert
+                    value = 7
+                    valarr[valarr.length] = 7
+                } else {
+                    //plains
+                    value = 8
+                    valarr[valarr.length] = 8
+                }
+            }
+
+            if (elev == 2) {
+                if (rain > 2 && temp < 4) {
+                    //lowland plains
+                    value = 9
+                    valarr[valarr.length] = 9
+                } else if ((rain <= 2 && temp >= 4) || (rain == 1 && temp >= 3)) {
+                    //lowland desert
+                    value = 7
+                    valarr[valarr.length] = 7
+                } else {
+                    //lowland wastes
+                    value = 10
+                    valarr[valarr.length] = 10
+                }
+            }
+
+            if (elev == 1) {
+                if (rain >= 4) {
+                    //lakes and rivers
+                    value = 11
+                    valarr[valarr.length] = 11
+                } else if (rain > 2 && temp < 4) {
+                    //LOWland plains
+                    value = 9
+                    valarr[valarr.length] = 9
+                } else {
+                    //LOWland wastes
+                    value = 10
+                    valarr[valarr.length] = 10
+                }
+            }
+            
+        }
+    }
+
+
+
+    function loop() {
+        window.requestAnimationFrame(loop);
+
+        var height = document.documentElement.clientHeight;
+        var width = document.documentElement.clientWidth;
+
+        context.canvas.height = height;
+        context.canvas.width = width;
+
+        context.imageSmoothingEnabled = false;
+
+        for (let y = 0; y < rows; y++) {
+            for (let x = 0; x < columns; x++, index++) {
+
+                let tile_x = x * scaled_size;
+                let tile_y = y * scaled_size;
+
+                index_y = 4
+                index_x = 4
+
+                context.drawImage(tile_sheet, valarr[(x*y) - 1] * sprite_size, 0, sprite_size, sprite_size, tile_x, tile_y, scaled_size, scaled_size)
+            }
+        }
+    }
+
+tile_sheet.addEventListener("load", (event) => { loop(); });
+
+// console.log(map)
+// console.log(map[5])
+
+tile_sheet.src = "../resources/images/tilesetz.png";
+
+</script>
+
+</body>
+
+</html> 
