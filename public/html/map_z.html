@@ -33,7 +33,7 @@ var width = document.documentElement.clientWidth;
     var temperature = go(5.5)
     var rainfall = go(10)
 
-    var scaled_size = 10; //2.4
+    var scaled_size = 5; //2.4
     var sprite_size = 16;
     var columns = rows = 300;
     
@@ -56,13 +56,11 @@ var width = document.documentElement.clientWidth;
             let rain = rainfall[y * columns + x];
 
             if (elev == 5){
-                if (rain >= 3 && temp <= 3) {
+                if (rain >= 3 && temp <= 2) {
                     //snowy mountain
-                    value = 1
                     valarr[valarr.length] = 1
                 } else {
                     //normal mountains
-                    value = 2
                     valarr[valarr.length] = 2
                 }
             }
@@ -70,15 +68,12 @@ var width = document.documentElement.clientWidth;
             if (elev == 4){
                 if (rain >= 3 && temp <= 2){
                     //snowy highlands
-                    value = 3
                     valarr[valarr.length] = 3
                 } else if (rain >= 3) {
                     //forest highlands
-                    value = 4
                     valarr[valarr.length] = 4
                 } else {
                     //barren highlands
-                    value = 5
                     valarr[valarr.length] = 5
                 }
             }
@@ -86,15 +81,12 @@ var width = document.documentElement.clientWidth;
             if (elev == 3) {
                 if (rain >= 3 && temp < 4) {
                     //forest
-                    value = 6
                     valarr[valarr.length] = 6
                 } else if ((rain < 3 && temp == 5) || (rain == 1 && temp >= 3)) {
                     //desert
-                    value = 7
                     valarr[valarr.length] = 7
                 } else {
                     //plains
-                    value = 8
                     valarr[valarr.length] = 8
                 }
             }
@@ -102,15 +94,12 @@ var width = document.documentElement.clientWidth;
             if (elev == 2) {
                 if (rain > 2 && temp < 4) {
                     //lowland plains
-                    value = 9
                     valarr[valarr.length] = 9
                 } else if ((rain <= 2 && temp >= 4) || (rain == 1 && temp >= 3)) {
                     //lowland desert
-                    value = 7
                     valarr[valarr.length] = 7
                 } else {
                     //lowland wastes
-                    value = 10
                     valarr[valarr.length] = 10
                 }
             }
@@ -118,15 +107,12 @@ var width = document.documentElement.clientWidth;
             if (elev == 1) {
                 if (rain >= 4) {
                     //lakes and rivers
-                    value = 11
                     valarr[valarr.length] = 11
                 } else if (rain > 2 && temp < 4) {
                     //LOWland plains
-                    value = 9
                     valarr[valarr.length] = 9
                 } else {
                     //LOWland wastes
-                    value = 10
                     valarr[valarr.length] = 10
                 }
             }
