@@ -58,21 +58,27 @@ const Viewport = function(x, y, w, h) {
     this.x = x; this.y = y; this.w = w; this.h = h;
 }
 
-
-
 var terrain = go(15); 
 var temperature = go(5.5)
 var rainfall = go(11)
 var sprite_size = 16;
 var sprite_sizex = 16;
 var sprite_sizey = 20;
-var scaled_sizex = 5*sprite_sizex; //2.4
-var scaled_sizey = 5*sprite_sizey; //2.4
+var scale_factor = 2
+var scaled_sizex = scale_factor*sprite_sizex; //2.4
+var scaled_sizey = scale_factor*sprite_sizey; //2.4
 // var columns = rows = 300;
+var turn = []
+for( var i=0; i < 20**2; i++){
+    turn.push(Math.ceil(Math.random() * 9))
+}
 // var turn = [2,3,4,5,4,7,6,8,5,8,3,2,6,4,9,1]
-var turn = [1,2,3,4,5,6,7,8,9]
+// var turn = [1,2,3,4,5,6,7,8,9]
 // var turn = [1,2,3,4,5,6,7,8,9].reverse()
-var turn = [1,2,3,4,5,6,7,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,2,3,4,5,6,7,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7]
+// var turn = [1,2,3,4,5,6,7,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,2,3,4,5,6,7,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7]
+
+var turn = [1,3,3,4,5,6,7,8,9]
+
 var columns = rows = len = Math.sqrt(turn.length);
 
 // turn = rotate_left(turn)
@@ -133,7 +139,7 @@ function loop() {
             console.log("x,y,value:",x,y,value)
             console.log("x_min,x_max,y_min,y_max",x_min,x_max,y_min,y_max)
             let tile_x = x * scaled_sizex - viewport.x;
-            let tile_y = y * scaled_sizey - viewport.y;
+            let tile_y = y * scaled_sizex - viewport.y;
             
             // ctx.drawImage(tile_sheet,  value * sprite_size, 0, sprite_sizex, sprite_sizey, tile_x, tile_y, scaled_size, scaled_size * 6)
             ctx.drawImage(tile_sheet,  value * sprite_size, 0, sprite_sizex, sprite_sizey, tile_x, tile_y, scaled_sizex, scaled_sizey)
