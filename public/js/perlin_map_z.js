@@ -4,7 +4,7 @@ res = go()
 function go(RES){
     perlin.seed()
 
-    var arr = []
+    var arr = [ [], [] ]
     // const RES = 15;
 
     // const SIZE = 300;
@@ -29,24 +29,26 @@ function go(RES){
         
             if (color_val >= veryHigh){
                 // arr = arr + [1]
-                arr[arr.length] = 5
+                arr[0][arr.length] = 5
             }
             else if (color_val >= high && color_val <= veryHigh){
                 // arr = arr + [2]
-                arr[arr.length] = 4
+                arr[0][arr.length] = 4
             }
             else if (color_val >= medium && color_val <= high){
                 // arr = arr + [3]
-                arr[arr.length] = 3
+                arr[0][arr.length] = 3
             }
             else if (color_val >= low && color_val <= medium){
                 // arr = arr + [4]
-                arr[arr.length] = 2
+                arr[0][arr.length] = 2
             }
             else if (color_val <= low){
                 // arr = arr + [5]
-                arr[arr.length] = 1
+                arr[0][arr.length] = 1
             }
+
+            
         }
         // console.log(x)
     }
