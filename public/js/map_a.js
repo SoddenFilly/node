@@ -77,6 +77,38 @@ function find_adjacent(arr){
     return list
 }
 
+function cell_auto(arr){
+
+    matrix = []
+
+    for (let i = 0; i < arr[0].length; i++){
+        if (arr[1][i] != 0 || arr[1][i] != 0){
+
+            var a = arr[1][i].join()
+            console.log(arr[1][i])
+
+            if (a == "1,1,2,2"){
+                console.log("a")
+                if (arr[0][i] == 1){
+                    console.log("d")
+                    matrix.push(1)
+                }
+                else{
+                    matrix.push(6)
+                }
+            }
+            else{
+                matrix.push(arr[0][i])
+            }
+           
+        }
+        else{
+            matrix.push(arr[0][i])
+        }
+    }
+    return matrix
+}
+
 var ctx = document.querySelector("canvas").getContext("2d");
 
 // max window width and height
@@ -161,9 +193,11 @@ var turn = [ // 1 = low, 2-10 = med, 11-19 = high
     2,2,2,2,2,2,
 ]
 
-matrix = find_adjacent(turn)
+var matrix = find_adjacent(turn)
+matrix = cell_auto(matrix)
+console.log(matrix)
 
-var columns = rows = len = Math.sqrt(matrix[0].length);
+var columns = rows = len = Math.sqrt(matrix.length);
 
 // turn = rotate_left(turn)
 // turn = rotate_left(turn)
@@ -207,7 +241,7 @@ function loop() {
     // }
 
     // ctx.drawImage(tile_sheet, 16*4, 16, 1, 1, 0, 0, width, height)
-    var root = Math.sqrt(matrix[0].length)
+    var root = Math.sqrt(matrix.length)
     if (x_max > root){
         x_max = root
     }
@@ -219,7 +253,7 @@ function loop() {
 
         for (let x = x_min; x < x_max; x++) {
             // console.log(turn[y * columns + x],turn2[0][y * columns + x])
-            let value = matrix[0][y * columns + x];
+            let value = matrix[y * columns + x];
             // console.log("x,y,value:",x,y,value)
             // console.log("x_min,x_max,y_min,y_max",x_min,x_max,y_min,y_max)
             let tile_x = x * scaled_sizex - viewport.x;
