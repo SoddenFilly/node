@@ -82,23 +82,52 @@ function cell_auto(arr){
     matrix = []
 
     for (let i = 0; i < arr[0].length; i++){
+
         if (arr[1][i] != 0 || arr[1][i] != 0){
 
             var a = arr[1][i].join()
             console.log(arr[1][i])
 
-            if (a == "1,1,2,2"){
-                console.log("a")
-                if (arr[0][i] == 1){
-                    console.log("d")
-                    matrix.push(1)
+            
+            if (arr[0][i] != 1){ // if the parent tile is not of lowest level(1) then change
+
+                if (arr[0][i] == 2){
+
+                    if (a == "1,1,2,2"){
+                        matrix.push(4)
+                    }
+                    else if (a == "1,2,1,3"){matrix.push(6)}
+                    else if (a == "2,1,3,3"){matrix.push(11)}
+                    // else if (a == "2,2,3,3"){matrix.push(14)}
+                    else if (a == "1,3,1,2"){matrix.push(6)}
+                    else if (a == "1,3,3,2"){matrix.push(4)}
+                    else if (a == "2,3,2,3"){matrix.push(15)}
+                    else if (a == "2,1,3,2"){matrix.push(11)}
+                    else if (a == ",,,"){matrix.push(6)}
+                    else if (a == ",,,"){matrix.push(6)}
+                    else{
+                        matrix.push(arr[0][i])
+                    }
                 }
-                else{
-                    matrix.push(6)
+                else if (arr[0][i] == 3){
+                    if (a == "1,1,2,2"){
+                        matrix.push(16)
+                    }
+                    else if (a == "2,2,2,3"){matrix.push(2)}
+                    // else if (a == "2,2,3,3"){matrix.push(14)}
+                    else if (a == "2,2,3,3"){matrix.push(16)}
+                    else if (a == "3,3,2,3"){matrix.push(18)}
+                    else if (a == "3,2,3,2"){matrix.push(22)}
+                    else if (a == "2,3,2,2"){matrix.push(2)}
+                    else if (a == "3,3,3,2"){matrix.push(20)}
+                    else if (a == ",,,"){matrix.push(6)}
+                    else{
+                        matrix.push(arr[0][i])
+                    }
                 }
             }
             else{
-                matrix.push(arr[0][i])
+                matrix.push(1)
             }
            
         }
@@ -195,6 +224,7 @@ var turn = [ // 1 = low, 2-10 = med, 11-19 = high
 
 var matrix = find_adjacent(turn)
 matrix = cell_auto(matrix)
+// matrix = matrix[0]
 console.log(matrix)
 
 var columns = rows = len = Math.sqrt(matrix.length);
@@ -325,5 +355,5 @@ ctx.canvas.addEventListener("click", (event) => {
 
 // tile_sheet.src = "../resources/images/turn.png";
 // tile_sheet.src = "../resources/images/tile-scroll-.png";
-tile_sheet.src = "../resources/images/testmodule4.png";
+tile_sheet.src = "../resources/images/testmodule_min.png";
 tile_numbers.src = "../resources/images/numtile.png";
