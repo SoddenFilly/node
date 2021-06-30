@@ -40,14 +40,7 @@
 
 <script>
 
-var turn = [ // 1 = low, 2-10 = med, 11-19 = high
-    1,1,1,1,1,
-    3,1,2,2,1,
-    1,1,2,3,2,
-    3,2,3,3,2,
-    1,2,3,3,2,
-]
-var turn = [ // 1 = low, 2-10 = med, 11-19 = high
+var arr = [ // 1 = low, 2-10 = med, 11-19 = high
     1,1,1,1,1,3,
     3,1,2,2,1,2,
     1,1,2,3,2,1,
@@ -56,50 +49,49 @@ var turn = [ // 1 = low, 2-10 = med, 11-19 = high
     2,2,2,2,2,2,
 ]
 
-var next = []
-console.log(turn)
+function find_adjacent(arr){
 
-for (let i = 0, edge = 0; i < turn.length; i++, edge++){
-    console.log(turn[i])
+    var next = []
+    // console.log(arr)
 
-    let arr_len = Math.sqrt(turn.length)
-    // horizontal edges
-    if (edge == arr_len - 1){
-        console.log("right",i,turn[i])
-        next.push(0)
+    for (let i = 0, edge = 0; i < arr.length; i++, edge++){
+        console.log(arr[i])
+
+        let arr_len = Math.sqrt(arr.length)
+        // horizontal edges
+        if (edge == arr_len - 1){
+            console.log("right",i,arr[i])
+            next.push(0)
+        }
+        else if (edge == arr_len){
+            console.log("left",i,arr[i])
+            next.push(0)
+            edge = 0
+        }
+        // vertical edges
+        else if (i < arr_len){
+            next.push(0)
+            console.log("top")
+        }
+        else if (i > arr.length - arr_len-1){
+            next.push(0)
+            console.log("bottom")
+        }
+        // area
+        else {
+            let top = arr[i - arr_len]
+            let left = arr[i - 1]
+            let right = arr[i + 1]
+            let bottom = arr[i + arr_len]
+            let list = [top,left,right,bottom]
+            // console.log("top",i,top)
+            next.push(list)
+        }
     }
-    else if (edge == arr_len){
-        console.log("left",i,turn[i])
-        next.push(0)
-        edge = 0
-    }
-    // vertical edges
-    else if (i < arr_len){
-        next.push(0)
-        console.log("top")
-    }
-    else if (i > turn.length - arr_len-1){
-        next.push(0)
-        console.log("bottom")
-    }
-    // area
-    else {
-        let top = turn[i - arr_len]
-        let left = turn[i - 1]
-        let right = turn[i + 1]
-        let bottom = turn[i + arr_len]
-        let list = [top,left,right,bottom]
-        // console.log("top",i,top)
-        next.push(list)
-    }
+    return [arr, next]
 }
-console.log(next)
-let x = 5
-console.log("test", turn[5*x-1])
-console.log("test", turn[5*x-5])
 
-var mainlist = [turn, next]
-console.log(mainlist)
+console.log(find_adjacent(arr))
 
 </script>
 
