@@ -42,36 +42,64 @@
 
 var turn = [ // 1 = low, 2-10 = med, 11-19 = high
     1,1,1,1,1,
-    1,1,2,2,1,
+    3,1,2,2,1,
     1,1,2,3,2,
-    1,2,3,3,2,
+    3,2,3,3,2,
     1,2,3,3,2,
 ]
+var turn = [ // 1 = low, 2-10 = med, 11-19 = high
+    1,1,1,1,1,3,
+    3,1,2,2,1,2,
+    1,1,2,3,2,1,
+    3,2,3,3,2,2,
+    1,2,3,3,3,2,
+    2,2,2,2,2,2,
+]
+
 var next = []
 console.log(turn)
 
-for (let i = 0; i < turn.length; i++){
+for (let i = 0, edge = 0; i < turn.length; i++, edge++){
     console.log(turn[i])
 
-    // left
-    if (typeof turn[i-1] == typeof turn[i]){
-        console.log("left",turn[i-1])
-        next.push(turn[i-1])
-    }
-    else {
+    let arr_len = Math.sqrt(turn.length)
+    // horizontal edges
+    if (edge == arr_len - 1){
+        console.log("right",i,turn[i])
         next.push(0)
     }
-    
-    // up
-
-    // right
-
-    // down
+    else if (edge == arr_len){
+        console.log("left",i,turn[i])
+        next.push(0)
+        edge = 0
+    }
+    // vertical edges
+    else if (i < arr_len){
+        next.push(0)
+        console.log("top")
+    }
+    else if (i > turn.length - arr_len-1){
+        next.push(0)
+        console.log("bottom")
+    }
+    // area
+    else {
+        let top = turn[i - arr_len]
+        let left = turn[i - 1]
+        let right = turn[i + 1]
+        let bottom = turn[i + arr_len]
+        let list = [top,left,right,bottom]
+        // console.log("top",i,top)
+        next.push(list)
+    }
 }
 console.log(next)
+let x = 5
+console.log("test", turn[5*x-1])
+console.log("test", turn[5*x-5])
 
-
-// var mainlist = [turn, next]
+var mainlist = [turn, next]
+console.log(mainlist)
 
 </script>
 
