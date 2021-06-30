@@ -99,16 +99,13 @@ const Viewport = function(x, y, w, h) {
     this.x = x; this.y = y; this.w = w; this.h = h;
 }
 
-var terrain = go(15); 
-var temperature = go(5.5)
-var rainfall = go(11)
-var sprite_size = 16;
-var sprite_sizex = 16;
-var sprite_sizey = 20;
-var scale_factor = 2
-var scaled_sizex = scale_factor*sprite_sizex; //2.4
-var scaled_sizey = scale_factor*sprite_sizey; //2.4
-// var columns = rows = 300;
+const sprite_size = 16;
+const sprite_sizex = 16;
+const sprite_sizey = 20;
+const scale_factor = 2
+const scaled_sizex = scale_factor*sprite_sizex; //2.4
+const scaled_sizey = scale_factor*sprite_sizey; //2.4
+// const columns = rows = 300;
 
 // TEST MODULE 1
 var turn = []
@@ -155,13 +152,6 @@ var turn = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,19,19,19,19,19,19]
 //     1, 4, 3, 3, 3, 3, 3, 3,10, 1,
 //     1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
 // ]
-var turn = [ // 1 = low, 2-10 = med, 11-19 = high
-    1,1,1,1,1,
-    1,1,2,2,1,
-    1,1,2,3,2,
-    1,2,3,3,2,
-    1,2,3,3,2,
-]
 var turn = [ // 1 = low, 2-10 = med, 11-19 = high
     1,1,1,1,1,3,
     3,1,2,2,1,2,
