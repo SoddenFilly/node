@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <meta charset = "utf-8">
+        <meta name = "viewport" content = "width=device-width">
+
+        <title>MAP</title>
+
+        <style>
+
+        * {
+            margin:0;
+            padding:0;
+        }
+
+        html, body {
+            background-color:#000000;
+            height:100%;
+            position:relative;
+            width:100%;
+        }
+
+        canvas {
+            height:100%;
+            position:fixed;
+            width:100%;
+        }
+
+        </style>
+
+    </head>
+
+    <body>
+
+        <canvas></canvas>
+
+    </body>
+
+<script>
+
+var turn = [ // 1 = low, 2-10 = med, 11-19 = high
+    1,1,1,1,1,
+    1,1,2,2,1,
+    1,1,2,3,2,
+    1,2,3,3,2,
+    1,2,3,3,2,
+]
+var next = []
+console.log(turn)
+
+for (let i = 0; i < turn.length; i++){
+    console.log(turn[i])
+
+    // left
+    if (typeof turn[i-1] == typeof turn[i]){
+        console.log("left",turn[i-1])
+        next.push(turn[i-1])
+    }
+    else {
+        next.push(0)
+    }
+    
+    // up
+
+    // right
+
+    // down
+}
+console.log(next)
+
+
+// var mainlist = [turn, next]
+
+</script>
+
+</html> 

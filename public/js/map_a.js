@@ -68,6 +68,8 @@ var scale_factor = 2
 var scaled_sizex = scale_factor*sprite_sizex; //2.4
 var scaled_sizey = scale_factor*sprite_sizey; //2.4
 // var columns = rows = 300;
+
+// TEST MODULE 1
 var turn = []
 for( var i=0; i < 20**2; i++){
     turn.push(Math.ceil(Math.random() * 9))
@@ -78,6 +80,47 @@ for( var i=0; i < 20**2; i++){
 // var turn = [1,2,3,4,5,6,7,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,2,3,4,5,6,7,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7]
 
 var turn = [1,3,3,4,5,6,7,8,9]
+
+// TEST MODULE 2
+var turn = [1,2,3,4,5,5,5,5,5]
+var turn = [3,3,3,3,3,5,5,5,5,5,2,2,2,2,2,4,4,4,4,4,1,1,1,1,1]
+
+// TEST MODULE 3
+var turn = [1,2,3,4,5,6,7,8,9,10,11,11,11,11,11,11]
+var turn = [ // 1 = low, 2-6 = med, 7-11 = high
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+    1, 5, 5, 5, 5, 5, 5, 5, 6, 1,
+    1, 4, 2, 2, 2, 2, 2, 2, 6, 1,
+    1, 4, 2,10,10,10,11, 2, 6, 1,
+    1, 4, 2, 9, 7, 7,11, 2, 6, 1,
+    1, 4, 2, 9, 7, 7,11, 2, 6, 1,
+    1, 4, 2, 9, 8, 8, 8, 2, 6, 1,
+    1, 4, 2, 2, 2, 2, 2, 2, 6, 1,
+    1, 4, 3, 3, 3, 3, 3, 3, 3, 1,
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+]
+
+// TEST MODULE 4
+var turn = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,19,19,19,19,19,19]
+// var turn = [ // 1 = low, 2-10 = med, 11-19 = high
+//     1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+//     1, 6, 7, 7, 7, 7, 7, 7, 8, 1,
+//     1, 5, 2, 2, 2, 2, 2, 2, 9, 1,
+//     1, 5, 2,15,16,16,17, 2, 9, 1,
+//     1, 5, 2,14,11,11,18, 2, 9, 1,
+//     1, 5, 2,14,11,11,18, 2, 9, 1,
+//     1, 5, 2,13,12,12,19, 2, 9, 1,
+//     1, 5, 2, 2, 2, 2, 2, 2, 9, 1,
+//     1, 4, 3, 3, 3, 3, 3, 3,10, 1,
+//     1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+// ]
+var turn = [ // 1 = low, 2-10 = med, 11-19 = high
+    1,1,1,1,1,
+    1,1,2,2,1,
+    1,1,2,3,2,
+    1,2,3,3,2,
+    1,2,3,3,2,
+]
 
 var columns = rows = len = Math.sqrt(turn.length);
 
@@ -141,6 +184,34 @@ function loop() {
             let tile_x = x * scaled_sizex - viewport.x;
             let tile_y = y * scaled_sizex - viewport.y;
             
+
+
+            // if (value == 2){
+            //     tile_y += 8
+            // }
+            // else if (value == 4){
+            //     tile_y += 8
+            // }
+            // else if (value == 1){
+            //     tile_y += 16
+            // }
+
+            // if (value == 1){
+            //     tile_y += 16
+            // }
+            // else if (value <= 6){
+            //     tile_y += 8
+            // }
+
+            // if (value == 1){
+            //     tile_y += 16
+            // }
+            // else if (value <= 10){
+            //     tile_y += 8
+            // }
+
+
+
             // ctx.drawImage(tile_sheet,  value * sprite_size, 0, sprite_sizex, sprite_sizey, tile_x, tile_y, scaled_size, scaled_size * 6)
             ctx.drawImage(tile_sheet,  value * sprite_size, 0, sprite_sizex, sprite_sizey, tile_x, tile_y, scaled_sizex, scaled_sizey)
             console.log("x,y:",tile_x, tile_y)
@@ -179,5 +250,5 @@ ctx.canvas.addEventListener("click", (event) => {
 
 // tile_sheet.src = "../resources/images/turn.png";
 // tile_sheet.src = "../resources/images/tile-scroll-.png";
-tile_sheet.src = "../resources/images/testmodule1.png";
+tile_sheet.src = "../resources/images/testmodule4.png";
 tile_numbers.src = "../resources/images/numtile.png";
