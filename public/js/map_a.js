@@ -77,7 +77,11 @@ function find_adjacent(arr){
     return list
 }
 
-function cell_auto(arr){
+function cell_dissolve(arr){
+
+}
+
+function cell_automata(arr, dissolve){
 
     matrix = []
 
@@ -88,46 +92,77 @@ function cell_auto(arr){
             var a = arr[1][i].join()
             console.log(arr[1][i])
 
-            
-            if (arr[0][i] != 1){ // if the parent tile is not of lowest level(1) then change
+            if (dissolve == true){
 
-                if (arr[0][i] == 2){
+                if (arr[0][i] != 1){ // if the parent tile is not of lowest level(1) then change
 
-                    if (a == "1,1,2,2"){
-                        matrix.push(4)
+                    if (arr[0][i] == 2){
+
+                        if (a == "1,1,1,3"){matrix.push(1)}
+                        else if (a == ",,,"){matrix.push(6)}
+                        else{
+                            matrix.push(arr[0][i])
+                        }
                     }
-                    else if (a == "1,2,1,3"){matrix.push(6)}
-                    else if (a == "2,1,3,3"){matrix.push(11)}
-                    // else if (a == "2,2,3,3"){matrix.push(14)}
-                    else if (a == "1,3,1,2"){matrix.push(6)}
-                    else if (a == "1,3,3,2"){matrix.push(4)}
-                    else if (a == "2,3,2,3"){matrix.push(15)}
-                    else if (a == "2,1,3,2"){matrix.push(11)}
-                    else if (a == ",,,"){matrix.push(6)}
-                    else if (a == ",,,"){matrix.push(6)}
-                    else{
-                        matrix.push(arr[0][i])
+                    else if (arr[0][i] == 3){
+                        if (a == "1,1,2,2"){
+                            matrix.push(16)
+                        }
+                        else if (a == "2,2,2,3"){matrix.push(2)}
+                        else if (a == "2,3,2,2"){matrix.push(2)}
+                        else if (a == ",,,"){matrix.push(6)}
+                        else{
+                            matrix.push(arr[0][i])
+                        }
                     }
                 }
-                else if (arr[0][i] == 3){
-                    if (a == "1,1,2,2"){
-                        matrix.push(16)
-                    }
-                    else if (a == "2,2,2,3"){matrix.push(2)}
-                    // else if (a == "2,2,3,3"){matrix.push(14)}
-                    else if (a == "2,2,3,3"){matrix.push(16)}
-                    else if (a == "3,3,2,3"){matrix.push(18)}
-                    else if (a == "3,2,3,2"){matrix.push(22)}
-                    else if (a == "2,3,2,2"){matrix.push(2)}
-                    else if (a == "3,3,3,2"){matrix.push(20)}
-                    else if (a == ",,,"){matrix.push(6)}
-                    else{
-                        matrix.push(arr[0][i])
-                    }
+                else{
+                    matrix.push(1)
                 }
             }
-            else{
-                matrix.push(1)
+            else if (dissolve == false){
+                console.log("sjhfvshviwsi")
+
+                if (arr[0][i] != 1){ // if the parent tile is not of lowest level(1) then change
+
+                    if (arr[0][i] == 2){
+
+                        if (a == "1,1,2,2"){
+                            matrix.push(4)
+                        }
+                        else if (a == "1,2,1,3"){matrix.push(6)}
+                        else if (a == "2,1,3,3"){matrix.push(11)}
+                        // else if (a == "2,2,3,3"){matrix.push(14)}
+                        else if (a == "1,3,1,2"){matrix.push(6)}
+                        else if (a == "1,3,3,2"){matrix.push(4)}
+                        else if (a == "2,3,2,3"){matrix.push(15)}
+                        else if (a == "2,1,3,2"){matrix.push(11)}
+                        else if (a == ",,,"){matrix.push(6)}
+                        else if (a == ",,,"){matrix.push(6)}
+                        else{
+                            matrix.push(arr[0][i])
+                        }
+                    }
+                    else if (arr[0][i] == 3){
+                        if (a == "1,1,2,2"){
+                            matrix.push(16)
+                        }
+                        else if (a == "2,2,2,3"){matrix.push(2)}
+                        // else if (a == "2,2,3,3"){matrix.push(14)}
+                        else if (a == "2,2,3,3"){matrix.push(16)}
+                        else if (a == "3,3,2,3"){matrix.push(18)}
+                        else if (a == "3,2,3,2"){matrix.push(22)}
+                        else if (a == "2,3,2,2"){matrix.push(2)}
+                        else if (a == "3,3,3,2"){matrix.push(20)}
+                        else if (a == ",,,"){matrix.push(6)}
+                        else{
+                            matrix.push(arr[0][i])
+                        }
+                    }
+                }
+                else{
+                    matrix.push(1)
+                }
             }
            
         }
@@ -166,64 +201,18 @@ const sprite_sizey = 20;
 const scale_factor = 2
 const scaled_sizex = scale_factor*sprite_sizex; //2.4
 const scaled_sizey = scale_factor*sprite_sizey; //2.4
-// const columns = rows = 300;
 
-// TEST MODULE 1
-var turn = []
-for( var i=0; i < 20**2; i++){
-    turn.push(Math.ceil(Math.random() * 9))
-}
-// var turn = [2,3,4,5,4,7,6,8,5,8,3,2,6,4,9,1]
-// var turn = [1,2,3,4,5,6,7,8,9]
-// var turn = [1,2,3,4,5,6,7,8,9].reverse()
-// var turn = [1,2,3,4,5,6,7,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,2,3,4,5,6,7,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7]
-
-var turn = [1,3,3,4,5,6,7,8,9]
-
-// TEST MODULE 2
-var turn = [1,2,3,4,5,5,5,5,5]
-var turn = [3,3,3,3,3,5,5,5,5,5,2,2,2,2,2,4,4,4,4,4,1,1,1,1,1]
-
-// TEST MODULE 3
-var turn = [1,2,3,4,5,6,7,8,9,10,11,11,11,11,11,11]
-var turn = [ // 1 = low, 2-6 = med, 7-11 = high
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-    1, 5, 5, 5, 5, 5, 5, 5, 6, 1,
-    1, 4, 2, 2, 2, 2, 2, 2, 6, 1,
-    1, 4, 2,10,10,10,11, 2, 6, 1,
-    1, 4, 2, 9, 7, 7,11, 2, 6, 1,
-    1, 4, 2, 9, 7, 7,11, 2, 6, 1,
-    1, 4, 2, 9, 8, 8, 8, 2, 6, 1,
-    1, 4, 2, 2, 2, 2, 2, 2, 6, 1,
-    1, 4, 3, 3, 3, 3, 3, 3, 3, 1,
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-]
-
-// TEST MODULE 4
-var turn = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,19,19,19,19,19,19]
-// var turn = [ // 1 = low, 2-10 = med, 11-19 = high
-//     1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-//     1, 6, 7, 7, 7, 7, 7, 7, 8, 1,
-//     1, 5, 2, 2, 2, 2, 2, 2, 9, 1,
-//     1, 5, 2,15,16,16,17, 2, 9, 1,
-//     1, 5, 2,14,11,11,18, 2, 9, 1,
-//     1, 5, 2,14,11,11,18, 2, 9, 1,
-//     1, 5, 2,13,12,12,19, 2, 9, 1,
-//     1, 5, 2, 2, 2, 2, 2, 2, 9, 1,
-//     1, 4, 3, 3, 3, 3, 3, 3,10, 1,
-//     1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-// ]
 var turn = [ // 1 = low, 2-10 = med, 11-19 = high
     1,1,1,1,1,3,
-    3,1,2,2,1,2,
+    3,1,1,2,1,2,
     1,1,2,3,2,1,
     3,2,3,3,2,2,
     1,2,3,3,3,2,
     2,2,2,2,2,2,
 ]
-
 var matrix = find_adjacent(turn)
-matrix = cell_auto(matrix)
+// matrix = cell_automata(matrix, true)
+matrix = cell_automata(matrix, false)
 // matrix = matrix[0]
 console.log(matrix)
 
