@@ -51,30 +51,30 @@ var arr = [ // 1 = low, 2-10 = med, 11-19 = high
 
 function find_adjacent(arr){
 
-    var next = []
+    var adj = []
     // console.log(arr)
 
     for (let i = 0, edge = 0; i < arr.length; i++, edge++){
-        console.log(arr[i])
 
         let arr_len = Math.sqrt(arr.length)
+
         // horizontal edges
         if (edge == arr_len - 1){
             console.log("right",i,arr[i])
-            next.push(0)
+            adj.push(0)
         }
         else if (edge == arr_len){
             console.log("left",i,arr[i])
-            next.push(0)
+            adj.push(0)
             edge = 0
         }
         // vertical edges
         else if (i < arr_len){
-            next.push(0)
+            adj.push(0)
             console.log("top")
         }
         else if (i > arr.length - arr_len-1){
-            next.push(0)
+            adj.push(0)
             console.log("bottom")
         }
         // area
@@ -84,11 +84,11 @@ function find_adjacent(arr){
             let right = arr[i + 1]
             let bottom = arr[i + arr_len]
             let list = [top,left,right,bottom]
-            // console.log("top",i,top)
-            next.push(list)
+
+            adj.push(list)
         }
     }
-    return [arr, next]
+    return [arr, adj]
 }
 
 console.log(find_adjacent(arr))

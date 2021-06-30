@@ -9,7 +9,6 @@ function split_3(arr) {
         }
     return chunks;
 }
-
 function rotate_right (arr) {
     var pairs = split_3(arr);
     len = Math.sqrt(arr.length), arr = [];
@@ -22,7 +21,6 @@ function rotate_right (arr) {
     }
     return arr
 }
-
 function rotate_left (arr) {
     var pairs = split_3(arr);
     len = Math.sqrt(arr.length), arr = [];
@@ -34,6 +32,49 @@ function rotate_left (arr) {
         }
     }
     return arr
+}
+
+function find_adjacent(arr){
+
+    var adj = []
+    // console.log(arr)
+
+    for (let i = 0, edge = 0; i < arr.length; i++, edge++){
+
+        let arr_len = Math.sqrt(arr.length)
+
+        // horizontal edges
+        if (edge == arr_len - 1){
+            // console.log("right",i,arr[i])
+            adj.push(0)
+        }
+        else if (edge == arr_len){
+            // console.log("left",i,arr[i])
+            adj.push(0)
+            edge = 0
+        }
+        // vertical edges
+        else if (i < arr_len){
+            // console.log("top")
+            adj.push(0)
+        }
+        else if (i > arr.length - arr_len-1){
+            // console.log("bottom")
+            adj.push(0)
+        }
+        // area
+        else {
+            let top = arr[i - arr_len]
+            let left = arr[i - 1]
+            let right = arr[i + 1]
+            let bottom = arr[i + arr_len]
+            let list = [top,left,right,bottom]
+
+            adj.push(list)
+        }
+    }
+    list = [arr, adj]
+    return list
 }
 
 var ctx = document.querySelector("canvas").getContext("2d");
@@ -121,8 +162,18 @@ var turn = [ // 1 = low, 2-10 = med, 11-19 = high
     1,2,3,3,2,
     1,2,3,3,2,
 ]
+var turn = [ // 1 = low, 2-10 = med, 11-19 = high
+    1,1,1,1,1,3,
+    3,1,2,2,1,2,
+    1,1,2,3,2,1,
+    3,2,3,3,2,2,
+    1,2,3,3,3,2,
+    2,2,2,2,2,2,
+]
 
-var columns = rows = len = Math.sqrt(turn.length);
+matrix = find_adjacent(turn)
+
+var columns = rows = len = Math.sqrt(matrix[0].length);
 
 // turn = rotate_left(turn)
 // turn = rotate_left(turn)
@@ -166,7 +217,7 @@ function loop() {
     // }
 
     // ctx.drawImage(tile_sheet, 16*4, 16, 1, 1, 0, 0, width, height)
-    var root = Math.sqrt(turn.length)
+    var root = Math.sqrt(matrix[0].length)
     if (x_max > root){
         x_max = root
     }
@@ -177,10 +228,10 @@ function loop() {
     for (let y = y_min; y < y_max; y++) {
 
         for (let x = x_min; x < x_max; x++) {
-
-            let value = turn[y * columns + x];
-            console.log("x,y,value:",x,y,value)
-            console.log("x_min,x_max,y_min,y_max",x_min,x_max,y_min,y_max)
+            // console.log(turn[y * columns + x],turn2[0][y * columns + x])
+            let value = matrix[0][y * columns + x];
+            // console.log("x,y,value:",x,y,value)
+            // console.log("x_min,x_max,y_min,y_max",x_min,x_max,y_min,y_max)
             let tile_x = x * scaled_sizex - viewport.x;
             let tile_y = y * scaled_sizex - viewport.y;
             
@@ -213,8 +264,8 @@ function loop() {
 
 
             // ctx.drawImage(tile_sheet,  value * sprite_size, 0, sprite_sizex, sprite_sizey, tile_x, tile_y, scaled_size, scaled_size * 6)
-            ctx.drawImage(tile_sheet,  value * sprite_size, 0, sprite_sizex, sprite_sizey, tile_x, tile_y, scaled_sizex, scaled_sizey)
-            console.log("x,y:",tile_x, tile_y)
+            ctx.drawImage(tile_sheet, value * sprite_size, 0, sprite_sizex, sprite_sizey, tile_x, tile_y, scaled_sizex, scaled_sizey)
+            // console.log("x,y:",tile_x, tile_y)
         }
     }
 
