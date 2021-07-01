@@ -121,7 +121,7 @@ function cell_automata(arr, dissolve){
                 }
             }
             else if (dissolve == false){
-                console.log("sjhfvshviwsi")
+                // console.log("sjhfvshviwsi")
 
                 if (arr[0][i] != 1){ // if the parent tile is not of lowest level(1) then change
 
@@ -130,12 +130,12 @@ function cell_automata(arr, dissolve){
                         if (a == "1,1,2,2"){
                             matrix.push(4)
                         }
-                        else if (a == "1,2,1,3"){matrix.push(6)}
-                        else if (a == "2,1,3,3"){matrix.push(11)}
-                        // else if (a == "2,2,3,3"){matrix.push(14)}
-                        else if (a == "1,3,1,2"){matrix.push(6)}
+                        else if (a == "1,1,2,3"){matrix.push(4)}
+                        else if (a == "1,2,2,3"){matrix.push(5)}
+                        else if (a == "1,2,1,2"){matrix.push(6)}
+                        else if (a == "2,3,2,2"){matrix.push(15)}
                         else if (a == "1,3,3,2"){matrix.push(4)}
-                        else if (a == "2,3,2,3"){matrix.push(15)}
+                        // else if (a == "2,3,2,3"){matrix.push(15)}
                         else if (a == "2,1,3,2"){matrix.push(11)}
                         else if (a == ",,,"){matrix.push(6)}
                         else if (a == ",,,"){matrix.push(6)}
@@ -147,13 +147,13 @@ function cell_automata(arr, dissolve){
                         if (a == "1,1,2,2"){
                             matrix.push(16)
                         }
-                        else if (a == "2,2,2,3"){matrix.push(2)}
-                        // else if (a == "2,2,3,3"){matrix.push(14)}
+                        else if (a == "2,3,2,3"){matrix.push(18)}
+                        else if (a == "3,3,2,2"){matrix.push(20)}
                         else if (a == "2,2,3,3"){matrix.push(16)}
-                        else if (a == "3,3,2,3"){matrix.push(18)}
+                        // else if (a == "3,3,2,3"){matrix.push(18)}
                         else if (a == "3,2,3,2"){matrix.push(22)}
-                        else if (a == "2,3,2,2"){matrix.push(2)}
-                        else if (a == "3,3,3,2"){matrix.push(20)}
+                        // else if (a == "2,3,2,2"){matrix.push(2)}
+                        // else if (a == "3,3,3,2"){matrix.push(20)}
                         else if (a == ",,,"){matrix.push(6)}
                         else{
                             matrix.push(arr[0][i])
@@ -211,10 +211,12 @@ var turn = [ // 1 = low, 2-10 = med, 11-19 = high
     2,2,2,2,2,2,
 ]
 var matrix = find_adjacent(turn)
-// matrix = cell_automata(matrix, true)
+console.log("m",matrix)
+matrix = cell_automata(matrix, true)
+matrix = find_adjacent(matrix)
+console.log("m",matrix)
 matrix = cell_automata(matrix, false)
 // matrix = matrix[0]
-console.log(matrix)
 
 var columns = rows = len = Math.sqrt(matrix.length);
 
@@ -297,12 +299,15 @@ function loop() {
             //     tile_y += 8
             // }
 
-            // if (value == 1){
-            //     tile_y += 16
-            // }
-            // else if (value <= 10){
-            //     tile_y += 8
-            // }
+            if (value == 1){
+                tile_y += 16
+            }
+            else if (value >= 2){
+                tile_y += 8
+            }
+            else if (value >= 15){
+                tile_y += 0
+            }
 
 
 
@@ -337,7 +342,7 @@ ctx.canvas.addEventListener("click", (event) => {
     pointer.y = event.pageY
     // console.log(pointer.x,pointer.y)
 });
-// ctx.canvas.addEventListener("click", (event) => { loop(); });
+// ctx.canvas.addEventListener("click", (event) => { loop(); }); 
 
 // console.log(map)
 // console.log(map[5])

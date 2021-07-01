@@ -25,7 +25,7 @@ input[type="password"] {
     background-color:rgba(0, 0, 0, 0);
 }
 #login {
-    background-image: url("resources/images/userpass.png");
+    background-image: url("../resources/images/userpass.png");
     background-repeat: no-repeat;
     background-size: contain;
     z-index: -1;

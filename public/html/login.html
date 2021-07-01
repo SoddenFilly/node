@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
-<script type="text/javascript" src="script.js"></script>
+<script type="text/javascript" src="../script.js"></script>
 <head> 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <title>Login page</title>
 </head>
 <body style="background-color: #000;">
     <video autoplay muted loop id="myVideo">
-        <source src="resources/videos/passing_trees.mp4" type="video/mp4">
+        <source src="../resources/videos/passing_trees.mp4" type="video/mp4">
         Your browser does not support HTML5 video.
     </video>
     <form id="login" action="game2" autocomplete="off">
@@ -15,11 +15,15 @@
             <input class="input_color" type="text" id="username_id" maxlength="12" spellcheck="false"><br>  
             <input class="input_color" type="password" id="password_id" maxlength="12">
         </div>
-        <img id="eye_blind" src="resources/images/eye_blind.jpg" alt="eye_blind" width="40px" onclick="myFunction()">
-        <img id="eye_see" src="resources/images/eye_see.jpg" alt="eye_see" width="40px" style="display:none;" onclick="myFunction()">
+        <img id="eye_blind" src="../resources/images/eye_blind.jpg" alt="eye_blind" width="40px" onclick="myFunction()">
+        <img id="eye_see" src="../resources/images/eye_see.jpg" alt="eye_see" width="40px" style="display:none;" onclick="myFunction()">
         <input type="submit"/>
         <br><br><br><br><br>
         <a href="/">Back to Home</a>
     </form>
 </body>
+<script>
+    var x = document.getElementById("myVideo")
+    x.playbackRate = 1;
+</script>
 </html>
