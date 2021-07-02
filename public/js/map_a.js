@@ -302,12 +302,12 @@ function loop() {
             if (value == 1){
                 tile_y += 16
             }
-            else if (value >= 2){
+            else if (value <= 15){
                 tile_y += 8
             }
-            else if (value >= 15){
-                tile_y += 0
-            }
+            // else if (value >= 15){
+            //     tile_y += 0
+            // }
 
 
 
