@@ -64,11 +64,16 @@ function find_adjacent(arr){
         }
         // area
         else {
+            let top_left = arr[i - arr_len - 1]
             let top = arr[i - arr_len]
+            let top_right = arr[i - arr_len + 1]
             let left = arr[i - 1]
             let right = arr[i + 1]
+            let bottom_left = arr[i + arr_len - 1]
             let bottom = arr[i + arr_len]
-            let list = [top,left,right,bottom]
+            let bottom_right = arr[i + arr_len + 1]
+
+            let list = [top_left, top, top_right, left, right, bottom_left, bottom, bottom_right]
 
             adj.push(list)
         }
@@ -96,25 +101,54 @@ function cell_automata(arr, dissolve){
 
                 if (arr[0][i] != 1){ // if the parent tile is not of lowest level(1) then change
 
-                    if (arr[0][i] == 2){
+                    var adj = []
 
-                        if (a == "1,1,1,3"){matrix.push(1)}
-                        else if (a == ",,,"){matrix.push(6)}
-                        else{
-                            matrix.push(arr[0][i])
+                    var level = arr[0][i]
+                    // console.log("level:",level)
+
+                    for (let n = 0; n < 8; n++){
+                        if (arr[1][i][n] < level){
+                            adj.push(0)
+                        }
+                        else {
+                            adj.push(1)
                         }
                     }
-                    else if (arr[0][i] == 3){
-                        if (a == "1,1,2,2"){
-                            matrix.push(16)
-                        }
-                        else if (a == "2,2,2,3"){matrix.push(2)}
-                        else if (a == "2,3,2,2"){matrix.push(2)}
-                        else if (a == ",,,"){matrix.push(6)}
-                        else{
-                            matrix.push(arr[0][i])
+                    adj.join()
+
+                    cell_list_dissolve = [
+                        ["0,0,0,0,0,1,1,1", ],
+                    ]
+                    var active = false
+                    for (let m = 0; m < cell_list_dissolve.length; m++){
+                    
+                        if (adj == cell_list_dissolve[m][0]){
+                            matrix.push(cell_list_dissolve[m][1])
+                            active = true
                         }
                     }
+                    if (active == false){
+                        matrix.push(arr[0][i])
+                    }
+                    // if (arr[0][i] == 2){
+
+                    //     if (a == "1,1,1,3"){matrix.push(1)}
+                    //     else if (a == ",,,"){matrix.push(6)}
+                    //     else{
+                    //         matrix.push(arr[0][i])
+                    //     }
+                    // }
+                    // else if (arr[0][i] == 3){
+                    //     if (a == "1,1,2,2"){
+                    //         matrix.push(16)
+                    //     }
+                    //     else if (a == "1,2,1,2,2,3,3,2"){matrix.push(2)}
+                    //     else if (a == "2,3,2,2"){matrix.push(2)}
+                    //     else if (a == ",,,"){matrix.push(6)}
+                    //     else{
+                    //         matrix.push(arr[0][i])
+                    //     }
+                    // }
                 }
                 else{
                     matrix.push(1)
@@ -125,46 +159,107 @@ function cell_automata(arr, dissolve){
 
                 if (arr[0][i] != 1){ // if the parent tile is not of lowest level(1) then change
 
-                    if (arr[0][i] == 2){
+                    // var adj = arr[1][i].join()
+                    var adj = []
 
-                        if (a == "1,1,2,2"){
-                            matrix.push(4)
+                    var level = arr[0][i]
+                    // console.log("level:",level)
+
+                    for (let n = 0; n < 8; n++){
+                        if (arr[1][i][n] < level){
+                            adj.push(0)
                         }
-                        else if (a == "1,1,2,3"){matrix.push(4)}
-                        else if (a == "1,2,2,3"){matrix.push(5)}
-                        else if (a == "1,2,1,2"){matrix.push(6)}
-                        else if (a == "2,3,2,2"){matrix.push(15)}
-                        else if (a == "1,3,3,2"){matrix.push(4)}
-                        // else if (a == "2,3,2,3"){matrix.push(15)}
-                        else if (a == "2,1,3,2"){matrix.push(11)}
-                        else if (a == ",,,"){matrix.push(6)}
-                        else if (a == ",,,"){matrix.push(6)}
-                        else{
-                            matrix.push(arr[0][i])
+                        else {
+                            adj.push(1)
                         }
                     }
-                    else if (arr[0][i] == 3){
-                        if (a == "1,1,2,2"){
-                            matrix.push(16)
-                        }
-                        else if (a == "2,3,2,3"){matrix.push(18)}
-                        else if (a == "3,3,2,2"){matrix.push(20)}
-                        else if (a == "2,2,3,3"){matrix.push(16)}
-                        // else if (a == "3,3,2,3"){matrix.push(18)}
-                        else if (a == "3,2,3,2"){matrix.push(22)}
-                        // else if (a == "2,3,2,2"){matrix.push(2)}
-                        // else if (a == "3,3,3,2"){matrix.push(20)}
-                        else if (a == ",,,"){matrix.push(6)}
-                        else{
-                            matrix.push(arr[0][i])
+                    adj.join()
+                    // console.log("aj",adj)
+
+                    // if (adj == "0,0,1,0,1,1,1,1"){
+                    //     matrix.push(4)
+                    // }
+                    // else if (adj == "0,0,0,1,0,1,1,1"){matrix.push(18)}
+
+                    // else if (adj == ",,,,,,,"){matrix.push()}
+                    // else if (adj == ",,,,,,,"){matrix.push()}
+                    // else if (adj == ",,,,,,,"){matrix.push()}
+
+                    // else{
+                    //     matrix.push(arr[0][i])
+                    // }
+
+                    var cell_list = [
+                        // 3
+                        ["1,1,0,1,0,0,0,0", 1],
+                        ["0,1,1,0,1,0,0,0", 10],
+                        ["0,0,0,0,1,0,1,1", ],
+                        ["0,0,0,1,0,1,1,0", ],
+                        // 4
+                        ["1,1,1,1,0,0,0,0", ],
+                        ["1,1,1,0,1,0,0,0", ],
+                        ["0,1,1,0,1,0,0,1", ],
+                        ["0,0,1,0,1,0,1,1", ],
+                        ["0,0,0,0,1,1,1,1", ],
+                        ["0,0,0,1,0,1,1,1", ],
+                        ["1,0,0,1,0,1,1,0", ],
+                        ["1,1,0,1,0,1,0,0", ],
+                        // 5
+                        ["0,0,0,0,0,1,1,1", ],
+                        ["1,1,1,0,1,0,0,1", ],
+                        ["0,1,1,0,1,0,1,1", ],
+                        ["0,0,1,0,1,1,1,1", ],
+                        ["0,0,0,1,1,1,1,1", ],
+                        ["1,0,0,1,0,1,1,1", ],
+                        ["1,1,0,1,0,1,1,0", ],
+                        ["1,1,1,1,0,1,0,0", ],
+                        // 6
+                        ["1,1,1,1,1,1,0,0", ],
+                        ["1,1,1,1,1,0,0,1", ],
+                        ["1,1,1,0,1,0,1,1", ],
+                        ["0,1,1,0,1,1,1,1", ],
+                        ["0,0,1,1,1,1,1,1", ],
+                        ["1,0,0,1,1,1,1,1", ],
+                        ["1,1,0,1,0,1,1,1", ],
+                        ["1,1,1,1,0,1,1,0", ],
+
+                        ["1,1,1,0,1,1,0,1", ],
+                        ["1,0,1,0,1,1,1,1", ],
+                        ["1,0,1,1,0,1,1,1", ],
+                        ["1,1,1,1,0,1,0,1", ],
+
+                        // 7
+                        ["1,1,1,1,1,1,1,0", ],
+                        ["1,1,1,1,1,1,0,1", ],
+                        ["1,1,1,1,1,0,1,1", ],
+                        ["1,1,1,0,1,1,1,1", 2],
+                        ["0,1,1,1,1,1,1,1", ],
+                        ["1,0,1,1,1,1,1,1", ],
+                        ["1,1,0,1,1,1,1,1", ],
+                        ["1,1,1,1,0,1,1,1", ],
+                        // 8
+                        ["1,1,1,1,1,1,1,1", ],
+
+                        [",,,,,,,", ],
+                    ]
+                    var active = false
+                    for (let m = 0; m < cell_list.length; m++){
+                    
+                        if (adj == cell_list[m][0]){
+                            matrix.push(cell_list[m][1])
+                            active = true
                         }
                     }
+                    if (active == false){
+                        matrix.push(arr[0][i])
+                    }
+
+                    // matrix.push(arr[0][i])
                 }
                 else{
                     matrix.push(1)
                 }
             }
-           
         }
         else{
             matrix.push(arr[0][i])
@@ -279,8 +374,6 @@ function loop() {
             // console.log("x_min,x_max,y_min,y_max",x_min,x_max,y_min,y_max)
             let tile_x = x * scaled_sizex - viewport.x;
             let tile_y = y * scaled_sizex - viewport.y;
-            
-
 
             // if (value == 2){
             //     tile_y += 8
@@ -302,6 +395,7 @@ function loop() {
             if (value == 1){
                 tile_y += 16
             }
+            else if (value == 3){}// pass
             else if (value <= 15){
                 tile_y += 8
             }
@@ -312,7 +406,7 @@ function loop() {
 
 
             // ctx.drawImage(tile_sheet,  value * sprite_size, 0, sprite_sizex, sprite_sizey, tile_x, tile_y, scaled_size, scaled_size * 6)
-            ctx.drawImage(tile_sheet, value * sprite_size, 0, sprite_sizex, sprite_sizey, tile_x, tile_y, scaled_sizex, scaled_sizey)
+            ctx.drawImage(tile_sheet, value * sprite_size, 40, sprite_sizex, sprite_sizey, tile_x, tile_y, scaled_sizex, scaled_sizey)
             // console.log("x,y:",tile_x, tile_y)
         }
     }
@@ -349,5 +443,6 @@ ctx.canvas.addEventListener("click", (event) => {
 
 // tile_sheet.src = "../resources/images/turn.png";
 // tile_sheet.src = "../resources/images/tile-scroll-.png";
-tile_sheet.src = "../resources/images/testmodule_min.png";
+// tile_sheet.src = "../resources/images/testmodule_min.png";
+tile_sheet.src = "../resources/images/testm1_min.png";
 tile_numbers.src = "../resources/images/numtile.png";
