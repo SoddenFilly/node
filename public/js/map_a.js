@@ -141,25 +141,6 @@ function cell_automata(arr, dissolve){
                         matrix.push(0)
                         height_matrix.push(turn[i])
                     }
-                    // if (arr[0][i] == 2){
-
-                    //     if (a == "1,1,1,3"){matrix.push(1)}
-                    //     else if (a == ",,,"){matrix.push(6)}
-                    //     else{
-                    //         matrix.push(arr[0][i])
-                    //     }
-                    // }
-                    // else if (arr[0][i] == 3){
-                    //     if (a == "1,1,2,2"){
-                    //         matrix.push(16)
-                    //     }
-                    //     else if (a == "1,2,1,2,2,3,3,2"){matrix.push(2)}
-                    //     else if (a == "2,3,2,2"){matrix.push(2)}
-                    //     else if (a == ",,,"){matrix.push(6)}
-                    //     else{
-                    //         matrix.push(arr[0][i])
-                    //     }
-                    // }
                 }
                 else{
                     matrix.push(1)
