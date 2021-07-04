@@ -113,46 +113,39 @@ function cell_automata(arr, dissolve){
                     adj.join()
 
                     cell_list_dissolve = [
+                        ["0,0,0,0,0,0,0,0", ],
                         ["0,0,0,0,0,1,1,1", ],
+                        ["1,0,0,1,0,0,0,0", ],
+                        ["0,0,0,0,0,1,1,0", ],
+                        [",,,,,,,", ],
+                        [",,,,,,,", ],
+                        [",,,,,,,", ],
+                        [",,,,,,,", ],
+                        [",,,,,,,", ],
                     ]
                     var active = false
                     for (let m = 0; m < cell_list_dissolve.length; m++){
                     
                         if (adj == cell_list_dissolve[m][0]){
-                            matrix.push(cell_list_dissolve[m][1])
+                            matrix.push(0)
+                            console.log(arr)
                             active = true
+                            height_matrix.push(turn[i]-1)
                         }
                     }
                     if (active == false){
-                        matrix.push(arr[0][i])
+                        matrix.push(0)
+                        height_matrix.push(turn[i])
                     }
-                    // if (arr[0][i] == 2){
-
-                    //     if (a == "1,1,1,3"){matrix.push(1)}
-                    //     else if (a == ",,,"){matrix.push(6)}
-                    //     else{
-                    //         matrix.push(arr[0][i])
-                    //     }
-                    // }
-                    // else if (arr[0][i] == 3){
-                    //     if (a == "1,1,2,2"){
-                    //         matrix.push(16)
-                    //     }
-                    //     else if (a == "1,2,1,2,2,3,3,2"){matrix.push(2)}
-                    //     else if (a == "2,3,2,2"){matrix.push(2)}
-                    //     else if (a == ",,,"){matrix.push(6)}
-                    //     else{
-                    //         matrix.push(arr[0][i])
-                    //     }
-                    // }
                 }
                 else{
                     matrix.push(1)
+                    height_matrix.push(turn[i])
                 }
             }
             else if (dissolve == false){
-                // console.log("sjhfvshviwsi")
-
+                // console.log("s")
+                console.log(arr[0][i])
                 if (arr[0][i] != 1){ // if the parent tile is not of lowest level(1) then change
 
                     // var adj = arr[1][i].join()
@@ -170,20 +163,6 @@ function cell_automata(arr, dissolve){
                         }
                     }
                     adj.join()
-                    // console.log("aj",adj)
-
-                    // if (adj == "0,0,1,0,1,1,1,1"){
-                    //     matrix.push(4)
-                    // }
-                    // else if (adj == "0,0,0,1,0,1,1,1"){matrix.push(18)}
-
-                    // else if (adj == ",,,,,,,"){matrix.push()}
-                    // else if (adj == ",,,,,,,"){matrix.push()}
-                    // else if (adj == ",,,,,,,"){matrix.push()}
-
-                    // else{
-                    //     matrix.push(arr[0][i])
-                    // }
 
                     var cell_list = [
                         // 3
@@ -263,6 +242,7 @@ function cell_automata(arr, dissolve){
         }
         else{
             matrix.push(arr[0][i])
+            height_matrix.push(turn[i])
         }
     }
     return matrix
@@ -305,12 +285,14 @@ var turn = [ // 1 = low, 2-10 = med, 11-19 = high
     1,2,3,3,3,2,
     2,2,2,2,2,2,
 ]
+var height_matrix = []
 var matrix = find_adjacent(turn)
-// console.log("m",matrix)
+console.log("m",matrix)
 matrix = cell_automata(matrix, true)
 matrix = find_adjacent(matrix)
-// console.log("m",matrix)
+console.log("mm",matrix)
 matrix = cell_automata(matrix, false)
+// console.log("mm",matrix)
 // matrix = matrix[0]
 
 var columns = rows = len = Math.sqrt(matrix.length);
@@ -322,7 +304,7 @@ var columns = rows = len = Math.sqrt(matrix.length);
 
 var player = new Player(100,100);
 var viewport = new Viewport(0, 0, width, height)
-var pointer = { x:0, y:0 }
+var pointer = { x:-50, y:-50 }
 
 function loop() {
 
@@ -370,7 +352,8 @@ function loop() {
         for (let x = x_min; x < x_max; x++) {
             // console.log(turn[y * columns + x],turn2[0][y * columns + x])
             let value = matrix[y * columns + x];
-            let height_level = turn[y * columns + x]
+            let height_level = height_matrix[y * columns + x]
+            // console.log(turn, height_matrix)
             // console.log("x,y,value:",x,y,value)
             // console.log("x_min,x_max,y_min,y_max",x_min,x_max,y_min,y_max)
             let tile_x = x * scaled_sizex - viewport.x;
@@ -413,7 +396,7 @@ function loop() {
     // ctx.drawImage(tile_sheet, 3*16, 2*20, 16, 20, 350, 230, 160, 200)
     // console.log("f")
     player.moveTo(pointer.x, pointer.y)
-    ctx.drawImage(tile_numbers, sprite_size, 0, sprite_sizex, sprite_sizey, player.x, player.y, scaled_sizex, scaled_sizey)
+    ctx.drawImage(tile_player, 0, 0, 23, 21, player.x, player.y, 23*1.5, 21*1.5)
     // ctx.rect(scaled_sizex * 0, scaled_sizey * 0, 16, 20);
     ctx.rect(640, scaled_sizey * 0, 16, 20);
     ctx.fillStyle = "grey";
@@ -425,6 +408,7 @@ function loop() {
 
 var tile_sheet = new Image();
 var tile_numbers = new Image();
+var tile_player = new Image();
 
 tile_sheet.addEventListener("load", () => { loop(); });
 ctx.canvas.addEventListener("click", (event) => {
@@ -443,3 +427,4 @@ ctx.canvas.addEventListener("click", (event) => {
 // tile_sheet.src = "../resources/images/testmodule_min.png";
 tile_sheet.src = "../resources/images/testm3_min.png";
 tile_numbers.src = "../resources/images/numtile.png";
+tile_player.src = "../resources/images/player.png";
