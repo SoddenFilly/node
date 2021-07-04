@@ -44,8 +44,7 @@ function find_adjacent(arr){
             adj.push(list)
         }
     }
-    list = [arr, adj]
-    return list
+    return [arr, adj]
 }
 
 function cell_automata(arr, dissolve){
@@ -57,7 +56,7 @@ function cell_automata(arr, dissolve){
         if (arr[1][i] != 0 || arr[1][i] != 0){
 
             var a = arr[1][i].join()
-            console.log(arr[1][i])
+            // console.log(arr[1][i])
 
             if (dissolve == true){
 
@@ -204,8 +203,175 @@ function cell_automata(arr, dissolve){
             matrix.push(0)
         }
     }
-    console.log("s",matrix)
+    // console.log("s",matrix)
     return matrix
+}
+
+function cell_borders(arr){
+    for (let i = 0; i < arr[0].length; i++){
+        if (arr[1][i] != 0 || arr[1][i] != 0){
+            // console.log(arr[0][i])
+            map.height.push(arr[0][i])
+        }
+        else{
+            map.height.push(1)
+        }
+    }
+    return map.height
+}
+
+function cell_dissolve(arr){
+    // flatten border
+    
+    // arr[0] = map.height
+    map.height = []
+
+    // dissolve
+    for (let i = 0; i < arr[0].length; i++){
+        if ((arr[1][i] != 0 || arr[1][i] != 0) && arr[0][i] != 1){ // if the parent tile is not of lowest level(1) or a border tile then change
+            console.log(arr[0][i])
+            // map.height.push(arr[0][i])
+            
+            var adj = []
+
+            var level = arr[0][i]
+            // console.log("level:",level)
+
+            for (let n = 0; n < 8; n++){
+                if (arr[1][i][n] < level){
+                    adj.push(0)
+                }
+                else {
+                    adj.push(1)
+                }
+            }
+            adj.join()
+
+            cell_list_dissolve = [
+                ["0,0,0,0,0,0,0,0", 0],
+                ["0,0,0,0,0,1,1,1", 0],
+                ["1,0,0,1,0,0,0,0", 0],
+                ["0,0,0,0,0,1,1,0", 0],
+                ["0,0,1,0,1,0,0,0", 0],
+                // [",,,,,,,", 0],
+                // [",,,,,,,", 0],
+            ]
+            var active = false
+            for (let m = 0; m < cell_list_dissolve.length; m++){
+                console.log(arr[1][i])
+            
+                if (adj == cell_list_dissolve[m][0]){
+
+                    map.height.push(level-1)
+                    active = true
+                }
+            }
+            if (active == false){
+                map.height.push(arr[0][i])
+            }
+        }
+        else{
+            map.height.push(1)
+        }
+    }
+    return arr
+
+}
+
+function cell_find_tiletype(arr){
+    map.height = []
+    for (let i = 0; i < arr[0].length; i++){
+        if (arr[0][i] != 1){ // if the parent tile is not of lowest level(1) then change
+
+            // var adj = arr[1][i].join()
+            var adj = []
+
+            var level = arr[0][i]
+            // console.log("level:",level)
+
+            for (let n = 0; n < 8; n++){
+                if (arr[1][i][n] < level){
+                    adj.push(0)
+                }
+                else {
+                    adj.push(1)
+                }
+            }
+            adj.join()
+
+            var cell_list = [
+                // 3
+                ["1,1,0,1,0,0,0,0", 5],
+                ["0,1,1,0,1,0,0,0", 7],
+                ["0,0,0,0,1,0,1,1", 1],
+                ["0,0,0,1,0,1,1,0", 3],
+
+                // 4
+                ["1,1,1,1,0,0,0,0", 5],
+                ["1,1,1,0,1,0,0,0", 7],
+                ["0,1,1,0,1,0,0,1", 7],
+                ["0,0,1,0,1,0,1,1", 1],
+                ["0,0,0,0,1,1,1,1", 1],
+                ["0,0,0,1,0,1,1,1", 3],
+                ["1,0,0,1,0,1,1,0", 3],
+                ["1,1,0,1,0,1,0,0", 5],
+
+                // 5
+                ["0,0,0,0,0,1,1,1", 6],
+                ["1,1,1,0,1,0,0,1", 7],
+                ["0,1,1,0,1,0,1,1", 8],
+                ["0,0,1,0,1,1,1,1", 1],
+                ["0,0,0,1,1,1,1,1", 2],
+                ["1,0,0,1,0,1,1,1", 3],
+                ["1,1,0,1,0,1,1,0", 4],
+                ["1,1,1,1,0,1,0,0", 5],
+
+                ["1,1,1,0,1,1,0,1", ],
+                ["1,0,1,0,1,1,1,1", ],
+                ["1,0,1,1,0,1,1,1", ],
+                ["1,1,1,1,0,1,0,1", ],
+
+                // 6
+                ["1,1,1,1,1,1,0,0", 6],
+                ["1,1,1,1,1,0,0,1", 6],
+                ["1,1,1,0,1,0,1,1", 8],
+                ["0,1,1,0,1,1,1,1", 8],
+                ["0,0,1,1,1,1,1,1", 2],
+                ["1,0,0,1,1,1,1,1", 2],
+                ["1,1,0,1,0,1,1,1", 4],
+                ["1,1,1,1,0,1,1,0", 4],
+
+                // 7
+                ["1,1,1,1,1,1,1,0", 9],
+                ["1,1,1,1,1,1,0,1", 6],
+                ["1,1,1,1,1,0,1,1",10],
+                ["1,1,1,0,1,1,1,1", 8],
+                ["0,1,1,1,1,1,1,1",11],
+                ["1,0,1,1,1,1,1,1", 2],
+                ["1,1,0,1,1,1,1,1",12],
+                ["1,1,1,1,0,1,1,1", 4],
+
+                // 8
+                ["1,1,1,1,1,1,1,1", 0],
+            ]
+            var active = false
+            for (let m = 0; m < cell_list.length; m++){
+            
+                if (adj == cell_list[m][0]){
+                    map.height.push(cell_list[m][1])
+                    active = true
+                }
+            }
+            if (active == false){
+                map.height.push(arr[0][i])
+            }
+
+            // matrix.push(arr[0][i])
+        }
+        else{
+            map.height.push(1)
+        }
+    }
 }
 
 function loop() {
@@ -215,7 +381,7 @@ function loop() {
     // loops the func
     // window.requestAnimationFrame(loop);
 
-    var root = Math.sqrt(matrix.length)
+    var root = Math.sqrt(matrix[0].length)
     if (x_max > root){
         x_max = root
     }
@@ -227,20 +393,22 @@ function loop() {
 
         for (let x = x_min; x < x_max; x++) {
 
-            let value = matrix[y * columns + x];
+            // let value = matrix[0][y * columns + x];
+            let h = map.height[y * columns + x];
+            // console.log(map)
             let height_level = turn[y * columns + x]
 
             let tile_x = x * scaled_sizex - viewport.x;
             let tile_y = y * scaled_sizex - viewport.y;
 
-            if (height_level == 1){
+            if (h == 1){
                 tile_y += 16
             }
-            else if (height_level == 2){
+            else if (h == 2){
                 tile_y += 8
             }
             
-            ctx.drawImage(tile_sheet, value * sprite_size, (height_level - 1) * 20, sprite_sizex, sprite_sizey, tile_x, tile_y, scaled_sizex, scaled_sizey)
+            ctx.drawImage(tile_sheet, h * sprite_size, (h - 1) * 20, sprite_sizex, sprite_sizey, tile_x, tile_y, scaled_sizex, scaled_sizey)
         }
     }
 }
@@ -278,23 +446,58 @@ var tile_sheet = new Image();
 tile_sheet.src = "../resources/images/testm3_min.png";
 //#endregion
 
-var turn = [ // 1 = low, 2-10 = med, 11-19 = high
+var turn = [
     1,1,1,1,1,3,
     3,1,1,2,1,2,
     1,1,2,3,2,1,
     3,2,3,3,2,2,
     1,2,3,3,3,2,
     2,2,2,2,2,2,
+    // 1,1,1,1,1,3,
+    // 3,1,1,2,1,2,
+    // 1,1,2,3,2,1,
+    // 3,2,3,3,2,2,
+    // 1,2,3,3,3,2,
+    // 2,2,2,2,2,2,
+    // 1,1,1,1,1,3,
+    // 3,1,1,2,1,2,
+    // 1,1,2,3,2,1,
+    // 3,2,3,3,2,2,
+    // 1,2,3,3,3,2,
+    // 2,2,2,2,2,2,
+    // 1,1,1,1,1,3,
+    // 3,1,1,2,1,2,
+    // 1,1,2,3,2,1,
+    // 3,2,3,3,2,2,
+    // 1,2,3,3,3,2,
+    // 2,2,2,2,2,2,
 ]
+
+const map = {
+    height: []
+}
+
+// console.log("d", map.height)
+
 var matrix = find_adjacent(turn)
 console.log("m",matrix)
-matrix = cell_automata(matrix, true)
+console.log(map)
+
+matrix = cell_borders(matrix)
 matrix = find_adjacent(matrix)
+
+matrix = cell_dissolve(matrix)
+
+// matrix = cell_find_tiletype(matrix)
+
+
+// matrix = cell_automata(matrix, true)
+// matrix = find_adjacent(matrix)
 // console.log("m",matrix)
-matrix = cell_automata(matrix, false)
+// matrix = cell_automata(matrix, false)
 // matrix = matrix[0]
 
-var columns = rows = len = Math.sqrt(matrix.length);
+var columns = rows = len = Math.sqrt(matrix[0].length);
 
 tile_sheet.addEventListener("load", () => { loop(); });
 
