@@ -1,0 +1,13 @@
+input {
+    raw height data matrix
+}
+
+process {
+    "dissolves/rounds out" the height data matrix.
+    generates secondary tile type matrix from previous dissolved data matrix
+    nests and returnes both matricies in a parent array [matrix1, matrix2]
+}
+
+output {
+    an array with two sub-arrays consisting of the height and tile-type data that can be directly printed.
+}

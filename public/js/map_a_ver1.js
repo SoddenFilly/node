@@ -113,7 +113,15 @@ function cell_automata(arr, dissolve){
                     adj.join()
 
                     cell_list_dissolve = [
+                        ["0,0,0,0,0,0,0,0", ],
                         ["0,0,0,0,0,1,1,1", ],
+                        ["1,0,0,1,0,0,0,0", ],
+                        ["0,0,0,0,0,1,1,0", ],
+                        [",,,,,,,", ],
+                        [",,,,,,,", ],
+                        [",,,,,,,", ],
+                        [",,,,,,,", ],
+                        [",,,,,,,", ],
                     ]
                     var active = false
                     for (let m = 0; m < cell_list_dissolve.length; m++){
@@ -126,32 +134,13 @@ function cell_automata(arr, dissolve){
                     if (active == false){
                         matrix.push(arr[0][i])
                     }
-                    // if (arr[0][i] == 2){
-
-                    //     if (a == "1,1,1,3"){matrix.push(1)}
-                    //     else if (a == ",,,"){matrix.push(6)}
-                    //     else{
-                    //         matrix.push(arr[0][i])
-                    //     }
-                    // }
-                    // else if (arr[0][i] == 3){
-                    //     if (a == "1,1,2,2"){
-                    //         matrix.push(16)
-                    //     }
-                    //     else if (a == "1,2,1,2,2,3,3,2"){matrix.push(2)}
-                    //     else if (a == "2,3,2,2"){matrix.push(2)}
-                    //     else if (a == ",,,"){matrix.push(6)}
-                    //     else{
-                    //         matrix.push(arr[0][i])
-                    //     }
-                    // }
                 }
                 else{
                     matrix.push(1)
                 }
             }
             else if (dissolve == false){
-                // console.log("sjhfvshviwsi")
+                // console.log("sj")
 
                 if (arr[0][i] != 1){ // if the parent tile is not of lowest level(1) then change
 
@@ -170,20 +159,6 @@ function cell_automata(arr, dissolve){
                         }
                     }
                     adj.join()
-                    // console.log("aj",adj)
-
-                    // if (adj == "0,0,1,0,1,1,1,1"){
-                    //     matrix.push(4)
-                    // }
-                    // else if (adj == "0,0,0,1,0,1,1,1"){matrix.push(18)}
-
-                    // else if (adj == ",,,,,,,"){matrix.push()}
-                    // else if (adj == ",,,,,,,"){matrix.push()}
-                    // else if (adj == ",,,,,,,"){matrix.push()}
-
-                    // else{
-                    //     matrix.push(arr[0][i])
-                    // }
 
                     var cell_list = [
                         // 3
@@ -230,17 +205,15 @@ function cell_automata(arr, dissolve){
                         // 7
                         ["1,1,1,1,1,1,1,0", 9],
                         ["1,1,1,1,1,1,0,1", 6],
-                        ["1,1,1,1,1,0,1,1", 10],
+                        ["1,1,1,1,1,0,1,1",10],
                         ["1,1,1,0,1,1,1,1", 8],
-                        ["0,1,1,1,1,1,1,1", 11],
+                        ["0,1,1,1,1,1,1,1",11],
                         ["1,0,1,1,1,1,1,1", 2],
-                        ["1,1,0,1,1,1,1,1", 12],
+                        ["1,1,0,1,1,1,1,1",12],
                         ["1,1,1,1,0,1,1,1", 4],
 
                         // 8
                         ["1,1,1,1,1,1,1,1", 0],
-
-                        [",,,,,,,", ],
                     ]
                     var active = false
                     for (let m = 0; m < cell_list.length; m++){
@@ -262,9 +235,10 @@ function cell_automata(arr, dissolve){
             }
         }
         else{
-            matrix.push(arr[0][i])
+            matrix.push(0)
         }
     }
+    console.log("s",matrix)
     return matrix
 }
 
@@ -306,7 +280,7 @@ var turn = [ // 1 = low, 2-10 = med, 11-19 = high
     2,2,2,2,2,2,
 ]
 var matrix = find_adjacent(turn)
-// console.log("m",matrix)
+console.log("m",matrix)
 matrix = cell_automata(matrix, true)
 matrix = find_adjacent(matrix)
 // console.log("m",matrix)
