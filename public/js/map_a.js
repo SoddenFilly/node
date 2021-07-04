@@ -192,7 +192,7 @@ function cell_automata(arr, dissolve){
                     var cell_list = [
                         // 3
                         ["1,1,0,1,0,0,0,0", 1],
-                        ["0,1,1,0,1,0,0,0", 10],
+                        ["0,1,1,0,1,0,0,0", 1],
                         ["0,0,0,0,1,0,1,1", ],
                         ["0,0,0,1,0,1,1,0", ],
                         // 4
@@ -306,10 +306,10 @@ var turn = [ // 1 = low, 2-10 = med, 11-19 = high
     2,2,2,2,2,2,
 ]
 var matrix = find_adjacent(turn)
-console.log("m",matrix)
+// console.log("m",matrix)
 matrix = cell_automata(matrix, true)
 matrix = find_adjacent(matrix)
-console.log("m",matrix)
+// console.log("m",matrix)
 matrix = cell_automata(matrix, false)
 // matrix = matrix[0]
 
@@ -370,6 +370,7 @@ function loop() {
         for (let x = x_min; x < x_max; x++) {
             // console.log(turn[y * columns + x],turn2[0][y * columns + x])
             let value = matrix[y * columns + x];
+            let height_level = turn[y * columns + x]
             // console.log("x,y,value:",x,y,value)
             // console.log("x_min,x_max,y_min,y_max",x_min,x_max,y_min,y_max)
             let tile_x = x * scaled_sizex - viewport.x;
@@ -392,24 +393,20 @@ function loop() {
             //     tile_y += 8
             // }
 
-            if (value == 1){
+            if (height_level == 1){
                 tile_y += 16
             }
-            else if (value == 3){}// pass
-            else if (value <= 15){
+            else if (height_level == 2){
                 tile_y += 8
             }
-            // else if (value >= 15){
-            //     tile_y += 0
-            // }
-
 
 
             // ctx.drawImage(tile_sheet,  value * sprite_size, 0, sprite_sizex, sprite_sizey, tile_x, tile_y, scaled_size, scaled_size * 6)
-            ctx.drawImage(tile_sheet, value * sprite_size, 40, sprite_sizex, sprite_sizey, tile_x, tile_y, scaled_sizex, scaled_sizey)
+            ctx.drawImage(tile_sheet, value * sprite_size, (height_level - 1) * 20, sprite_sizex, sprite_sizey, tile_x, tile_y, scaled_sizex, scaled_sizey)
             // console.log("x,y:",tile_x, tile_y)
         }
     }
+    // console.log(matrix)
 
     // ctx.drawImage(tile_sheet, 6*16, 0, 16, 96, 350, -100, 160, 960)
     // ctx.drawImage(tile_sheet, 1*16, 0, 16, 20, 350, 100, 160, 200)
