@@ -279,7 +279,7 @@ function cell_dissolve(arr){
 }
 
 function cell_find_tiletype(arr){
-    map.height = []
+    map.tile_type = []
     for (let i = 0; i < arr[0].length; i++){
         if (arr[0][i] != 1){ // if the parent tile is not of lowest level(1) then change
 
@@ -358,28 +358,36 @@ function cell_find_tiletype(arr){
             for (let m = 0; m < cell_list.length; m++){
             
                 if (adj == cell_list[m][0]){
-                    map.height.push(cell_list[m][1])
+                    map.tile_type.push(cell_list[m][1])
                     active = true
                 }
             }
             if (active == false){
-                map.height.push(arr[0][i])
+                map.tile_type.push(arr[0][i])
             }
 
             // matrix.push(arr[0][i])
         }
         else{
-            map.height.push(1)
+            map.tile_type.push(1)
         }
     }
+    return arr
 }
 
 function loop() {
 
     console.log("LOOP START======================================================================================================")
-
-    // loops the func
-    // window.requestAnimationFrame(loop);
+    
+    // max window width and height
+    var height = document.documentElement.clientHeight;
+    var width = document.documentElement.clientWidth;
+    ctx.canvas.height = height;
+    ctx.canvas.width = width;
+    ctx.imageSmoothingEnabled = false;
+    
+    // loops the func every half second
+    setTimeout(() => { window.requestAnimationFrame(loop); }, 500);
 
     var root = Math.sqrt(matrix[0].length)
     if (x_max > root){
@@ -394,21 +402,22 @@ function loop() {
         for (let x = x_min; x < x_max; x++) {
 
             // let value = matrix[0][y * columns + x];
-            let h = map.height[y * columns + x];
+            let height_level = map.height[y * columns + x];
             // console.log(map)
-            let height_level = turn[y * columns + x]
+            let tile_type = map.tile_type[y * columns + x];
 
             let tile_x = x * scaled_sizex - viewport.x;
             let tile_y = y * scaled_sizex - viewport.y;
 
-            if (h == 1){
+            if (height_level == 1){
                 tile_y += 16
             }
-            else if (h == 2){
+            else if (height_level == 2){
                 tile_y += 8
             }
             
-            ctx.drawImage(tile_sheet, h * sprite_size, (h - 1) * 20, sprite_sizex, sprite_sizey, tile_x, tile_y, scaled_sizex, scaled_sizey)
+            ctx.drawImage(tile_min, tile_type * sprite_size, (height_level - 1) * 20, sprite_sizex, sprite_sizey, tile_x, tile_y, scaled_sizex, scaled_sizey)
+            ctx.drawImage(tile_min_green, tile_type * sprite_size, (height_level - 1) * 20, sprite_sizex, sprite_sizey, tile_x + 200, tile_y, scaled_sizex, scaled_sizey)
         }
     }
 }
@@ -430,7 +439,10 @@ var ctx = document.querySelector("canvas").getContext("2d");
 ctx.canvas.height = height;
 ctx.canvas.width = width;
 
-ctx.imageSmoothingEnabled = false;
+const map = {
+    height: [],
+    tile_type: []
+}
 
 const Viewport = function(x, y, w, h) {
     this.x = x; this.y = y; this.w = w; this.h = h;
@@ -442,8 +454,11 @@ var y_min = Math.floor(viewport.y / scaled_sizey);
 var x_max = Math.ceil((viewport.x + viewport.w) / scaled_sizex);
 var y_max = Math.ceil((viewport.y + viewport.h) / scaled_sizey);
 
-var tile_sheet = new Image();
-tile_sheet.src = "../resources/images/testm3_min.png";
+// sprite load
+var tile_min = new Image();
+var tile_min_green = new Image();
+tile_min.src = "../resources/images/testm3_min.png";
+tile_min_green.src = "../resources/images/min_green.png";
 //#endregion
 
 var turn = [
@@ -473,10 +488,6 @@ var turn = [
     // 2,2,2,2,2,2,
 ]
 
-const map = {
-    height: []
-}
-
 // console.log("d", map.height)
 
 var matrix = find_adjacent(turn)
@@ -487,9 +498,11 @@ matrix = cell_borders(matrix)
 matrix = find_adjacent(matrix)
 
 matrix = cell_dissolve(matrix)
+console.log(matrix)
+console.log(map)
 
-// matrix = cell_find_tiletype(matrix)
-
+matrix = cell_find_tiletype(matrix)
+console.log(matrix)
 
 // matrix = cell_automata(matrix, true)
 // matrix = find_adjacent(matrix)
@@ -499,7 +512,4 @@ matrix = cell_dissolve(matrix)
 
 var columns = rows = len = Math.sqrt(matrix[0].length);
 
-tile_sheet.addEventListener("load", () => { loop(); });
-
-
-
+tile_min.addEventListener("load", () => { loop(); });
