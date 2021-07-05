@@ -317,7 +317,7 @@ function cell_find_tiletype(arr){
                 ["1,1,0,1,0,1,0,0", 5],
 
                 // 5
-                ["0,0,0,0,0,1,1,1", 6],
+                ["0,0,0,0,0,1,1,1", 6],///ewsbfcjsbc
                 ["1,1,1,0,1,0,0,1", 7],
                 ["0,1,1,0,1,0,1,1", 8],
                 ["0,0,1,0,1,1,1,1", 1],
@@ -405,6 +405,11 @@ function loop() {
             let height_level = map.height[y * columns + x];
             // console.log(map)
             let tile_type = map.tile_type[y * columns + x];
+
+            console.log(map)
+            if (height_level == 2 && tile_type == 6){
+                console.log("fffffffffffffffffff")
+            }
 
             let tile_x = x * scaled_sizex - viewport.x;
             let tile_y = y * scaled_sizex - viewport.y;
@@ -498,6 +503,7 @@ matrix = cell_borders(matrix)
 matrix = find_adjacent(matrix)
 
 matrix = cell_dissolve(matrix)
+// matrix = cell_dissolve(matrix)
 console.log(matrix)
 console.log(map)
 
