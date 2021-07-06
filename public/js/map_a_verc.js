@@ -1,4 +1,4 @@
-// FUNCTIONS
+//#region Fwunctions
 
 function find_adjacent(arr){
 
@@ -317,7 +317,7 @@ function cell_find_tiletype(arr){
                 ["1,1,0,1,0,1,0,0", 5],
 
                 // 5
-                ["0,0,0,0,0,1,1,1", 6],///ewsbfcjsbc
+                ["0,0,0,0,0,1,1,1", 6],//err
                 ["1,1,1,0,1,0,0,1", 7],
                 ["0,1,1,0,1,0,1,1", 8],
                 ["0,0,1,0,1,1,1,1", 1],
@@ -427,7 +427,10 @@ function loop() {
     }
 }
 
-//#region one-time assignments etc..
+//#endregion Functions end
+
+//#region Set up
+
 const sprite_size = 16;
 const sprite_sizex = 16;
 const sprite_sizey = 20;
@@ -464,7 +467,10 @@ var tile_min = new Image();
 var tile_min_green = new Image();
 tile_min.src = "../resources/images/testm3_min.png";
 tile_min_green.src = "../resources/images/min_green.png";
-//#endregion
+
+//#endregion Set up end
+
+//#region Procedural
 
 var turn = [
     1,1,1,1,1,3,
@@ -519,3 +525,5 @@ console.log(matrix)
 var columns = rows = len = Math.sqrt(matrix[0].length);
 
 tile_min.addEventListener("load", () => { loop(); });
+
+//#endregion Procedural end
