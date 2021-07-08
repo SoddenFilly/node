@@ -1,4 +1,4 @@
-//#region Fwunctions
+//#region Functions
 
 function find_adjacent(arr){
 
@@ -420,6 +420,7 @@ function loop() {
             else if (height_level == 2){
                 tile_y += 8
             }
+
             
             ctx.drawImage(tile_min, tile_type * sprite_size, (height_level - 1) * 20, sprite_sizex, sprite_sizey, tile_x, tile_y, scaled_sizex, scaled_sizey)
             ctx.drawImage(tile_min_green, tile_type * sprite_size, (height_level - 1) * 20, sprite_sizex, sprite_sizey, tile_x + 200, tile_y, scaled_sizex, scaled_sizey)

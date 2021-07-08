@@ -47,7 +47,7 @@ var width = document.documentElement.clientWidth;
     var tile_sheet = new Image();
     let valarr = [];
 
-    function compare1(el, lis) {
+    function compare1(elev, el, lis) {
         if (elev == el) {
             if (rain >= 6 && temp <= 10) {
                 //snowy mountain
@@ -104,33 +104,6 @@ var width = document.documentElement.clientWidth;
         }
     }
 
-    if (elev > 15) {
-        compare1(20, 1)
-        compare1(19, 3)
-        compare1(18, 5)
-        compare1(17, 7)
-        compare1(16, 9)
-    } else if (elev > 10) {
-        compare2(15, 11)
-        compare2(14, 14)
-        compare2(13, 17)
-        compare2(12, 20)
-        compare2(11, 23)
-    } else if (elev > 5) {
-        compare3(10, 26)
-        compare3(9, 29)
-        compare3(8, 32)
-        compare3(7, 35)
-        compare3(6, 38)
-    } else {
-        compare4(5, 41)
-        compare4(4, 44)
-        compare4(3, 47)
-        compare4(2, 50)
-        compare4(1, 53)
-    }
-
-   
     for (let y = 0; y < rows; y++) {
 
         for (let x = 0; x < columns; x++, index++) {
@@ -138,58 +111,102 @@ var width = document.documentElement.clientWidth;
             let temp = temperature[y * columns + x];
             let elev = elevation[y * columns + x];
             let rain = rainfall[y * columns + x];
-
-            if (elev == 5){
-                if (rain >= 3 && temp <= 2) {
-                    //snowy mountain
-                    valarr[valarr.length] = 1
-                } else {
-                    //normal mountains
-                    valarr[valarr.length] = 2
+            console.log()
+            if (elev > 15) {
+                ii = 1;
+                for (let i = 20; i > 15; i--){
+                    compare1(elev, i, ii)
+                    console.log(elev, i, ii)
+                    ii += 2
                 }
-            }
-
-            if (elev == 4){
-                if (rain >= 3 && temp <= 2){
-                    //snowy highlands
-                    valarr[valarr.length] = 3
-                } else if (rain >= 3) {
-                    //forest highlands
-                    valarr[valarr.length] = 4
-                } else {
-                    //barren highlands
-                    valarr[valarr.length] = 5
-                }
-            }
-
-            if (elev == 3) {
-                if (rain >= 3 && temp < 4) {
-                    //forest
-                    valarr[valarr.length] = 6
-                } else if ((rain < 3 && temp == 5) || (rain == 1 && temp >= 3)) {
-                    //desert
-                    valarr[valarr.length] = 7
-                } else {
-                    //plains
-                    valarr[valarr.length] = 8
-                }
-            }
-
-            if (elev == 1) {
-                if (rain >= 4) {
-                    //lakes and rivers
-                    valarr[valarr.length] = 11
-                } else if (rain > 2 && temp < 4) {
-                    //LOWland plains
-                    valarr[valarr.length] = 9
-                } else {
-                    //LOWland wastes
-                    valarr[valarr.length] = 10
-                }
-            }
-           
+                // compare1(20, 1)
+                // compare1(19, 3)
+                // compare1(18, 5)
+                // compare1(17, 7)
+                // compare1(16, 9)
+            } 
+            // else if (elev > 10) {
+            //     compare2(15, 11)
+            //     compare2(14, 14)
+            //     compare2(13, 17)
+            //     compare2(12, 20)
+            //     compare2(11, 23)
+            // } else if (elev > 5) {
+            //     compare3(10, 26)
+            //     compare3(9, 29)
+            //     compare3(8, 32)
+            //     compare3(7, 35)
+            //     compare3(6, 38)
+            // } else {
+            //     compare4(5, 41)
+            //     compare4(4, 44)
+            //     compare4(3, 47)
+            //     compare4(2, 50)
+            //     compare4(1, 53)
+            // }
         }
     }
+
+    //#region reference
+    // for (let y = 0; y < rows; y++) {
+
+    //     for (let x = 0; x < columns; x++, index++) {
+
+    //         let temp = temperature[y * columns + x];
+    //         let elev = elevation[y * columns + x];
+    //         let rain = rainfall[y * columns + x];
+
+    //         if (elev == 5){
+    //             if (rain >= 3 && temp <= 2) {
+    //                 //snowy mountain
+    //                 valarr[valarr.length] = 1
+    //             } else {
+    //                 //normal mountains
+    //                 valarr[valarr.length] = 2
+    //             }
+    //         }
+
+    //         if (elev == 4){
+    //             if (rain >= 3 && temp <= 2){
+    //                 //snowy highlands
+    //                 valarr[valarr.length] = 3
+    //             } else if (rain >= 3) {
+    //                 //forest highlands
+    //                 valarr[valarr.length] = 4
+    //             } else {
+    //                 //barren highlands
+    //                 valarr[valarr.length] = 5
+    //             }
+    //         }
+
+    //         if (elev == 3) {
+    //             if (rain >= 3 && temp < 4) {
+    //                 //forest
+    //                 valarr[valarr.length] = 6
+    //             } else if ((rain < 3 && temp == 5) || (rain == 1 && temp >= 3)) {
+    //                 //desert
+    //                 valarr[valarr.length] = 7
+    //             } else {
+    //                 //plains
+    //                 valarr[valarr.length] = 8
+    //             }
+    //         }
+
+    //         if (elev == 1) {
+    //             if (rain >= 4) {
+    //                 //lakes and rivers
+    //                 valarr[valarr.length] = 11
+    //             } else if (rain > 2 && temp < 4) {
+    //                 //LOWland plains
+    //                 valarr[valarr.length] = 9
+    //             } else {
+    //                 //LOWland wastes
+    //                 valarr[valarr.length] = 10
+    //             }
+    //         }
+    //     }
+    // }
+    //#endregion reference end
 
 
 
