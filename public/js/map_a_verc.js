@@ -93,6 +93,10 @@ function cell_dissolve(arr){
                 ["1,0,0,1,0,0,0,0", 0],
                 ["0,0,0,0,0,1,1,0", 0],
                 ["0,0,1,0,1,0,0,0", 0],
+                ["0,0,0,1,0,1,0,0", 0],
+                ["0,1,1,0,0,0,0,0", 0],
+                // [",,,,,,,", 0],
+                // [",,,,,,,", 0],
                 // [",,,,,,,", 0],
                 // [",,,,,,,", 0],
             ]
@@ -324,11 +328,17 @@ var turn = [
     // x4
     1,1,1,1,1,3,3,1,1,2,1,2,1,1,2,3,2,1,3,2,3,3,2,2,1,2,3,3,3,2,2,2,2,2,2,2,1,1,1,1,1,3,3,1,1,2,1,2,1,1,2,3,2,1,3,2,3,3,2,2,1,2,3,3,3,2,2,2,2,2,2,2,1,1,1,1,1,3,3,1,1,2,1,2,1,1,2,3,2,1,3,2,3,3,2,2,1,2,3,3,3,2,2,2,2,2,2,2,
 ]
+turn = [
+    3,3,3,3,
+    3,3,2,3,
+    3,2,2,3,
+    3,3,3,3
+]
 
 // console.log("d", map.height)
 
 var matrix = find_adjacent(turn)
-// console.log("m",matrix)
+console.log("m",matrix)
 // console.log(map)
 
 matrix = cell_borders(matrix)
@@ -337,12 +347,16 @@ console.log("1matrix", matrix)
 matrix = find_adjacent(matrix)
 console.log("2matrix", matrix)
 
-matrix = cell_dissolve(matrix)
-console.log("3matrix", matrix)
-matrix[0] = map.height
-// console.log(map)
-matrix = find_adjacent(matrix[0])
-console.log("4matrix", matrix)
+let i = 0
+while (i < 4){
+    matrix = cell_dissolve(matrix)
+    console.log("3matrix", matrix)
+    matrix[0] = map.height
+    // console.log(map)
+    matrix = find_adjacent(matrix[0])
+    console.log("4matrix", matrix)
+    i++
+}
 
 matrix = cell_find_tiletype(matrix)
 console.log("5matrix", matrix)
