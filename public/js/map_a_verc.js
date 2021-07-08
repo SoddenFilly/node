@@ -47,166 +47,6 @@ function find_adjacent(arr){
     return [arr, adj]
 }
 
-function cell_automata(arr, dissolve){
-
-    matrix = []
-
-    for (let i = 0; i < arr[0].length; i++){
-
-        if (arr[1][i] != 0 || arr[1][i] != 0){
-
-            var a = arr[1][i].join()
-            // console.log(arr[1][i])
-
-            if (dissolve == true){
-
-                if (arr[0][i] != 1){ // if the parent tile is not of lowest level(1) then change
-
-                    var adj = []
-
-                    var level = arr[0][i]
-                    // console.log("level:",level)
-
-                    for (let n = 0; n < 8; n++){
-                        if (arr[1][i][n] < level){
-                            adj.push(0)
-                        }
-                        else {
-                            adj.push(1)
-                        }
-                    }
-                    adj.join()
-
-                    cell_list_dissolve = [
-                        ["0,0,0,0,0,0,0,0", ],
-                        ["0,0,0,0,0,1,1,1", ],
-                        ["1,0,0,1,0,0,0,0", ],
-                        ["0,0,0,0,0,1,1,0", ],
-                        [",,,,,,,", ],
-                        [",,,,,,,", ],
-                        [",,,,,,,", ],
-                        [",,,,,,,", ],
-                        [",,,,,,,", ],
-                    ]
-                    var active = false
-                    for (let m = 0; m < cell_list_dissolve.length; m++){
-                    
-                        if (adj == cell_list_dissolve[m][0]){
-                            matrix.push(cell_list_dissolve[m][1])
-                            active = true
-                        }
-                    }
-                    if (active == false){
-                        matrix.push(arr[0][i])
-                    }
-                }
-                else{
-                    matrix.push(1)
-                }
-            }
-            else if (dissolve == false){
-                // console.log("sj")
-
-                if (arr[0][i] != 1){ // if the parent tile is not of lowest level(1) then change
-
-                    // var adj = arr[1][i].join()
-                    var adj = []
-
-                    var level = arr[0][i]
-                    // console.log("level:",level)
-
-                    for (let n = 0; n < 8; n++){
-                        if (arr[1][i][n] < level){
-                            adj.push(0)
-                        }
-                        else {
-                            adj.push(1)
-                        }
-                    }
-                    adj.join()
-
-                    var cell_list = [
-                        // 3
-                        ["1,1,0,1,0,0,0,0", 5],
-                        ["0,1,1,0,1,0,0,0", 7],
-                        ["0,0,0,0,1,0,1,1", 1],
-                        ["0,0,0,1,0,1,1,0", 3],
-
-                        // 4
-                        ["1,1,1,1,0,0,0,0", 5],
-                        ["1,1,1,0,1,0,0,0", 7],
-                        ["0,1,1,0,1,0,0,1", 7],
-                        ["0,0,1,0,1,0,1,1", 1],
-                        ["0,0,0,0,1,1,1,1", 1],
-                        ["0,0,0,1,0,1,1,1", 3],
-                        ["1,0,0,1,0,1,1,0", 3],
-                        ["1,1,0,1,0,1,0,0", 5],
-
-                        // 5
-                        ["0,0,0,0,0,1,1,1", 6],
-                        ["1,1,1,0,1,0,0,1", 7],
-                        ["0,1,1,0,1,0,1,1", 8],
-                        ["0,0,1,0,1,1,1,1", 1],
-                        ["0,0,0,1,1,1,1,1", 2],
-                        ["1,0,0,1,0,1,1,1", 3],
-                        ["1,1,0,1,0,1,1,0", 4],
-                        ["1,1,1,1,0,1,0,0", 5],
-
-                        ["1,1,1,0,1,1,0,1", ],
-                        ["1,0,1,0,1,1,1,1", ],
-                        ["1,0,1,1,0,1,1,1", ],
-                        ["1,1,1,1,0,1,0,1", ],
-
-                        // 6
-                        ["1,1,1,1,1,1,0,0", 6],
-                        ["1,1,1,1,1,0,0,1", 6],
-                        ["1,1,1,0,1,0,1,1", 8],
-                        ["0,1,1,0,1,1,1,1", 8],
-                        ["0,0,1,1,1,1,1,1", 2],
-                        ["1,0,0,1,1,1,1,1", 2],
-                        ["1,1,0,1,0,1,1,1", 4],
-                        ["1,1,1,1,0,1,1,0", 4],
-
-                        // 7
-                        ["1,1,1,1,1,1,1,0", 9],
-                        ["1,1,1,1,1,1,0,1", 6],
-                        ["1,1,1,1,1,0,1,1",10],
-                        ["1,1,1,0,1,1,1,1", 8],
-                        ["0,1,1,1,1,1,1,1",11],
-                        ["1,0,1,1,1,1,1,1", 2],
-                        ["1,1,0,1,1,1,1,1",12],
-                        ["1,1,1,1,0,1,1,1", 4],
-
-                        // 8
-                        ["1,1,1,1,1,1,1,1", 0],
-                    ]
-                    var active = false
-                    for (let m = 0; m < cell_list.length; m++){
-                    
-                        if (adj == cell_list[m][0]){
-                            matrix.push(cell_list[m][1])
-                            active = true
-                        }
-                    }
-                    if (active == false){
-                        matrix.push(arr[0][i])
-                    }
-
-                    // matrix.push(arr[0][i])
-                }
-                else{
-                    matrix.push(1)
-                }
-            }
-        }
-        else{
-            matrix.push(0)
-        }
-    }
-    // console.log("s",matrix)
-    return matrix
-}
-
 function cell_borders(arr){
     for (let i = 0; i < arr[0].length; i++){
         if (arr[1][i] != 0 || arr[1][i] != 0){
@@ -288,6 +128,7 @@ function cell_find_tiletype(arr){
 
             var level = arr[0][i]
             // console.log("level:",level)
+            console.log("arr",arr)
 
             for (let n = 0; n < 8; n++){
                 if (arr[1][i][n] < level){
@@ -423,7 +264,7 @@ function loop() {
 
             
             ctx.drawImage(tile_min, tile_type * sprite_size, (height_level - 1) * 20, sprite_sizex, sprite_sizey, tile_x, tile_y, scaled_sizex, scaled_sizey)
-            ctx.drawImage(tile_min_green, tile_type * sprite_size, (height_level - 1) * 20, sprite_sizex, sprite_sizey, tile_x + 200, tile_y, scaled_sizex, scaled_sizey)
+            ctx.drawImage(tile_min_green, tile_type * sprite_size, (height_level - 1) * 20, sprite_sizex, sprite_sizey, tile_x + 500, tile_y, scaled_sizex, scaled_sizey)
         }
     }
 }
@@ -466,7 +307,7 @@ var y_max = Math.ceil((viewport.y + viewport.h) / scaled_sizey);
 // sprite load
 var tile_min = new Image();
 var tile_min_green = new Image();
-tile_min.src = "../resources/images/testm3_min.png";
+tile_min.src = "../resources/images/min_blank.png";
 tile_min_green.src = "../resources/images/min_green.png";
 
 //#endregion Set up end
@@ -480,42 +321,32 @@ var turn = [
     3,2,3,3,2,2,
     1,2,3,3,3,2,
     2,2,2,2,2,2,
-    // 1,1,1,1,1,3,
-    // 3,1,1,2,1,2,
-    // 1,1,2,3,2,1,
-    // 3,2,3,3,2,2,
-    // 1,2,3,3,3,2,
-    // 2,2,2,2,2,2,
-    // 1,1,1,1,1,3,
-    // 3,1,1,2,1,2,
-    // 1,1,2,3,2,1,
-    // 3,2,3,3,2,2,
-    // 1,2,3,3,3,2,
-    // 2,2,2,2,2,2,
-    // 1,1,1,1,1,3,
-    // 3,1,1,2,1,2,
-    // 1,1,2,3,2,1,
-    // 3,2,3,3,2,2,
-    // 1,2,3,3,3,2,
-    // 2,2,2,2,2,2,
+    // x4
+    1,1,1,1,1,3,3,1,1,2,1,2,1,1,2,3,2,1,3,2,3,3,2,2,1,2,3,3,3,2,2,2,2,2,2,2,1,1,1,1,1,3,3,1,1,2,1,2,1,1,2,3,2,1,3,2,3,3,2,2,1,2,3,3,3,2,2,2,2,2,2,2,1,1,1,1,1,3,3,1,1,2,1,2,1,1,2,3,2,1,3,2,3,3,2,2,1,2,3,3,3,2,2,2,2,2,2,2,
 ]
 
 // console.log("d", map.height)
 
 var matrix = find_adjacent(turn)
-console.log("m",matrix)
-console.log(map)
+// console.log("m",matrix)
+// console.log(map)
 
 matrix = cell_borders(matrix)
+console.log("1matrix", matrix)
+
 matrix = find_adjacent(matrix)
+console.log("2matrix", matrix)
 
 matrix = cell_dissolve(matrix)
-// matrix = cell_dissolve(matrix)
-console.log(matrix)
-console.log(map)
+console.log("3matrix", matrix)
+matrix[0] = map.height
+// console.log(map)
+matrix = find_adjacent(matrix[0])
+console.log("4matrix", matrix)
 
 matrix = cell_find_tiletype(matrix)
-console.log(matrix)
+console.log("5matrix", matrix)
+console.log("map", map)
 
 // matrix = cell_automata(matrix, true)
 // matrix = find_adjacent(matrix)
