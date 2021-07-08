@@ -356,6 +356,6 @@ console.log("map", map)
 
 var columns = rows = len = Math.sqrt(matrix[0].length);
 
-tile_min.addEventListener("load", () => { loop(); });
-
 //#endregion Procedural end
+
+tile_min.addEventListener("load", () => { loop(); });
