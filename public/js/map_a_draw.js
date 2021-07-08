@@ -30,6 +30,11 @@ function loop() {
         }
         // setTimeout(() => { is_rendering = false }, 3000);
     }
+
+    cooldown -= 1
+    if (keypress == "D" && cooldown > 0){
+        
+    }
     ctx.strokeStyle = "#ffffff";
     ctx.rect(112, 112, 512, 512);
     ctx.stroke();
@@ -47,7 +52,8 @@ const scaled_sizex = scale_factor*sprite_sizex; //2.4
 const scaled_sizey = scale_factor*sprite_sizey; //2.4
 
 var is_rendering = false
-
+var keypress = null
+var cooldown = 0
 // max window width and height
 var height = document.documentElement.clientHeight;
 var width = document.documentElement.clientWidth;
@@ -86,49 +92,43 @@ tile_min.src = "../resources/images/min_blank.png";
 //#endregion Procedural end
 
 tile_min.addEventListener("load", () => { loop(); });
-ctx.canvas.addEventListener("click", (event) => {
+ctx.canvas.addEventListener("click", function posclick() {
 
     let stepx = 32
     let stepy = 32
     pointer.x = Math.round(event.pageX/stepx)*stepx
     pointer.y = Math.round(event.pageY/stepy)*stepy
-    // pointer.x = event.pageX
-    // pointer.y = event.pageY
-    // let x = pointer.x
-    // // console.log("x",x)
-    // x = x/20
-    // // console.log("x",x)
-    // x = Math.round(x)
-    // // console.log("x",x)
-    // x = x*20
-    // console.log("x",x)
-    // pointer.x = x
-    // console.log(pointer.x,pointer.y)
-
+    
     matrix.x.push(pointer.x - scaled_sizex * 0.5)
     matrix.y.push(pointer.y - scaled_sizex * 0.5)
     // console.log(matrix)
 });
+
 let but_rend = document.getElementById("but_rend");
 let but_clear = document.getElementById("but_clear");
 let but_save = document.getElementById("but_save");
 let but_load = document.getElementById("but_load");
 
-but_rend.addEventListener("click", render);
-but_clear.addEventListener("click", clear);
-but_save.addEventListener("click", save);
-but_load.addEventListener("click", load);
+but_rend.addEventListener("click", function render(){is_rendering = true});
 
-function render(){is_rendering = true}
-function clear(){is_rendering = false}
-function save(){
+but_clear.addEventListener("click", function clear(){is_rendering = false});
+
+but_save.addEventListener("click", function save() {
     localStorage.setItem('matrix', JSON.stringify(matrix)); //stringify object and store
     // var pull = JSON.parse(localStorage.getItem('matrix')); //retrieve the object
     // console.log(pull)
-}
-function load(){
+});
+
+but_load.addEventListener("click", function load() {
     // localStorage.setItem('matrix', JSON.stringify(matrix)); //stringify object and store
     var pull = JSON.parse(localStorage.getItem('matrix')); //retrieve the object
     console.log(pull)
     matrix.x = pull.x; matrix.y = pull.y
-}
+});
+
+document.addEventListener('keydown', function logKey(keydata) {
+    // console.log(keydata.code)
+    keypress = keydata.code.slice(-1)
+    cooldown += 10
+    // console.log(keypress)
+});
