@@ -12,13 +12,17 @@ function loop() {
     ctx.imageSmoothingEnabled = false;
     
     // loops the func every half second
-    let secs = 0.1
+    let secs = 0.1 //0.1
     setTimeout(() => { window.requestAnimationFrame(loop); }, secs*1000);
+
+    ctx.rect(pointa, pointa, pointb, pointb);
+    ctx.fillStyle = "#9d978b";
+    ctx.fill();
     
     // ctx.drawImage(tile_min, 0, 0, sprite_sizex, sprite_sizey, 112, 112, scaled_sizex, scaled_sizey)
 
     player.moveTo(pointer.x, pointer.y)
-    ctx.drawImage(tile_min, sprite_size, 0, sprite_sizex, sprite_sizey, player.x, player.y, scaled_sizex, scaled_sizey)
+    ctx.drawImage(tile_min, sprite_size, 0, sprite_sizex, sprite_sizey, player.x, player.y, scaled_sizex/3, scaled_sizey/3)
     if (is_rendering == true){
 
         // console.log(matrix)
@@ -26,17 +30,19 @@ function loop() {
         for (let rend = 0; rend < matrix.x.length;rend++){
             posx = matrix.x[rend]
             posy = matrix.y[rend]
-            ctx.drawImage(tile_min, sprite_size, 0, sprite_sizex, sprite_sizey, posx, posy, scaled_sizex, scaled_sizey)
+            posz = matrix.z[rend]
+            if (posz == 1){
+                posy -= 8
+            }
+            if (posz == 2){
+                posy -= 16
+            }
+            ctx.drawImage(tile_min, 0, posz*20, sprite_sizex, sprite_sizey, posx, posy, scaled_sizex, scaled_sizey)
         }
         // setTimeout(() => { is_rendering = false }, 3000);
     }
 
-    cooldown -= 1
-    if (keypress == "D" && cooldown > 0){
-        
-    }
     ctx.strokeStyle = "#ffffff";
-    
     ctx.rect(pointa, pointa, pointb, pointb);
     ctx.stroke();
 
@@ -76,8 +82,8 @@ const Player = function (x,y){
 
 Player.prototype = {
     moveTo:function(x, y){
-        this.x = x - scaled_sizex * 0.5;
-        this.y = y - scaled_sizey * 0.5;
+        this.x = x - scaled_sizex * 0.17;
+        this.y = y - scaled_sizey * 0.17;
     }
 }
 var player = new Player(100,100);
@@ -85,7 +91,8 @@ var pointer = { x:0, y:0 }
 
 const matrix = {
     x:[],
-    y:[]
+    y:[],
+    z:[],
 };
 
 // sprite load
@@ -100,6 +107,7 @@ for (let y = 112; y < units_wide*32 + 112; y += 32){
         ctx.drawImage(tile_min, sprite_size, 0, sprite_sizex, sprite_sizey, x, y, scaled_sizex, scaled_sizey)
         matrix.x.push(x)
         matrix.y.push(y)
+        matrix.z.push(0)
     }
 }
 
@@ -116,8 +124,23 @@ ctx.canvas.addEventListener("click", function posclick() {
     pointer.x = Math.round(event.pageX/stepx)*stepx
     pointer.y = Math.round(event.pageY/stepy)*stepy
     
-    matrix.x.push(pointer.x - scaled_sizex * 0.5)
-    matrix.y.push(pointer.y - scaled_sizex * 0.5)
+    // matrix.x.push(pointer.x - scaled_sizex * 0.5)
+    // matrix.y.push(pointer.y - scaled_sizex * 0.5)
+    for (let i = 0; i < matrix.x.length; i++){
+        if (pointer.y - scaled_sizex * 0.5 == matrix.y[i]){
+            if (pointer.x - scaled_sizex * 0.5 == matrix.x[i]){
+                console.log("MATCH")
+                // matrix.x[i] = null
+                // matrix.y[i] = null
+                if (matrix.z[i] < 2){
+                    matrix.z[i] = matrix.z[i] + 1
+                }
+                else{
+                    matrix.z[i] = 0
+                }
+            }
+        }
+    }
     // console.log(matrix)
 });
 
@@ -140,7 +163,7 @@ but_load.addEventListener("click", function load() {
     // localStorage.setItem('matrix', JSON.stringify(matrix)); //stringify object and store
     var pull = JSON.parse(localStorage.getItem('matrix')); //retrieve the object
     console.log(pull)
-    matrix.x = pull.x; matrix.y = pull.y
+    matrix.x = pull.x; matrix.y = pull.y; matrix.z = pull.z;
 });
 
 document.addEventListener('keydown', function logKey(keydata) {
