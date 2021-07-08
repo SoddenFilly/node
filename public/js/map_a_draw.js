@@ -2,7 +2,7 @@
 
 function loop() {
 
-    // console.log("LOOP START===============================================================")
+    console.log("LOOP START===============================================================")
     
     // max window width and height
     var height = document.documentElement.clientHeight;
@@ -36,8 +36,10 @@ function loop() {
         
     }
     ctx.strokeStyle = "#ffffff";
-    ctx.rect(112, 112, 512, 512);
+    
+    ctx.rect(pointa, pointa, pointb, pointb);
     ctx.stroke();
+
 }
 
 //#endregion Functions end
@@ -50,6 +52,10 @@ const sprite_sizey = 16;
 const scale_factor = 2
 const scaled_sizex = scale_factor*sprite_sizex; //2.4
 const scaled_sizey = scale_factor*sprite_sizey; //2.4
+
+var pointa = 112
+var units_wide = 16
+var pointb = 112 + 32 * (units_wide - 3.5)
 
 var is_rendering = false
 var keypress = null
@@ -85,6 +91,17 @@ const matrix = {
 // sprite load
 var tile_min = new Image();
 tile_min.src = "../resources/images/min_blank.png";
+
+for (let y = 112; y < units_wide*32 + 112; y += 32){
+    for (let x = 112; x < units_wide*32 + 112; x += 32){
+        // console.log(iter)
+        // iter += pointb/(units_wide - 3.5)
+        console.log(x)
+        ctx.drawImage(tile_min, sprite_size, 0, sprite_sizex, sprite_sizey, x, y, scaled_sizex, scaled_sizey)
+        matrix.x.push(x)
+        matrix.y.push(y)
+    }
+}
 
 //#endregion Set up end
 
