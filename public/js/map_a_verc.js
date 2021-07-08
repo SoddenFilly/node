@@ -204,7 +204,7 @@ function cell_find_tiletype(arr){
                 }
             }
             if (active == false){
-                map.tile_type.push(arr[0][i])
+                map.tile_type.push(0)
             }
 
             // matrix.push(arr[0][i])
