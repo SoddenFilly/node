@@ -47,6 +47,8 @@ var width = document.documentElement.clientWidth;
     var tile_sheet = new Image();
     let valarr = [];
 
+//#region compare functions
+
     function compare1(elev, rain, temp, el, lis) {
         if (elev == el) {
             if (rain >= 6 && temp <= 10) {
@@ -104,6 +106,9 @@ var width = document.documentElement.clientWidth;
         }
     }
 
+//#endregion compare functions end
+
+//#region drawing
     for (let y = 0; y < rows; y++) {
 
         for (let x = 0; x < columns; x++, index++) {
@@ -141,6 +146,8 @@ var width = document.documentElement.clientWidth;
             }
         }
     }
+
+//#endregion drawing end
 
     //#region reference
     // for (let y = 0; y < rows; y++) {
@@ -225,7 +232,7 @@ var width = document.documentElement.clientWidth;
 
                 index_y = 4
                 index_x = 4
-               
+
                 context.drawImage(tile_sheet, valarr[z] * sprite_size, 0, sprite_size, sprite_size, tile_x, tile_y, scaled_size, scaled_size)
                 z++
             }
