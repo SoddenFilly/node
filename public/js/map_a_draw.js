@@ -31,12 +31,9 @@ function loop() {
             posx = matrix.x[rend]
             posy = matrix.y[rend]
             posz = matrix.z[rend]
-            if (posz == 2){
-                posy -= 8
-            }
-            if (posz == 3){
-                posy -= 16
-            }
+
+            posy -= (posz-1)*8
+            
             ctx.drawImage(tile_min, 0, (posz-1)*20, sprite_sizex, sprite_sizey, posx, posy, scaled_sizex, scaled_sizey)
         }
         // setTimeout(() => { is_rendering = false }, 3000);
@@ -132,7 +129,7 @@ ctx.canvas.addEventListener("click", function posclick() {
                 console.log("MATCH")
                 // matrix.x[i] = null
                 // matrix.y[i] = null
-                if (matrix.z[i] < 3){
+                if (matrix.z[i] < 5){
                     matrix.z[i] = matrix.z[i] + 1
                 }
                 else{

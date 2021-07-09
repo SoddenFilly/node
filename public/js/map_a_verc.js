@@ -268,15 +268,15 @@ function loop() {
             let tile_x = x * scaled_sizex - viewport.x;
             let tile_y = y * scaled_sizex - viewport.y;
 
-            if (height_level == 1){
-                tile_y += 16
-            }
-            else if (height_level == 2){
-                tile_y += 8
-            }
+            // if (height_level == 1){
+            //     tile_y += 16
+            // }
+            // else if (height_level == 2){
+            //     tile_y += 8
+            // }
+            tile_y -= (height_level-1)*8
 
-            
-            ctx.drawImage(tile_min, tile_type * sprite_size, (height_level - 1) * 20, sprite_sizex, sprite_sizey, tile_x, tile_y, scaled_sizex, scaled_sizey)
+            ctx.drawImage(tile_min, tile_type * sprite_size, (height_level - 1) * 20, sprite_sizex, sprite_sizey, tile_x, tile_y+( 5 -1)*8, scaled_sizex, scaled_sizey)
             ctx.drawImage(tile_min_green, tile_type * sprite_size, (height_level - 1) * 20, sprite_sizex, sprite_sizey, tile_x + 550, tile_y, scaled_sizex, scaled_sizey)
         }
     }
