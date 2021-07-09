@@ -93,9 +93,12 @@ function cell_dissolve(arr){
                 ["1,0,0,1,0,0,0,0", 0],
                 ["0,0,0,0,0,1,1,0", 0],
                 ["0,0,1,0,1,0,0,0", 0],
-                ["0,0,0,1,0,1,0,0", 0],
+                ["0,0,0,0,0,1,0,1", 0],
                 ["0,1,1,0,0,0,0,0", 0],
-                // [",,,,,,,", 0],
+                ["0,0,0,0,0,0,0,1", 0],
+                ["0,0,1,0,0,0,0,0", 0],
+                ["0,0,0,1,0,1,0,0", 0],
+                ["0,0,0,1,0,0,0,0", 0],
                 // [",,,,,,,", 0],
                 // [",,,,,,,", 0],
                 // [",,,,,,,", 0],
@@ -160,6 +163,8 @@ function cell_find_tiletype(arr){
                 ["0,0,0,1,0,1,1,1", 3],
                 ["1,0,0,1,0,1,1,0", 3],
                 ["1,1,0,1,0,1,0,0", 5],
+
+                ["0,1,1,0,1,1,0,0", 7],
 
                 // 5
                 ["0,0,0,0,0,1,1,1", 6],//err
@@ -232,7 +237,7 @@ function loop() {
     ctx.imageSmoothingEnabled = false;
     
     // loops the func every half second
-    setTimeout(() => { window.requestAnimationFrame(loop); }, 500);
+    setTimeout(() => { window.requestAnimationFrame(loop); }, 100);
 
     var root = Math.sqrt(matrix[0].length)
     if (x_max > root){
@@ -268,7 +273,7 @@ function loop() {
 
             
             ctx.drawImage(tile_min, tile_type * sprite_size, (height_level - 1) * 20, sprite_sizex, sprite_sizey, tile_x, tile_y, scaled_sizex, scaled_sizey)
-            ctx.drawImage(tile_min_green, tile_type * sprite_size, (height_level - 1) * 20, sprite_sizex, sprite_sizey, tile_x + 500, tile_y, scaled_sizex, scaled_sizey)
+            ctx.drawImage(tile_min_green, tile_type * sprite_size, (height_level - 1) * 20, sprite_sizex, sprite_sizey, tile_x + 550, tile_y, scaled_sizex, scaled_sizey)
         }
     }
 }
@@ -334,6 +339,9 @@ turn = [
     3,2,2,3,
     3,3,3,3
 ]
+var pull = JSON.parse(localStorage.getItem('matrix')); //retrieve the object
+// console.log(pull)
+turn = pull.z
 
 // console.log("d", map.height)
 

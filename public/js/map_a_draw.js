@@ -31,13 +31,13 @@ function loop() {
             posx = matrix.x[rend]
             posy = matrix.y[rend]
             posz = matrix.z[rend]
-            if (posz == 1){
+            if (posz == 2){
                 posy -= 8
             }
-            if (posz == 2){
+            if (posz == 3){
                 posy -= 16
             }
-            ctx.drawImage(tile_min, 0, posz*20, sprite_sizex, sprite_sizey, posx, posy, scaled_sizex, scaled_sizey)
+            ctx.drawImage(tile_min, 0, (posz-1)*20, sprite_sizex, sprite_sizey, posx, posy, scaled_sizex, scaled_sizey)
         }
         // setTimeout(() => { is_rendering = false }, 3000);
     }
@@ -107,7 +107,7 @@ for (let y = 112; y < units_wide*32 + 112; y += 32){
         ctx.drawImage(tile_min, sprite_size, 0, sprite_sizex, sprite_sizey, x, y, scaled_sizex, scaled_sizey)
         matrix.x.push(x)
         matrix.y.push(y)
-        matrix.z.push(0)
+        matrix.z.push(1)
     }
 }
 
@@ -132,11 +132,11 @@ ctx.canvas.addEventListener("click", function posclick() {
                 console.log("MATCH")
                 // matrix.x[i] = null
                 // matrix.y[i] = null
-                if (matrix.z[i] < 2){
+                if (matrix.z[i] < 3){
                     matrix.z[i] = matrix.z[i] + 1
                 }
                 else{
-                    matrix.z[i] = 0
+                    matrix.z[i] = 1
                 }
             }
         }
