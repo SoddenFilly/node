@@ -243,6 +243,10 @@ function loop() {
     // loops the func every half second
     setTimeout(() => { window.requestAnimationFrame(loop); }, 100);
 
+    ctx.rect(0, 32, 512, 512 + 19*8);
+    ctx.fillStyle = "#9d978b";
+    ctx.fill();
+
     var root = Math.sqrt(matrix[0].length)
     if (x_max > root){
         x_max = root
@@ -276,7 +280,7 @@ function loop() {
             // }
             tile_y -= (height_level-1)*8
 
-            ctx.drawImage(tile_min, tile_type * sprite_size, (height_level - 1) * 20, sprite_sizex, sprite_sizey, tile_x, tile_y+( 5 -1)*8, scaled_sizex, scaled_sizey)
+            ctx.drawImage(tile_min, tile_type * sprite_size, (height_level - 1) * 20, sprite_sizex, sprite_sizey, tile_x, tile_y+( 20 -1)*8, scaled_sizex, scaled_sizey)
             ctx.drawImage(tile_min_green, tile_type * sprite_size, (height_level - 1) * 20, sprite_sizex, sprite_sizey, tile_x + 550, tile_y, scaled_sizex, scaled_sizey)
         }
     }
@@ -320,7 +324,7 @@ var y_max = Math.ceil((viewport.y + viewport.h) / scaled_sizey);
 // sprite load
 var tile_min = new Image();
 var tile_min_green = new Image();
-tile_min.src = "../resources/images/min_blank.png";
+tile_min.src = "../resources/images/min_20.png";
 tile_min_green.src = "../resources/images/min_green.png";
 
 //#endregion Set up end

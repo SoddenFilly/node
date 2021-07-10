@@ -33,7 +33,7 @@ function loop() {
             posz = matrix.z[rend]
 
             posy -= (posz-1)*8
-            
+
             ctx.drawImage(tile_min, 0, (posz-1)*20, sprite_sizex, sprite_sizey, posx, posy, scaled_sizex, scaled_sizey)
         }
         // setTimeout(() => { is_rendering = false }, 3000);
@@ -94,7 +94,7 @@ const matrix = {
 
 // sprite load
 var tile_min = new Image();
-tile_min.src = "../resources/images/min_blank.png";
+tile_min.src = "../resources/images/min_20.png";
 
 for (let y = 112; y < units_wide*32 + 112; y += 32){
     for (let x = 112; x < units_wide*32 + 112; x += 32){
@@ -129,7 +129,7 @@ ctx.canvas.addEventListener("click", function posclick() {
                 console.log("MATCH")
                 // matrix.x[i] = null
                 // matrix.y[i] = null
-                if (matrix.z[i] < 5){
+                if (matrix.z[i] < 20){
                     matrix.z[i] = matrix.z[i] + 1
                 }
                 else{
