@@ -58,7 +58,7 @@ const scaled_sizey = scale_factor*sprite_sizey; //2.4
 
 var pointa = 112
 var units_wide = 16
-var pointb = 112 + 32 * (units_wide - 3.5)
+var pointb = pointa + 32 * (units_wide - 3.5)
 
 var is_rendering = false
 var keypress = null
@@ -129,8 +129,10 @@ ctx.canvas.addEventListener("click", function posclick() {
                 console.log("MATCH")
                 // matrix.x[i] = null
                 // matrix.y[i] = null
-                if (matrix.z[i] < 20){
-                    matrix.z[i] = matrix.z[i] + 1
+                let increment = parseInt(document.getElementById("value_step").value);
+                console.log(typeof increment)
+                if (matrix.z[i] < 21 - increment){
+                    matrix.z[i] = matrix.z[i] + increment
                 }
                 else{
                     matrix.z[i] = 1
