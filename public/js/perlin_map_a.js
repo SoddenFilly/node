@@ -1,14 +1,14 @@
-res = go()
+// res = go()
 // console.log(res)
 //FUNCTIONS
-function go(RES){
+function go(RES, volume){
     perlin.seed()
 
     var arr = []
     // const RES = 15;
 
     // const SIZE = 300;
-    const SIZE = 300;
+    const SIZE = volume;
     var HIG = WID = SIZE;
   
     var count = 0;

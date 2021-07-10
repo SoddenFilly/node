@@ -1,5 +1,43 @@
 //#region Functions
 
+function go(RES, volume){
+    perlin.seed()
+
+    var arr = []
+    // const RES = 15;
+
+    // const SIZE = 300;
+    const SIZE = volume;
+    var HIG = WID = SIZE;
+  
+    var count = 0;
+    for (let y = 0; y < RES; y += RES / HIG){
+        
+        for (var x = 0; x < RES; x += RES / WID){
+            let color_val = parseInt(perlin.get(x, y) * 250);
+            count ++;
+
+            // arr.push(   Math.round( (color_val+250)/25 )   )
+            arr.push(   Math.round( (color_val+20*pull)/25 )   )
+        }
+        // console.log(x)
+    }
+    // console.log(count)
+    // document.getElementById("text_container").innerHTML = arr;
+
+    // for (let i = 0; i < arr.length; i++) {
+    //     // console.log(i);
+    //     let temp = arr[i];
+    //     arr[i] = [[temp, 27]];
+    // }
+    // console.log("qq")
+    // console.log(arr)
+    // console.log(arr.length)
+    // console.log("fffff")
+
+    return arr
+}
+
 function find_adjacent(arr){
 
     var adj = []
@@ -69,7 +107,7 @@ function cell_dissolve(arr){
     // dissolve
     for (let i = 0; i < arr[0].length; i++){
         if ((arr[1][i] != 0 || arr[1][i] != 0) && arr[0][i] != 1){ // if the parent tile is not of lowest level(1) or a border tile then change
-            console.log(arr[0][i])
+            // console.log(arr[0][i])
             // map.height.push(arr[0][i])
             
             var adj = []
@@ -88,25 +126,113 @@ function cell_dissolve(arr){
             adj.join()
 
             cell_list_dissolve = [
+                // any
+                // [",,,,,,,", 0],
+
+                // 0
                 ["0,0,0,0,0,0,0,0", 0],
-                ["0,0,0,0,0,1,1,1", 0],
-                ["0,0,0,0,0,0,1,1", 0],
-                ["1,0,0,1,0,0,0,0", 0],
-                ["0,0,0,0,0,1,1,0", 0],
-                ["0,0,1,0,1,0,0,0", 0],
-                ["0,0,0,0,0,1,0,1", 0],
-                ["0,1,1,0,0,0,0,0", 0],
-                ["0,0,0,0,0,0,0,1", 0],
+
+                // 1
+                ["0,1,0,0,0,0,0,0", 0],
                 ["0,0,1,0,0,0,0,0", 0],
-                ["0,0,0,1,0,1,0,0", 0],
                 ["0,0,0,1,0,0,0,0", 0],
+                ["0,0,0,0,1,0,0,0", 0],
+                ["0,0,0,0,0,1,0,0", 0],
+                ["0,0,0,0,0,0,1,0", 0],
+                ["0,0,0,0,0,0,0,1", 0],
+
+                // 2
+                ["1,1,0,0,0,0,0,0", 0],
+                ["1,0,1,0,0,0,0,0", 0],
+                ["1,0,0,1,0,0,0,0", 0],
+                ["1,0,0,0,1,0,0,0", 0],
+                ["1,0,0,0,0,1,0,0", 0],
+                ["1,0,0,0,0,0,1,0", 0],
+                ["1,0,0,0,0,0,0,1", 0],
+                ["0,1,1,0,0,0,0,0", 0],
+                ["0,1,0,1,0,0,0,0", 0],
+                ["0,1,0,0,1,0,0,0", 0],
+                ["0,1,0,0,0,1,0,0", 0],
+                ["0,1,0,0,0,0,1,0", 0],
+                ["0,1,0,0,0,0,0,1", 0],
+                ["0,0,1,1,0,0,0,0", 0],
+                ["0,0,1,0,1,0,0,0", 0],
+                ["0,0,1,0,0,1,0,0", 0],
+                ["0,0,1,0,0,0,1,0", 0],
+                ["0,0,1,0,0,0,0,1", 0],
+                ["0,0,0,1,1,0,0,0", 0],
+                ["0,0,0,1,0,1,0,0", 0],
+                ["0,0,0,1,0,0,1,0", 0],
+                ["0,0,0,1,0,0,0,1", 0],
+                ["0,0,0,0,1,1,0,0", 0],
+                ["0,0,0,0,1,0,1,0", 0],
+                ["0,0,0,0,1,0,0,1", 0],
+                ["0,0,0,0,0,1,1,0", 0],
+                ["0,0,0,0,0,1,0,1", 0],
+                ["0,0,0,0,0,0,1,1", 0],
+
+                // 3
+                ["1,1,1,0,0,0,0,0", 0],
+                ["1,1,0,1,0,0,0,0", 0],
+                ["1,1,0,0,1,0,0,0", 0],
+                ["1,1,0,0,0,1,0,0", 0],
+                ["1,1,0,0,0,0,1,0", 0],
+                ["1,1,0,0,0,0,0,1", 0],
+                ["1,0,1,1,0,0,0,0", 0],
+                ["1,0,1,0,1,0,0,0", 0],
+                ["1,0,1,0,0,1,0,0", 0],
+                ["1,0,1,0,0,0,1,0", 0],
+                ["1,0,1,0,0,0,0,1", 0],
+                ["1,0,0,1,1,0,0,0", 0],
+                ["1,0,0,1,0,1,0,0", 0],
+                ["1,0,0,1,0,0,1,0", 0],
+                ["1,0,0,1,0,0,0,1", 0],
+                ["1,0,0,0,1,1,0,0", 0],
+                ["1,0,0,0,1,0,1,0", 0],
+                ["1,0,0,0,1,0,0,1", 0],
+                ["1,0,0,0,0,1,1,0", 0],
+                ["1,0,0,0,0,1,0,1", 0],
+                ["1,0,0,0,0,0,1,1", 0],
+                ["0,1,1,1,0,0,0,0", 0],
+                ["0,1,1,0,1,0,0,0", 0],
+                ["0,1,1,0,0,1,0,0", 0],
+                ["0,1,1,0,0,0,1,0", 0],
+                ["0,1,1,0,0,0,0,1", 0],
+                ["0,1,0,1,1,0,0,0", 0],
+                ["0,1,0,1,0,1,0,0", 0],
+                ["0,1,0,1,0,0,1,0", 0],
+                ["0,1,0,1,0,0,0,1", 0],
+                ["0,1,0,0,1,1,0,0", 0],
+                ["0,1,0,0,1,0,1,0", 0],
+                ["0,1,0,0,1,0,0,1", 0],
+                ["0,1,0,0,0,1,1,0", 0],
+                ["0,1,0,0,0,1,0,1", 0],
+                ["0,1,0,0,0,0,1,1", 0],
+                ["0,0,1,1,1,0,0,0", 0],
+                ["0,0,1,1,0,1,0,0", 0],
+                ["0,0,1,1,0,0,1,0", 0],
+                ["0,0,1,1,0,0,0,1", 0],
+                ["0,0,1,0,1,1,0,0", 0],
+                ["0,0,1,0,1,0,1,0", 0],
                 ["0,0,1,0,1,0,0,1", 0],
-                // [",,,,,,,", 0],
-                // [",,,,,,,", 0],
+                ["0,0,1,0,0,1,1,0", 0],
+                ["0,0,1,0,0,1,0,1", 0],
+                ["0,0,1,0,0,0,1,1", 0],
+                ["0,0,0,1,1,1,0,0", 0],
+                ["0,0,0,1,1,0,1,0", 0],
+                ["0,0,0,1,1,0,0,1", 0],
+                ["0,0,0,1,0,1,1,0", 0],
+                ["0,0,0,1,0,1,0,1", 0],
+                ["0,0,0,1,0,0,1,1", 0],
+                ["0,0,0,0,1,1,1,0", 0],
+                ["0,0,0,0,1,1,0,1", 0],
+                ["0,0,0,0,1,0,1,1", 0],
+                ["0,0,0,0,0,1,1,1", 0],
+
             ]
             var active = false
             for (let m = 0; m < cell_list_dissolve.length; m++){
-                console.log(arr[1][i])
+                // console.log(arr[1][i])
             
                 if (adj == cell_list_dissolve[m][0]){
 
@@ -136,7 +262,7 @@ function cell_find_tiletype(arr){
 
             var level = arr[0][i]
             // console.log("level:",level)
-            console.log("arr",arr)
+            // console.log("arr",arr)
 
             for (let n = 0; n < 8; n++){
                 if (arr[1][i][n] < level){
@@ -231,7 +357,7 @@ function cell_find_tiletype(arr){
 
 function loop() {
 
-    console.log("LOOP START======================================================================================================")
+    console.log("LOOP START===============================================================================================================================================")
     
     // max window width and height
     var height = document.documentElement.clientHeight;
@@ -264,10 +390,10 @@ function loop() {
             // console.log(map)
             let tile_type = map.tile_type[y * columns + x];
 
-            console.log(map)
-            if (height_level == 2 && tile_type == 6){
-                console.log("fffffffffffffffffff")
-            }
+            // console.log(map)
+            // if (height_level == 2 && tile_type == 6){
+            //     console.log("fffffffffffffffffff")
+            // }
 
             let tile_x = x * scaled_sizex - viewport.x;
             let tile_y = y * scaled_sizex - viewport.y;
@@ -289,6 +415,9 @@ function loop() {
 //#endregion Functions end
 
 //#region Set up
+
+// localStorage.setItem('matrix', JSON.stringify(matrix)); //stringify object and store
+var pull = JSON.parse(localStorage.getItem('perlin_level')); //retrieve the object
 
 const sprite_size = 16;
 const sprite_sizex = 16;
@@ -331,6 +460,7 @@ tile_min_green.src = "../resources/images/min_green.png";
 
 //#region Procedural
 
+// console.log("go", go(15, 10))
 var turn = [
     1,1,1,1,1,3,
     3,1,1,2,1,2,
@@ -347,35 +477,37 @@ turn = [
     3,2,2,3,
     3,3,3,3
 ]
-var pull = JSON.parse(localStorage.getItem('matrix')); //retrieve the object
+var pull = parseInt(JSON.parse(localStorage.getItem('perlin_level'))); //retrieve the object
+document.getElementById("perlin_lev").value = pull
 // console.log(pull)
 turn = pull.z
+
+turn = go(2,18)
 
 // console.log("d", map.height)
 
 var matrix = find_adjacent(turn)
-console.log("m",matrix)
+// console.log("m",matrix)
 // console.log(map)
 
 matrix = cell_borders(matrix)
-console.log("1matrix", matrix)
+// console.log("1matrix", matrix)
 
 matrix = find_adjacent(matrix)
-console.log("2matrix", matrix)
+// console.log("2matrix", matrix)
 
 let i = 0
 while (i < 4){
     matrix = cell_dissolve(matrix)
-    console.log("3matrix", matrix)
-    matrix[0] = map.height
+    // console.log("3matrix", matrix)
     // console.log(map)
-    matrix = find_adjacent(matrix[0])
-    console.log("4matrix", matrix)
+    matrix = find_adjacent(map.height)
+    // console.log("4matrix", matrix)
     i++
 }
 
 matrix = cell_find_tiletype(matrix)
-console.log("5matrix", matrix)
+// console.log("5matrix", matrix)
 console.log("map", map)
 
 // matrix = cell_automata(matrix, true)
@@ -386,6 +518,14 @@ console.log("map", map)
 
 var columns = rows = len = Math.sqrt(matrix[0].length);
 
-//#endregion Procedural end
-
 tile_min.addEventListener("load", () => { loop(); });
+
+let level_change = document.getElementById("perlin_lev");
+
+level_change.addEventListener("click", () => {
+    localStorage.setItem('perlin_level', JSON.stringify(document.getElementById("perlin_lev").value))
+    // console.log("cl")
+});
+
+
+//#endregion Procedural end

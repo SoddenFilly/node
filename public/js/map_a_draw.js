@@ -2,7 +2,7 @@
 
 function loop() {
 
-    console.log("LOOP START===============================================================")
+    // console.log("LOOP START===============================================================")
     
     // max window width and height
     var height = document.documentElement.clientHeight;
@@ -100,7 +100,7 @@ for (let y = 112; y < units_wide*32 + 112; y += 32){
     for (let x = 112; x < units_wide*32 + 112; x += 32){
         // console.log(iter)
         // iter += pointb/(units_wide - 3.5)
-        console.log(x)
+        // console.log(x)
         ctx.drawImage(tile_min, sprite_size, 0, sprite_sizex, sprite_sizey, x, y, scaled_sizex, scaled_sizey)
         matrix.x.push(x)
         matrix.y.push(y)
@@ -126,11 +126,11 @@ ctx.canvas.addEventListener("click", function posclick() {
     for (let i = 0; i < matrix.x.length; i++){
         if (pointer.y - scaled_sizex * 0.5 == matrix.y[i]){
             if (pointer.x - scaled_sizex * 0.5 == matrix.x[i]){
-                console.log("MATCH")
+                // console.log("MATCH")
                 // matrix.x[i] = null
                 // matrix.y[i] = null
                 let increment = parseInt(document.getElementById("value_step").value);
-                console.log(typeof increment)
+                // console.log(typeof increment)
                 if (matrix.z[i] < 21 - increment){
                     matrix.z[i] = matrix.z[i] + increment
                 }
@@ -161,7 +161,7 @@ but_save.addEventListener("click", function save() {
 but_load.addEventListener("click", function load() {
     // localStorage.setItem('matrix', JSON.stringify(matrix)); //stringify object and store
     var pull = JSON.parse(localStorage.getItem('matrix')); //retrieve the object
-    console.log(pull)
+    // console.log(pull)
     matrix.x = pull.x; matrix.y = pull.y; matrix.z = pull.z;
 });
 
