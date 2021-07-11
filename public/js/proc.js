@@ -1,7 +1,6 @@
 console.log("proc.js")
 
 var proc = []
-var prc = []
 var arr = []
 console.log(" arr", arr)
 
