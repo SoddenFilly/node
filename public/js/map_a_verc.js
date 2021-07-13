@@ -1,13 +1,6 @@
 //#region Functions
 
 function draw() {
-    // const canvas = document.querySelector('#canvas');
-
-    // if (!canvas.getContext) {
-    //     return;
-    // }
-    // const ctx = canvas.getContext('2d');
-
     // set line stroke and line width
     ctx.strokeStyle = 'white';
     ctx.lineWidth = 0.5;
@@ -17,16 +10,12 @@ function draw() {
     ctx.moveTo(width/2, height/2);
     ctx.lineTo(mousex, mousey);
     ctx.stroke();
-
 }
 
 function go(RES, volume){
     perlin.seed()
 
     var arr = []
-    // const RES = 15;
-
-    // const SIZE = 300;
     const SIZE = volume;
     var HIG = WID = SIZE;
   
@@ -37,24 +26,9 @@ function go(RES, volume){
             let color_val = parseInt(perlin.get(x, y) * 250);
             count ++;
 
-            // arr.push(   Math.round( (color_val+250)/25 )   )
             arr.push(   Math.round( (color_val+20*pull)/25 )   )
         }
-        // console.log(x)
     }
-    // console.log(count)
-    // document.getElementById("text_container").innerHTML = arr;
-
-    // for (let i = 0; i < arr.length; i++) {
-    //     // console.log(i);
-    //     let temp = arr[i];
-    //     arr[i] = [[temp, 27]];
-    // }
-    // console.log("qq")
-    // console.log(arr)
-    // console.log(arr.length)
-    // console.log("fffff")
-
     return arr
 }
 
@@ -192,7 +166,6 @@ function dissolve_gen(){
 function cell_dissolve(arr){
     // flatten border
     
-    // arr[0] = map.height
     map.height = []
 
     // dissolve
@@ -285,7 +258,6 @@ function cell_dissolve(arr){
         }
     }
     return arr
-
 }
 
 function cell_find_tiletype(arr){
@@ -381,7 +353,6 @@ function cell_find_tiletype(arr){
             if (active == false){
                 map.tile_type.push(0)
             }
-
             // matrix.push(arr[0][i])
         }
         else{
@@ -431,11 +402,6 @@ function loop() {
             let height_level = map.height[y * columns + x];
             // console.log(map)
             let tile_type = map.tile_type[y * columns + x];
-
-            // console.log(map)
-            // if (height_level == 2 && tile_type == 6){
-            //     console.log("fffffffffffffffffff")
-            // }
 
             let tile_x = x * scaled_sizex - viewport.x;
             let tile_y = y * scaled_sizex - viewport.y;
@@ -548,12 +514,6 @@ matrix = cell_find_tiletype(matrix)
 // console.log("5matrix", matrix)
 console.log("Raw map data", map)
 
-// matrix = cell_automata(matrix, true)
-// matrix = find_adjacent(matrix)
-// console.log("m",matrix)
-// matrix = cell_automata(matrix, false)
-// matrix = matrix[0]
-
 var columns = rows = len = Math.sqrt(matrix[0].length);
 
 tile_min.addEventListener("load", () => { loop(); });
@@ -578,6 +538,5 @@ ctx.canvas.addEventListener("mousemove", (event) => {
     mousey = event.y
     // console.log(mousex, mousey)
 });
-
 
 //#endregion Procedural end
