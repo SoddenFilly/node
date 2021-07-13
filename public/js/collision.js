@@ -1,3 +1,5 @@
+var pull = parseInt(JSON.parse(localStorage.getItem('height_data'))); //retrieve the object
+console.log(pull)
 
 var height = document.documentElement.clientHeight;
 var width = document.documentElement.clientWidth;
