@@ -121,7 +121,6 @@ var width = document.documentElement.clientWidth;
                 ii = 1;
                 for (let i = 20; i > 15; i--){
                     compare1(elev, rain, temp, i, ii)
-                    console.log(elev, i, ii)
                     ii += 2
                 }
             } 
@@ -238,6 +237,10 @@ var width = document.documentElement.clientWidth;
             }
         }
     }
+
+localStorage.setItem('height_data', elevation)
+
+console.log(localStorage.getItem('height_data'))
 
 tile_sheet.addEventListener("load", (event) => { loop(); });
 
