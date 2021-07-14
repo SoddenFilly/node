@@ -56,6 +56,21 @@ function go(RES){
 
 //-----
 
+var height = document.documentElement.clientHeight;
+var width = document.documentElement.clientWidth;
+
+var scaled_size = 5; //2.4
+var sprite_size = 16;
+var columns = rows = 300;
+
+var index = 0;
+var tile_sheet = new Image();
+let valarr = [];
+
+var elevation = go(15);
+var temperature = go(5.5)
+var rainfall = go(10)
+
 function compare1(elev, rain, temp, el, lis) {
     if (elev == el) {
         if (rain >= 6 && temp <= 10) {
