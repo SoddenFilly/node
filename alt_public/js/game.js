@@ -1,3 +1,7 @@
+// this game is a mining tycoon merge game
+// modules are made in the source forge
+// modules can only navigate by moving to an adjacent empty space
+
 //#region Functions
 
 function loop() {
