@@ -412,6 +412,7 @@ function loop() {
             else if (height_level == 2){
                 tile_y += 8
             }
+            
             tile_y -= (height_level-1)*(4*scale_factor)
 
             ctx.drawImage(tile_min, tile_type * sprite_size, (height_level - 1) * 20, sprite_sizex, sprite_sizey, (tile_x)+posx_offset, (tile_y+( 20 -1)*8)+posy_offset, scaled_sizex, scaled_sizey)

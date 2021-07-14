@@ -24,7 +24,24 @@ canvas { height:100%; width:100%; }
 
 var context = document.querySelector("canvas").getContext("2d");
 
-compare();
+var height = document.documentElement.clientHeight;
+var width = document.documentElement.clientWidth;
+
+
+
+    var elevation = go(15);
+    var temperature = go(5.5)
+    var rainfall = go(10)
+
+    var scaled_size = 5; //2.4
+    var sprite_size = 16;
+    var columns = rows = 300;
+
+    var index = 0;
+    var tile_sheet = new Image();
+    let valarr = [];
+
+    compare();
 
 localStorage.setItem('height_data', elevation)
 
