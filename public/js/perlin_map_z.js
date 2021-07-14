@@ -196,3 +196,11 @@ function loop() {
         }
     }
 }
+
+localStorage.setItem('height_data', elevation)
+
+console.log(localStorage.getItem('height_data'))
+
+tile_sheet.addEventListener("load", (event) => { loop(); });
+
+tile_sheet.src = "../resources/images/tilesetz.png";
