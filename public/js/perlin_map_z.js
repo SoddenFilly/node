@@ -4,7 +4,7 @@ res = go()
 function go(RES){
     perlin.seed()
 
-    var arr = [ [], [] ]
+    var arr = []
     // const RES = 15;
 
     // const SIZE = 300;
