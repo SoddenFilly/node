@@ -12,7 +12,9 @@ cursor_img.src = "../resources/images/cursor_icons.png";
 mousex = -100
 mousey = -100
 
-const tris_data = {
+var top = ""
+
+var tris_data = {
 
     edge_a: {
         vect1: [],
@@ -38,7 +40,7 @@ const tris_data = {
 
 }
 
-tris_data.edge_a.vect1 = [100, 100]
+tris_data.edge_a.vect1 = [50, 100]
 tris_data.edge_b.vect1 = [100, 200]
 tris_data.edge_c.vect1 = [300, 200]
 
@@ -60,6 +62,9 @@ var gradients = {
     id: [],
     value: [],
 }
+
+to = gradients
+console.log(to)
 
 var edge_id = ["edge_a", "edge_b", "edge_c"]
 
@@ -114,6 +119,7 @@ for (let set = 0; set < gradients.value.length; set++){
 // console.log(gradients)
 if (gradients.value[0] < gradients.value[1]){
     tris_data[gradients.id[0]].orientation = "top"
+    // top = gradients.id[0]
     tris_data[gradients.id[0]].grad = gradients.value[0]
 
     tris_data[gradients.id[1]].orientation = "right"
@@ -121,9 +127,12 @@ if (gradients.value[0] < gradients.value[1]){
 
     tris_data[third_id].orientation = "left"
     tris_data[third_id].grad = third_value
+    
 } else {
     // console.log(tris_data["edge_a"])
-    tris_data[gradients.id[1]].orientation = "top"
+    tris_data[gradients.id[1]].orientation = "top";
+    to = gradients.id[1]
+    console.log(to)
     tris_data[gradients.id[1]].grad = gradients.value[1]
 
     tris_data[gradients.id[0]].orientation = "left"
@@ -136,7 +145,7 @@ console.log(tris_data)
 
 function loop(){
     ctx.imageSmoothingEnabled = false;
-    setTimeout(() => { window.requestAnimationFrame(loop); }, 100);
+    setTimeout(() => { window.requestAnimationFrame(loop); }, 10);
     ctx.rect(0, 0, width, height);
     ctx.fillStyle = "#ffffff";
     ctx.fill();
@@ -154,7 +163,55 @@ function loop(){
     ctx.moveTo(tris_data.edge_c.vect1[0], tris_data.edge_c.vect1[1]);
     ctx.lineTo(tris_data.edge_c.vect2[0], tris_data.edge_c.vect2[1]);
     ctx.stroke();
+    // console.log(top)
 
+    var y_offset = 100
+
+    var barrierx = tris_data[to].vect2[0]
+    var xx = tris_data[to].vect1[0]
+    var m = tris_data[to].grad
+    // console.log(m)
+    // y = m*(mousex + y_offset) //+ ((1-m)* 100)
+    y = m*(mousex + 200)
+
+    // 100 = 0.4*(50 + ?)
+    // 100/0.4 = 50 + ?
+    // console.log(100/0.4) 250
+    // 250 = 50 + 200
+    // y = 100
+    // y_offset = y/m - mousex
+    // console.log(y_offset)
+    
+    ctx.beginPath()
+
+    // m = 1
+    // x = 300
+    // y = m*x
+    ctx.moveTo(50, 100)
+
+    // x = 500
+    // y = m*x
+    ctx.lineTo(400, y)
+    // ctx.stroke()
+
+
+    // if (mousex > barrierx && mousex < xx && mousey > y){
+    if (mousey > y){
+        console.log("inside x,y:", mousex, mousey, "barr, y:", barrierx, y)
+        console.log(y)
+    }
+
+    
+
+    
+    ctx.drawImage(cursor_img, 1, 1, 9, 9, mousex - 12  + 50, y - 12   + 100, 25, 25)
+    // console.log(y)
 }
+
+ctx.canvas.addEventListener("mousemove", (event) => {
+    mousex = event.x
+    mousey = event.y
+    // console.log(mousex, mousey)
+});
 
 cursor_img.addEventListener("load", () => { loop(); });
