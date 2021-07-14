@@ -1,13 +1,11 @@
 res = go()
-// console.log(res)
+
 //FUNCTIONS
 function go(RES){
     perlin.seed()
 
     var arr = []
-    // const RES = 15;
 
-    // const SIZE = 300;
     const SIZE = 300;
     var HIG = WID = SIZE;
  
@@ -17,10 +15,6 @@ function go(RES){
         for (var x = 0; x < RES; x += RES / WID){
             let color_val = parseInt(perlin.get(x, y) * 255);
             count ++;
-
-            // if (x >= RES*0.99){
-            //     arr = arr + [1]
-            // }
 
             function testing(num1, num2, length) {
                 if (color_val >= num1 && color_val < num2) {
@@ -55,21 +49,6 @@ function go(RES){
             testing(-128, -112, 3)
             testing(-144, -128, 2)
             testing(-300, -144, 1)
-
-
-            // console.log(x)
-            // console.log(count)
-            // document.getElementById("text_container").innerHTML = arr;
-
-            // for (let i = 0; i < arr.length; i++) {
-            //     // console.log(i);
-            //     let temp = arr[i];
-            //     arr[i] = [[temp, 27]];
-            // }
-            // console.log("qq")
-            // console.log(arr)
-            // console.log(arr.length)
-            // console.log("fffff")
         }    
     }
     return arr

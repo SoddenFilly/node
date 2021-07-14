@@ -36,12 +36,6 @@ var width = document.documentElement.clientWidth;
     var scaled_size = 5; //2.4
     var sprite_size = 16;
     var columns = rows = 300;
-   
-    // var terrain = {
-    //     "perlin":go(5.5),
-    //     "scaled_size":2.4,
-       
-    // }
 
     var index = 0;
     var tile_sheet = new Image();
@@ -243,9 +237,6 @@ localStorage.setItem('height_data', elevation)
 console.log(localStorage.getItem('height_data'))
 
 tile_sheet.addEventListener("load", (event) => { loop(); });
-
-// console.log(map)
-// console.log(map[5])
 
 tile_sheet.src = "../resources/images/tilesetz.png";
 
