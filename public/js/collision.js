@@ -1,5 +1,5 @@
-var pull = parseInt(JSON.parse(localStorage.getItem('height_data'))); //retrieve the object
-console.log(pull)
+// var pull = parseInt(JSON.parse(localStorage.getItem('height_data'))); //retrieve the object
+// console.log(pull)
 
 var height = document.documentElement.clientHeight;
 var width = document.documentElement.clientWidth;
@@ -19,26 +19,35 @@ const tris_data = {
 
     edge_a: {
         vect: [50, 150],
+        orientation: null, // top, left, right
         grad: 0,
         len: 0
     },
     edge_b: {
         vect: [100, 200],
+        orientation: null,
         grad: 0,
         len: 0
     },
     edge_c: {
         vect: [200, 190],
+        orientation: null,
         grad: 0,
         len: 0
     },
 
 }
 
+// const points = {
+//     a: [100, 150],
+//     b: [100, 200],
+//     c: [200, 190]
+// }
+
 const points = {
-    a: [50, 150],
+    a: [100, 180],
     b: [100, 200],
-    c: [200, 190]
+    c: [200, 150]
 }
 
 coords = [[], [], []]
@@ -56,6 +65,7 @@ console.log(coords)
 // lowest_grad = 1000
 
 vector_heights = []
+vector_heights_2 = []
 gradients = []
 
 for (let set = 0; set < coords.length; set++){
@@ -88,9 +98,11 @@ for (let set = 0; set < coords.length; set++){
     // }
     if (origin_point.y < coords[set][3]){
         vector_heights.push(origin_point.y)
+        vector_heights_2.push(coords[set][3])
     }
     else{
         vector_heights.push(coords[set][3])
+        vector_heights_2.push(origin_point.y)
     }
     
     gradients.push(m)
@@ -100,37 +112,63 @@ for (let set = 0; set < coords.length; set++){
 console.log(vector_heights, gradients)
 console.log("tris_data", tris_data)
 
-lowest_vector = vector_heights[0]
+// lower vector values means higher visually onscreen
+lowest_vector_value = vector_heights[0]
+highest_vector_value = vector_heights_2[0]
+// console.log(lowest_vector_value)
 for (let p = 0; p < vector_heights.length; p++){
-    if (vector_heights[p] < lowest_vector){
-        lowest_vector = vector_heights[p]
+    if (vector_heights[p] <= lowest_vector_value){
+        lowest_vector_value = vector_heights[p]
+
+        highest_vector_value = vector_heights_2[p]
+        console.log("ppprrint", p)
     }
+
+    // if (vector_heights_2[p] > highest_vector_value){
+    //     highest_vector_value = vector_heights_2[p]
+    // }
 }
+// console.log(lowest_vector_value)
+console.log(vector_heights_2    )
+console.log("high",highest_vector_value)
 lowest_vectors = []
 for (let p = 0; p < vector_heights.length; p++){
-    if (vector_heights[p] == lowest_vector){
+    if (vector_heights[p] == lowest_vector_value){
         lowest_vectors.push(p)
     }
 }
 // has to be the one closest to zero
 lowest_gradient = gradients[0]
+console.log(gradients)
 for (let p = 0; p < lowest_vectors.length; p++){
+    // console.log("lo",lowest_vectors[p])
     if (gradients[lowest_vectors[p]] > 0){
         if (gradients[lowest_vectors[p]] < lowest_gradient){
             lowest_gradient = gradients[lowest_vectors[p]]
+            console.log("+")
         }
         console.log("+0")
     }
     else{
+        console.log("lowe", lowest_gradient)
+        lowest_gradient = lowest_gradient - lowest_gradient*2
+        console.log("lowe", lowest_gradient)
         if (gradients[lowest_vectors[p]] > lowest_gradient){
             lowest_gradient = gradients[lowest_vectors[p]]
+            console.log("-")
         }
+        else{
+            // console.log("lowe", lowest_gradient)
+            lowest_gradient = lowest_gradient - lowest_gradient*2
+            console.log("lowe", lowest_gradient)
+        }
+        
         console.log("-0")
     }
 }
 
 console.log(lowest_vectors)
-console.log("grad, vect", lowest_gradient, lowest_vector)
+console.log("grad, vect", lowest_gradient, lowest_vector_value)
 
 
 
@@ -142,7 +180,7 @@ ctx.canvas.addEventListener("mousemove", (event) => {
 
 function loop(){
     ctx.imageSmoothingEnabled = false;
-    setTimeout(() => { window.requestAnimationFrame(loop); }, 10);
+    setTimeout(() => { window.requestAnimationFrame(loop); }, 100);
     ctx.rect(0, 0, width, height);
     ctx.fillStyle = "#ffffff";
     ctx.fill();
@@ -157,7 +195,11 @@ function loop(){
     // ctx.lineTo(100, 100);
     ctx.moveTo(coords[0][0], coords[0][1]);
     ctx.lineTo(coords[0][2], coords[0][3]);
+    ctx.stroke();ctx.beginPath();
+    ctx.moveTo(coords[0][2], coords[0][3]);
     ctx.lineTo(coords[1][2], coords[1][3]);
+    ctx.stroke();ctx.beginPath();
+    ctx.moveTo(coords[1][2], coords[1][3]);
     ctx.lineTo(coords[2][2], coords[2][3]);
     ctx.stroke();
 
