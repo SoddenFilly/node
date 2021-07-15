@@ -40,12 +40,29 @@ function loop() {
 
                 tile_y -= (tile_type)*(scaled_sizey/4)
 
-                if (mousex > tile_x + scaled_sizex/2 + 100 && mousex < tile_x + scaled_sizex/2 + 155
-                    && mousey > tile_y + 100 && mousey < tile_y + 130){
-                    tile_y -= 10
+                m = .578
+                if (y * columns + x == 113){
+                    // tile_y = 1000
+                    // offset = 32*i +7 - 64
+                    ctx.strokeStyle = 'white';
+                    ctx.lineWidth = 0.5
+                    m = .578
+                    ctx.beginPath();
+                    ctx.moveTo(tile_x + scaled_sizex/2 + total_offset, tile_y - scaled_sizey/4 + total_offset);
+                    ctx.lineTo(tile_x + scaled_sizex + total_offset, tile_y + total_offset);
+                    ctx.stroke();
+                }
+                yplot = m*mousex + 25 + (y-4)*32
+                if (mousey > yplot){
+                    tile_y += 30
                 }
 
-                ctx.drawImage(tiles, tile_type  * sprite_sizex, 0, sprite_sizex, sprite_sizey, tile_x + scaled_sizex/2 + 100, tile_y + 100, scaled_sizex, scaled_sizey)
+                if (mousex > tile_x + scaled_sizex/2 + total_offset && mousex < tile_x + scaled_sizex/2 + total_offset+55
+                    && mousey > tile_y + total_offset && mousey < tile_y + total_offset+30){
+                    tile_y -= 30
+                }
+
+                ctx.drawImage(tiles, tile_type  * sprite_sizex, 0, sprite_sizex, sprite_sizey, tile_x + scaled_sizex/2 + total_offset, tile_y + total_offset, scaled_sizex, scaled_sizey)
             }
         } else {
             dia = true
@@ -72,7 +89,7 @@ function loop() {
                 // }
                 
 
-                ctx.drawImage(tiles, tile_type  * sprite_sizex, 0, sprite_sizex, sprite_sizey, tile_x + 100, tile_y + 100, scaled_sizex, scaled_sizey)
+                ctx.drawImage(tiles, tile_type  * sprite_sizex, 0, sprite_sizex, sprite_sizey, tile_x + total_offset, tile_y + total_offset, scaled_sizex, scaled_sizey)
                 ctx.drawImage(tiles, tile_type  * sprite_sizex, 0, sprite_sizex, sprite_sizey, tile_x + 599, tile_y + 516, scaled_sizex, scaled_sizey)
             }
         }
@@ -88,7 +105,7 @@ function loop() {
         ctx.beginPath();
         x = 100
         y = m*x
-        ctx.moveTo(0, -offset);
+        ctx.moveTo(0, - offset);
         // console.log("1",x,y)
         x = 1000
         y = m*x
@@ -97,10 +114,7 @@ function loop() {
         ctx.stroke();
     }
 
-    yplot = m*mousex -7
-    if (mousey > yplot){
-        console.log("S")
-    }
+    
 
             
 }
@@ -113,6 +127,7 @@ function loop() {
 var scale_factor = 0.1
 var columns = 10
 var rows = -1 + (Math.round(columns*2.8)%2) + Math.round(columns*2.8)
+var total_offset = 100
 console.log(rows)
 // rows = 9
 // NON-INPUT
