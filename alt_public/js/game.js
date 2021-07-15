@@ -19,7 +19,7 @@ function loop() {
     setTimeout(() => { window.requestAnimationFrame(loop); }, 10);
 
     var dia = false
-    for (let y = 0; y < 6; y++) {
+    for (let y = 0; y < rows; y++) {
 
         if (dia == true){
             dia = false
@@ -31,18 +31,23 @@ function loop() {
             offset_y = 0
         }
 
-        for (let x = 0; x < 6; x++) {
+        for (let x = 0; x < columns; x++) {
 
             // let value = matrix[0][y * columns + x];
             // let height_level = map.height[y * columns + x];
             // // console.log(map)
-            // let tile_type = map.tile_type[y * columns + x];
+            let tile_type = map.tile_type[y * columns + x];
 
             let tile_x = x * scaled_sizex;
             // let tile_y = y * scaled_sizey/1.35;
             let tile_y = y * scaled_sizey/4;
 
-            ctx.drawImage(tiles, 0, 0, sprite_sizex, sprite_sizey, tile_x + offset_x, tile_y + offset_y, scaled_sizex, scaled_sizey)
+            // tile_type = 2
+            console.log(tile_type)
+
+            tile_y -= (tile_type)*(scaled_sizey/4)
+
+            ctx.drawImage(tiles, 0  * sprite_sizex, 0, sprite_sizex, sprite_sizey, tile_x + offset_x + 100, tile_y + offset_y + 100, scaled_sizex, scaled_sizey)
         }
     }
 
@@ -55,8 +60,9 @@ function loop() {
 //#region Set up
 
 // INPUT CHANGE
-var scale_factor = 0.2
-
+var scale_factor = 0.1
+var columns = 4
+var rows = Math.round(columns*3)
 // NON-INPUT
 const sprite_sizex = 554;
 const sprite_sizey = 640;
@@ -74,7 +80,20 @@ ctx.canvas.width = width;
 
 const map = {
     height: [],
-    tile_type: []
+    tile_type: [
+        0,0,0,0,
+        0,2,1,1,
+        0,1,1,1,
+        0,1,2,2,
+        0,0,0,0,
+        0,1,2,2,
+        0,1,2,2,
+        0,0,0,0,
+        0,0,0,0,
+        0,1,1,1,
+        0,1,2,2,
+        0,0,0,0,
+    ]
 }
 
 // sprite load
