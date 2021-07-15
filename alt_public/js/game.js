@@ -6,7 +6,7 @@
 
 function loop() {
     
-    console.log("LOOP START===============================================================================================================================================")
+    // console.log("LOOP START===============================================================================================================================================")
     
     // max window width and height
     var height = document.documentElement.clientHeight;
@@ -38,7 +38,12 @@ function loop() {
                 // tile_type = 2
                 // console.log(tile_type)
 
-                // tile_y -= (tile_type)*(scaled_sizey/4)
+                tile_y -= (tile_type)*(scaled_sizey/4)
+
+                if (mousex > tile_x + scaled_sizex/2 + 100 && mousex < tile_x + scaled_sizex/2 + 155
+                    && mousey > tile_y + 100 && mousey < tile_y + 130){
+                    tile_y -= 10
+                }
 
                 ctx.drawImage(tiles, tile_type  * sprite_sizex, 0, sprite_sizex, sprite_sizey, tile_x + scaled_sizex/2 + 100, tile_y + 100, scaled_sizex, scaled_sizey)
             }
@@ -59,14 +64,44 @@ function loop() {
                 // tile_type = 2
                 // console.log(tile_type)
 
-                // tile_y -= (tile_type)*(scaled_sizey/4)
+                tile_y -= (tile_type)*(scaled_sizey/4)
+
+                // if (mousex > tile_x + scaled_sizex/2 + 70 && mousex < tile_x + scaled_sizex/2 + 125
+                //     && mousey > tile_y + 100 && mousey < tile_y + 130){
+                //     tile_y -= 10
+                // }
+                
 
                 ctx.drawImage(tiles, tile_type  * sprite_sizex, 0, sprite_sizex, sprite_sizey, tile_x + 100, tile_y + 100, scaled_sizex, scaled_sizey)
+                ctx.drawImage(tiles, tile_type  * sprite_sizex, 0, sprite_sizex, sprite_sizey, tile_x + 599, tile_y + 516, scaled_sizex, scaled_sizey)
             }
         }
     }
 
     // ctx.drawImage(tiles, 0, 0, sprite_sizex, sprite_sizey, 0, 0, scaled_sizex, scaled_sizey)
+    
+    for (let i = 0; i < 11; i++){
+        offset = 32*i +7 - 64
+        ctx.strokeStyle = 'white';
+        ctx.lineWidth = 0.5
+        m = .578
+        ctx.beginPath();
+        x = 100
+        y = m*x
+        ctx.moveTo(0, -offset);
+        // console.log("1",x,y)
+        x = 1000
+        y = m*x
+        ctx.lineTo(x, y - offset);
+        // console.log("2",x,y)
+        ctx.stroke();
+    }
+
+    yplot = m*mousex -7
+    if (mousey > yplot){
+        console.log("S")
+    }
+
             
 }
 
@@ -85,6 +120,9 @@ const sprite_sizex = 554;
 const sprite_sizey = 640;
 const scaled_sizex = scale_factor*sprite_sizex; //2.4
 const scaled_sizey = scale_factor*sprite_sizey; //2.4
+
+var mousex = -10
+var mousey = -10
 
 // max window width and height
 var height = document.documentElement.clientHeight;
@@ -255,7 +293,11 @@ tiles.src = "../resources/images/tiles.png";
 
 
 
-
+ctx.canvas.addEventListener("mousemove", (event) => {
+    mousex = event.x
+    mousey = event.y
+    // console.log(mousex, mousey)
+});
 
 tiles.addEventListener("load", () => { loop(); });
 
