@@ -54,7 +54,8 @@ function loop() {
                 }
                 yplot = m*mousex + 25 + (y-4)*32
                 if (mousey > yplot){
-                    tile_y += 30
+                    // tile_y += 30
+                    console.log(tile_y)
                 }
 
                 if (mousex > tile_x + scaled_sizex/2 + total_offset && mousex < tile_x + scaled_sizex/2 + total_offset+55
