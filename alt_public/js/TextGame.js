@@ -131,8 +131,8 @@ async function game() {
       }
     }
   }
+  
   //battle end
-
   while (sequence == 0) {
     if (fled == 1) {
       await sleep(1000);
@@ -205,12 +205,86 @@ async function game() {
   }
 }
 
+//left
 async function continueLeft() {
   await sleep(2000);
   document.write("<br>");
   document.write("|You pilot your mech through the tunnel leading to the left, and continue down it.|");
+  await sleep(2000);
+  document.write("<br>");
+  document.write(playerName + ", my short-range sectors detect movement up ahead. Stay alert.");
+  await sleep(2000);
+  document.write("<br>");
+  document.write("|As your mech clanks down the tunnel, you spot something lying on the floor to the right of you.|");
+  await sleep(2500);
+  document.write("<br>");
+  document.write("|Looking closer at it, you realize it's the hunched form of a PDF cadet mech similar to yours. The cockpit has been blown open, red slicking the crater in its place.|");
+  await sleep(3000);
+  document.write("<br>");
+  document.write("How terrible. That must have been a cadet trying to escape, like us. Most likely, whatever killed him is up ahead. Proceed with extreme caution.");
+  await sleep(2500);
+  document.write("<br>");
+  document.write("|Your mech continues to lumber forwards, and your weak headlamps catch the glint of metal ahead of you.|");
+  await sleep(2000);
+  document.write("<br><br>");
+  document.write("|A jet black mech similar to the one you fought before slings a cannon over its robotic shoulders and aims it at you.|");
+  await sleep(2000);
+
+  //attacking
+  enemyHealth = 500;
+  enemyAttack = 70;
+  fled = 0;
+  while (enemyHealth > 0) {
+    properInput = 0;
+    sleep(400);
+
+    while (properInput == 0) {
+      playerInput = prompt("Input your chosen action into the terminal.");
+      if (playerInput.toLowerCase() == "attack") {
+        attack();
+        await sleep(2600);
+        properInput += 1;
+      } else if (playerInput.toLowerCase() == "flee") {
+        flee();
+        await sleep(1800);
+        properInput += 1;
+      } else {
+        sleep(1000);
+        document.write("<br>")
+        document.write("You did not put in one of the accepted commands!")
+        await sleep(1000)
+        properInput = 0;
+      }
+    }
+  }
+
+  //battle end
+  sequence = 0;
+  while (sequence == 0) {
+    if (fled == 1) {
+      await sleep(1000);
+      document.write("<br><br>");
+      document.write("|You fled the situation successfully, slamming the enemy aside and dashing down the corner and around abend. Has this brought you closer to the exit? Who knows? Certainly not you.|")
+      sequence = 1;
+    } else {
+      await sleep(1000);
+      document.write("<br><br>");
+      document.write("|A well-placed shot from your gun pierces the generator in the middle of the enemy mech, causing it to cough smoke, then collapse.|");
+      await sleep(2000);
+      document.write("<br>");
+      document.write("He deserved it, " + playerName + ".");
+      await sleep(2000);
+      enemyHealth = 400;
+      heal = enemyHealth * (Math.random() * 0.5)
+      playerHealth += heal;
+      document.write("<br>");
+      document.write("From the wreck of your defeated enemy, the autonomous repair drones built into your mech have been able to salvage enough material to repair " + heal + " health.");
+      sequence = 1;
+    }
+  }
 }
 
+//left
 async function continueRight() {
   await sleep(2000);
   document.write("<br>");
