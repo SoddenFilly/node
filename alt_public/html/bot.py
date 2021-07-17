@@ -26,7 +26,7 @@ def RSI (closes, period):
 
     rsi = 100 - (100/(1+(closes_up/period)/(closes_down/period)))
 
-    print("rsi", rsi)
+    # print("rsi", rsi)
     return rsi
 
 # for i in range(1, len(closes)):
@@ -42,7 +42,7 @@ def RSI (closes, period):
 # rsi = 100 - (100/(1+rs))
 # print(rsi)
 
-rsi_period = 14 # 14
+rsi_period = 3 # 14
 rsi_overbought = 70
 rsi_oversold = 30
 plot_rsi = []
@@ -79,26 +79,36 @@ def on_message(ws, message):
     close_price = candle['c']
     timestamp = candle['t']
 
-    closes.append(float(close_price))
-    if len(closes) > rsi_period + 1:
-        closes.pop(0)
+    if candle_closed:
+        closes.append(float(close_price))
+        if len(closes) > rsi_period + 1:
+            closes.pop(0)
 
-    print("closelen",len(closes))
-    
-    if len(closes) > rsi_period:
-        # print("aah2",len(closes))
-        # print("1", rsi_list)
-        # print("APP")
-        plot_rsi.append( RSI(closes, rsi_period) )
-        plot_timestamp.append(timestamp)
-        plt.clf()
-        plt.plot(plot_timestamp, plot_rsi)
-        plt.show(block=False)
-        plt.pause(.1)
+        # print("closelen",len(closes))
         
-        print(plot_rsi, plot_timestamp)
+        if len(closes) > rsi_period:
+            # print("aah2",len(closes))
+            # print("1", rsi_list)
+            # print("APP")
+            
+            plot_rsi.append( RSI(closes, rsi_period) )
+            plot_timestamp.append(timestamp)
 
-    print("closes", closes)
+            with open("plot.txt", "r") as txt_file:
+                txt = txt_file.read()
+                # print(txt)
+
+            plot = txt
+            if plot == "True":
+                plt.clf()
+                plt.plot(plot_timestamp, plot_rsi)
+                # plt.get_current_fig_manager().window.state("zoomed")
+                plt.show(block=False)
+                plt.pause(.1)
+            
+            print("RSI plot length:", len(plot_rsi))
+
+        # print("closes", closes)
 
 if __name__ == "__main__":
     # websocket.enableTrace(True)
