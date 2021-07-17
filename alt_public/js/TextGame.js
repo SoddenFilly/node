@@ -103,6 +103,7 @@ async function game() {
   await sleep(2500);
   document.write("<br>");
   document.write("In case you've forgotten, you can input 'Attack' into your terminal to attack your enemy, or 'Flee' to attempt to flee the battle. Try to attack the enemy mech now.");
+  document.write("<br>");
   await sleep(3000);
   enemyHealth = 400;
   enemyAttack = 50;
@@ -124,9 +125,9 @@ async function game() {
         properInput += 1;
       } else {
         sleep(1000);
-        document.write("<br>")
-        document.write("You did not put in one of the accepted commands!")
-        await sleep(1000)
+        document.write("<br>");
+        document.write("You did not enter one of the accepted commands!");
+        await sleep(1000);
         properInput = 0;
       }
     }
@@ -177,13 +178,13 @@ async function game() {
   await sleep(5000);
   document.write("<br>");
   document.write("'Now go! Time is of th-'");
-  await sleep(2000);
+  await sleep(3000);
   document.write("<br><br>");
   document.write("The communication appears to have been severed. I suggest we follow the commander's orders and flee the training facility. The enemies must have set up some kind of jammer stopping me from using my location tracker or map, so we will have to guess our way out.");
-  await sleep(3500);
+  await sleep(4500);
   document.write("<br><br>");
   document.write("|You pilot your mech forwards, and enter a room with two other exits. One leads off to the left, and one to the right. Enter 'left' into the terminal if you would like to head left, or 'right' if you would like to head right.|");
-  await sleep(3000);
+  await sleep(4000);
   
   //choosing directions
   properInput = 0;
@@ -197,9 +198,9 @@ async function game() {
       properInput += 1;
     } else {
       sleep(1000);
-      document.write("<br>")
-      document.write("You did not put in one of the accepted commands!")
-      await sleep(1000)
+      document.write("<br>");
+      document.write("You did not enter one of the accepted commands!");
+      await sleep(1000);
       properInput = 0;
     }
   }
@@ -207,28 +208,29 @@ async function game() {
 
 //left
 async function continueLeft() {
-  await sleep(2000);
-  document.write("<br>");
-  document.write("|You pilot your mech through the tunnel leading to the left, and continue down it.|");
-  await sleep(2000);
-  document.write("<br>");
-  document.write(playerName + ", my short-range sectors detect movement up ahead. Stay alert.");
-  await sleep(2000);
-  document.write("<br>");
-  document.write("|As your mech clanks down the tunnel, you spot something lying on the floor to the right of you.|");
-  await sleep(2500);
-  document.write("<br>");
-  document.write("|Looking closer at it, you realize it's the hunched form of a PDF cadet mech similar to yours. The cockpit has been blown open, red slicking the crater in its place.|");
   await sleep(3000);
   document.write("<br>");
+  document.write("|You pilot your mech through the tunnel leading to the left, and continue down it.|");
+  await sleep(3000);
+  document.write("<br>");
+  document.write(playerName + ", my short-range sectors detect movement up ahead. Stay alert.");
+  await sleep(3000);
+  document.write("<br>");
+  document.write("|As your mech clanks down the tunnel, you spot something lying on the floor to the right of you.|");
+  await sleep(3500);
+  document.write("<br>");
+  document.write("|Looking closer at it, you realize it's the hunched form of a PDF cadet mech similar to yours. The cockpit has been blown open, red slicking the crater in its place.|");
+  await sleep(4000);
+  document.write("<br>");
   document.write("How terrible. That must have been a cadet trying to escape, like us. Most likely, whatever killed him is up ahead. Proceed with extreme caution.");
-  await sleep(2500);
+  await sleep(3500);
   document.write("<br>");
   document.write("|Your mech continues to lumber forwards, and your weak headlamps catch the glint of metal ahead of you.|");
-  await sleep(2000);
+  await sleep(3000);
   document.write("<br><br>");
   document.write("|A jet black mech similar to the one you fought before slings a cannon over its robotic shoulders and aims it at you.|");
-  await sleep(2000);
+  await sleep(3000);
+  document.write("<br>");
 
   //attacking
   enemyHealth = 500;
@@ -250,9 +252,9 @@ async function continueLeft() {
         properInput += 1;
       } else {
         sleep(1000);
-        document.write("<br>")
-        document.write("You did not put in one of the accepted commands!")
-        await sleep(1000)
+        document.write("<br>");
+        document.write("You did not enter one of the accepted commands!");
+        await sleep(1000);
         properInput = 0;
       }
     }
@@ -264,16 +266,16 @@ async function continueLeft() {
     if (fled == 1) {
       await sleep(1000);
       document.write("<br><br>");
-      document.write("|You fled the situation successfully, slamming the enemy aside and dashing down the corner and around abend. Has this brought you closer to the exit? Who knows? Certainly not you.|")
+      document.write("|You fled the situation successfully, slamming the enemy aside and dashing down the corner and around abend. Has this brought you closer to the exit? Who knows? Certainly not you.|");
       sequence = 1;
     } else {
       await sleep(1000);
       document.write("<br><br>");
       document.write("|A well-placed shot from your gun pierces the generator in the middle of the enemy mech, causing it to cough smoke, then collapse.|");
-      await sleep(2000);
+      await sleep(3000);
       document.write("<br>");
       document.write("He deserved it, " + playerName + ".");
-      await sleep(2000);
+      await sleep(2500);
       enemyHealth = 400;
       heal = enemyHealth * (Math.random() * 0.5)
       playerHealth += heal;
@@ -282,9 +284,150 @@ async function continueLeft() {
       sequence = 1;
     }
   }
+
+  await sleep(3000);
+  document.write("<br><br>");
+  document.write("We should keep moving.");
+  await sleep(2500);
+  document.write("<br>");
+  document.write("|You continue down the hallway, spotting no further enemies. After a few minutes, the hallway opens up into a deserted training arena. From your previous experiences as a cadet, you remember that there will be two other exits out of this area, one straight ahead, and one to the left. Type 'straight' into the terminal if you wish to take the exit straight ahead, or 'left' if you want to take the exit to the left.|");
+  await sleep(4500);
+  properInput = 0;
+  while (properInput == 0) {
+    playerInput = prompt("Input your chosen action into the terminal.");
+    if (playerInput.toLowerCase() == "forward") {
+      continueLeftForward();
+      properInput += 1;
+    } else if (playerInput.toLowerCase() == "left") {
+      continueLeftLeft();
+      properInput += 1;
+    } else {
+      sleep(1000);
+      document.write("<br>");
+      document.write("You did not enter one of the accepted commands!");
+      await sleep(1000);
+      properInput = 0;
+    }
+  }
 }
 
-//left
+//left+forward
+async function continueLeftForward() {
+  sleep(1000);
+  document.write("<br><br>");
+  document.write("|You continue forwards, finding yourself in another hallway.|");
+  sleep(2000);
+  document.write("<br>");
+  document.write("My sensors are picking up a noise in front of us. Comparing it to the noises we encountered earlier, I can say with 82% certainty that there is an enemy in front of us.");
+  sleep(3000);
+  document.write("<br><br>");
+  document.write("|A figure looms out of the darkness. It is noticably larger than the enemies you've encountered before, with thick armor plating covering every inch of it. It carries a tower shield, and blocks the entirety of the passage, making escape impossible.|");
+  sleep(3000);
+  document.write("<br><br>");
+
+  //attacking
+  enemyHealth = 1000;
+  enemyAttack = 50;
+  while (enemyHealth > 0) {
+    properInput = 0;
+    sleep(400);
+
+    while (properInput == 0) {
+      playerInput = prompt("Input your chosen action into the terminal.");
+      if (playerInput.toLowerCase() == "attack") {
+        attack();
+        await sleep(2600);
+        properInput += 1;
+      } else if (playerInput.toLowerCase() == "flee") {
+        sleep(1000);
+        document.write("<br>");
+        document.write("You cannot flee in this battle, for there is nowhere for you to go.");
+        await sleep(1000);
+        properInput = 0;
+      } else {
+        sleep(1000);
+        document.write("<br>");
+        document.write("You did not enter one of the accepted commands!");
+        await sleep(1000);
+        properInput = 0;
+      }
+    }
+  }
+  
+  //battle end
+  await sleep(1000);
+  document.write("<br><br>");
+  document.write("|After receiving immense punishment from your mech's gun, something vital must have been damaged in the enemy mech. Sparks fly from its midsection and it collapses.|");
+  await sleep(3000);
+  document.write("<br>");
+  document.write("My analysis determines that our armor is unlikely to hold out long enough to survive another fight. Hopefully we can make it out of this place soon.");
+  await sleep(3000);
+  enemyHealth = 400;
+  heal = enemyHealth * (Math.random() * 0.4)
+  playerHealth += heal;
+  document.write("<br>");
+  document.write("From the wreck of your defeated enemy, the autonomous repair drones built into your mech have been able to salvage enough material to repair " + heal + " health.");
+
+  //end sequence
+  await sleep(3000);
+  document.write("<br><br>");
+  document.write("|You step over the smoking wreckage of the enemy mech, and continue through the hallway.|");
+  await sleep(3000);
+  document.write("<br>");
+  document.write("|As you march down the passageway, the darkness lightens, then lifts completely. The soft red light of the backup lamps is drowned out by the crisp, white light spilling out of a plexiglass doorway in front of you. Normally intended to slide open when a mech approached them from the inside, the doors are wedged shut due to the training facility being on lockdown.|");
+  await sleep(5000);
+  document.write("<br>");
+  document.write("I suggest you break the glass and get us out of here, " + playerName + ". I'm sure no one will mind us causing a bit of property damage to complete our directive from the commander. If there is anyone left to mind.");
+  await sleep(4000);
+  document.write("<br>");
+  document.write("Enter 'break' into the terminal to smash the glass, and get's get out of this place.");
+  await sleep(2500);
+
+  //breaking door
+  while (properInput == 0) {
+    playerInput = prompt("Input your chosen action into the terminal.");
+    if (playerInput.toLowerCase() == "break") {
+      win();
+      properInput += 1;
+    } else {
+      sleep(1000);
+      document.write("<br>");
+      document.write("You did not enter one of the accepted commands!");
+      await sleep(1000);
+      properInput = 0;
+    }
+  }
+}
+
+//#winning
+async function win() {
+  sleep(2000);
+  document.write("<br><br><br>");
+  document.write("|You smash through the doors, and step out into the sunlight. The charred, broken hulk of the training facility lies behind you, and a single road stretches out in front of you. Will you be able to warn planetary command in time? Have they been attacked as well? You don't know that, but you do know you still have a job to do...|");
+  sleep(5000);
+  document.write("<br><br>");
+  document.write("<h1>GAME OVER - YOU HAVE WON<h1>")
+}
+
+
+//left+left
+async function continueLeftLeft() {
+  sleep(1000);
+  document.write("<br><br>")
+  document.write("|You turn to the left, and head through the passage.|")
+  sleep(2000);
+  document.write("<br>")
+  document.write(playerName + ", my scanners pick up a cloud of smoke or dust ahead. It might just be a collapsed section of the roof, or it could be a smokescreen. Proceed with caution.")
+  sleep(3000);
+  document.write("<br>")
+  document.write("|As you continue forwards into the cloud of smoke or dust, you hear a whistling sound. It sounds almost like the wind...|")
+  sleep(3000);
+  document.write("<br><br>")
+  document.write("|But it isn't. The whistling rapidly gets closer, and a large shell slams into the bulletproof glass making up your windshield, shattering it and exploding, killing you instantly.|")
+  playerHealth = 0;
+}
+
+//right
 async function continueRight() {
   await sleep(2000);
   document.write("<br>");
