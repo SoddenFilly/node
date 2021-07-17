@@ -37,11 +37,11 @@ async function attack() {
 async function flee() {
   fleeChance = (Math.random() * 11);
   if (fleeChance > 5) {
-    sleep(800);
+    await sleep(800);
     fled = 1;
     enemyHealth = 0;
   } else {
-    sleep(800);
+    await sleep(800);
     attackDamage = (enemyAttack * (Math.random() * 2.2));
     playerHealth -= attackDamage;
     document.write("<br>");
@@ -111,7 +111,7 @@ async function game() {
   //attacking
   while (enemyHealth > 0) {
     properInput = 0;
-    sleep(400);
+    await sleep(400);
 
     while (properInput == 0) {
       playerInput = prompt("Input your chosen action into the terminal.");
@@ -124,7 +124,7 @@ async function game() {
         await sleep(1800);
         properInput += 1;
       } else {
-        sleep(1000);
+        await sleep(1000);
         document.write("<br>");
         document.write("You did not enter one of the accepted commands!");
         await sleep(1000);
@@ -197,7 +197,7 @@ async function game() {
       continueRight();
       properInput += 1;
     } else {
-      sleep(1000);
+      await sleep(1000);
       document.write("<br>");
       document.write("You did not enter one of the accepted commands!");
       await sleep(1000);
@@ -238,7 +238,7 @@ async function continueLeft() {
   fled = 0;
   while (enemyHealth > 0) {
     properInput = 0;
-    sleep(400);
+    await sleep(400);
 
     while (properInput == 0) {
       playerInput = prompt("Input your chosen action into the terminal.");
@@ -251,7 +251,7 @@ async function continueLeft() {
         await sleep(1800);
         properInput += 1;
       } else {
-        sleep(1000);
+        await sleep(1000);
         document.write("<br>");
         document.write("You did not enter one of the accepted commands!");
         await sleep(1000);
@@ -294,15 +294,15 @@ async function continueLeft() {
   await sleep(4500);
   properInput = 0;
   while (properInput == 0) {
-    playerInput = prompt("Input your chosen action into the terminal.");
-    if (playerInput.toLowerCase() == "forward") {
+    direction = prompt("Which direction do you choose?");
+    if (direction.toLowerCase() == "straight") {
       continueLeftForward();
       properInput += 1;
-    } else if (playerInput.toLowerCase() == "left") {
+    } else if (direction.toLowerCase() == "left") {
       continueLeftLeft();
       properInput += 1;
     } else {
-      sleep(1000);
+      await sleep(1000);
       document.write("<br>");
       document.write("You did not enter one of the accepted commands!");
       await sleep(1000);
@@ -313,16 +313,16 @@ async function continueLeft() {
 
 //left+forward
 async function continueLeftForward() {
-  sleep(1000);
+  await sleep(1000);
   document.write("<br><br>");
   document.write("|You continue forwards, finding yourself in another hallway.|");
-  sleep(2000);
+  await sleep(2000);
   document.write("<br>");
   document.write("My sensors are picking up a noise in front of us. Comparing it to the noises we encountered earlier, I can say with 82% certainty that there is an enemy in front of us.");
-  sleep(3000);
+  await sleep(3000);
   document.write("<br><br>");
   document.write("|A figure looms out of the darkness. It is noticably larger than the enemies you've encountered before, with thick armor plating covering every inch of it. It carries a tower shield, and blocks the entirety of the passage, making escape impossible.|");
-  sleep(3000);
+  await sleep(3000);
   document.write("<br><br>");
 
   //attacking
@@ -330,7 +330,7 @@ async function continueLeftForward() {
   enemyAttack = 50;
   while (enemyHealth > 0) {
     properInput = 0;
-    sleep(400);
+    await sleep(400);
 
     while (properInput == 0) {
       playerInput = prompt("Input your chosen action into the terminal.");
@@ -339,13 +339,13 @@ async function continueLeftForward() {
         await sleep(2600);
         properInput += 1;
       } else if (playerInput.toLowerCase() == "flee") {
-        sleep(1000);
+        await sleep(1000);
         document.write("<br>");
         document.write("You cannot flee in this battle, for there is nowhere for you to go.");
         await sleep(1000);
         properInput = 0;
       } else {
-        sleep(1000);
+        await sleep(1000);
         document.write("<br>");
         document.write("You did not enter one of the accepted commands!");
         await sleep(1000);
@@ -390,7 +390,7 @@ async function continueLeftForward() {
       win();
       properInput += 1;
     } else {
-      sleep(1000);
+      await sleep(1000);
       document.write("<br>");
       document.write("You did not enter one of the accepted commands!");
       await sleep(1000);
@@ -401,10 +401,10 @@ async function continueLeftForward() {
 
 //#winning
 async function win() {
-  sleep(2000);
+  await sleep(2000);
   document.write("<br><br><br>");
   document.write("|You smash through the doors, and step out into the sunlight. The charred, broken hulk of the training facility lies behind you, and a single road stretches out in front of you. Will you be able to warn planetary command in time? Have they been attacked as well? You don't know that, but you do know you still have a job to do...|");
-  sleep(5000);
+  await sleep(5000);
   document.write("<br><br>");
   document.write("<h1>GAME OVER - YOU HAVE WON<h1>")
 }
@@ -412,16 +412,16 @@ async function win() {
 
 //left+left
 async function continueLeftLeft() {
-  sleep(1000);
+  await sleep(1000);
   document.write("<br><br>")
   document.write("|You turn to the left, and head through the passage.|")
-  sleep(2000);
+  await sleep(2000);
   document.write("<br>")
   document.write(playerName + ", my scanners pick up a cloud of smoke or dust ahead. It might just be a collapsed section of the roof, or it could be a smokescreen. Proceed with caution.")
-  sleep(3000);
+  await sleep(3000);
   document.write("<br>")
   document.write("|As you continue forwards into the cloud of smoke or dust, you hear a whistling sound. It sounds almost like the wind...|")
-  sleep(3000);
+  await sleep(3000);
   document.write("<br><br>")
   document.write("|But it isn't. The whistling rapidly gets closer, and a large shell slams into the bulletproof glass making up your windshield, shattering it and exploding, killing you instantly.|")
   playerHealth = 0;
