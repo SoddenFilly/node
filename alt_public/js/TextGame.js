@@ -61,7 +61,6 @@ async function game() {
   document.write("<br>");
   document.write("Starting booting sequence");
   dotdotdot();
-  playerHealth = 0;
   await sleep(3400);
   document.write("<br>")
   document.write("Running system check");
