@@ -41,12 +41,19 @@ def RSI (closes, period):
 # rs = closes_up/closes_down
 # rsi = 100 - (100/(1+rs))
 # print(rsi)
+# plt.subplot(2,1,1)
+# plt.subplot(2,1,2)
+# plt.show()
 
-rsi_period = 3 # 14
+rsi_period = 14 # 14
 rsi_overbought = 70
 rsi_oversold = 30
 plot_rsi = []
 plot_timestamp = []
+plot_closing_prices = []
+
+first_timestamp = 0
+first_timest = 0
 
 rsi = {
     "rsi_period" : 14,
@@ -69,6 +76,9 @@ def on_error(ws, error):
 def on_message(ws, message):
     global plot_rsi
     global plot_timestamp
+    global first_timest
+    global first_timestamp
+
     # print("received message")
     json_message = json.loads(message)
     # pprint(json_message)
@@ -78,6 +88,10 @@ def on_message(ws, message):
     candle_closed = candle['x']
     close_price = candle['c']
     timestamp = candle['t']
+
+    if first_timestamp == 0:
+        first_timestamp = int(candle['t'])
+    
 
     if candle_closed:
         closes.append(float(close_price))
@@ -91,8 +105,11 @@ def on_message(ws, message):
             # print("1", rsi_list)
             # print("APP")
             
-            plot_rsi.append( RSI(closes, rsi_period) )
-            plot_timestamp.append(timestamp)
+            plot_rsi.append( float(RSI(closes, rsi_period)) )
+            plot_timestamp.append((timestamp - first_timestamp)/60000)
+            # print((timestamp - first_timestamp)/60000)
+            plot_closing_prices.append(float(close_price))
+            # print(plot_closing_prices)
 
             with open("plot.txt", "r") as txt_file:
                 txt = txt_file.read()
@@ -101,7 +118,12 @@ def on_message(ws, message):
             plot = txt
             if plot == "True":
                 plt.clf()
-                plt.plot(plot_timestamp, plot_rsi)
+                plt.subplot(2,1,1)
+                plt.plot(plot_timestamp, plot_closing_prices, color="black", label="Price")
+                plt.subplot(2,1,2)
+                plt.plot(plot_timestamp, plot_rsi, color="blue", label="RSI")
+                plt.legend()
+                # plt.plot(plot_timestamp, close_price)
                 # plt.get_current_fig_manager().window.state("zoomed")
                 plt.show(block=False)
                 plt.pause(.1)
