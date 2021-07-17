@@ -1,5 +1,6 @@
 import websocket, json, numpy
 from pprint import pprint
+from matplotlib import pyplot as plt
 
 socket = "wss://stream.binance.com:9443/ws/solusdt@kline_1m"
 closes = []
@@ -44,9 +45,8 @@ def RSI (closes, period):
 rsi_period = 14 # 14
 rsi_overbought = 70
 rsi_oversold = 30
-rsi_list = []
-rsi_x = []
-incre = 0
+plot_rsi = []
+plot_timestamp = []
 
 rsi = {
     "rsi_period" : 14,
@@ -67,6 +67,8 @@ def on_error(ws, error):
     print("\nerror", error)
 
 def on_message(ws, message):
+    global plot_rsi
+    global plot_timestamp
     # print("received message")
     json_message = json.loads(message)
     # pprint(json_message)
@@ -75,6 +77,7 @@ def on_message(ws, message):
 
     candle_closed = candle['x']
     close_price = candle['c']
+    timestamp = candle['t']
 
     closes.append(float(close_price))
     if len(closes) > rsi_period + 1:
@@ -84,12 +87,16 @@ def on_message(ws, message):
     
     if len(closes) > rsi_period:
         # print("aah2",len(closes))
-        print("1", rsi_list)
+        # print("1", rsi_list)
         # print("APP")
-        rsi_list.append( RSI(closes, rsi_period) )
-        # print("AAP")
+        plot_rsi.append( RSI(closes, rsi_period) )
+        plot_timestamp.append(timestamp)
+        plt.clf()
+        plt.plot(plot_timestamp, plot_rsi)
+        plt.show(block=False)
+        plt.pause(.1)
         
-        print("2", rsi_list)
+        print(plot_rsi, plot_timestamp)
 
     print("closes", closes)
 
