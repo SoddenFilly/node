@@ -41,7 +41,7 @@ def RSI (closes, period):
 # rsi = 100 - (100/(1+rs))
 # print(rsi)
 
-rsi_period = 5 # 14
+rsi_period = 14 # 14
 rsi_overbought = 70
 rsi_oversold = 30
 rsi_list = []
@@ -85,10 +85,10 @@ def on_message(ws, message):
     if len(closes) > rsi_period:
         # print("aah2",len(closes))
         print("1", rsi_list)
-        app = RSI(closes, rsi_period)
-        rsi_list.append( app )
-        rsi_x.append(incre)
-        incre += 1
+        # print("APP")
+        rsi_list.append( RSI(closes, rsi_period) )
+        # print("AAP")
+        
         print("2", rsi_list)
 
     print("closes", closes)
