@@ -138,7 +138,7 @@ async function game() {
       await sleep(1000);
       document.write("<br><br>");
       document.write("|You fled the situation successfully, running down the maze of corridors in front of you until the footsteps of your enemy faded away. What now?|")
-      await sleep(2000);
+      await sleep(3000);
       document.write("<br>");
       document.write("While your chances of winning that fight were high, conserving your strength for later down the line may have been a wise choice. It is unknown to me how many more of these enemies may be out there.");
       sequence = 1;
@@ -159,28 +159,63 @@ async function game() {
     }
   }
   
-  await sleep(2500);
+  await sleep(3500);
   document.write("<br><br>");
   document.write("It looks like we are receiving a public broadcast from... the commander.  Patching through now.");
-  await sleep(2000);
+  await sleep(3000);
   document.write("<br><br>");
   document.write("|A grizzled, bearded face appears on the screen in front of you. You recognize him as the commander of the Planetary Defense Force Cadet Training Facility (PDFCT), where you just graduated from, and where you assume you are now. The commander clears his throat nervously, before speaking.|");
-  await sleep(4000);
+  await sleep(4500);
   document.write("<br>");
   document.write("'Greetings, my fellow pilots. I regret to deliver to you this dark news in a time where we should be celebrating the graduation of our senior cadets.'");
-  await sleep(2000);
+  await sleep(3500);
   document.write("<br>");
   document.write("'As you have undoubtably noticed, the training facility is under attack from an enemy we've never encountered before. In fact, I can hear their clanking outside my door right now, so I don't have much time. We have no idea where they came from, or what their motive is, but my spotters reported their numbers in the thousands before I lost contact with them.'");
-  await sleep(4000);
+  await sleep(4500);
   document.write("<br>");
   document.write("'We have no hope of stopping these unknown assailents, whoever they are. We have little hope of surviving the next few hours. That is why I call on you all; my teachers, my cadets, my graduates, to waste no time or effort in getting out of this place as fast as possible. Our only hope is to contact planetary command and warn them of this threat before it reaches them.'");
-  await sleep(4000);
+  await sleep(5000);
   document.write("<br>");
   document.write("'Now go! Time is of th-'");
-  await sleep(1000);
+  await sleep(2000);
   document.write("<br><br>");
   document.write("The communication appears to have been severed. I suggest we follow the commander's orders and flee the training facility. The enemies must have set up some kind of jammer stopping me from using my location tracker or map, so we will have to guess our way out.");
-  await sleep(2000);
+  await sleep(3500);
+  document.write("<br><br>");
+  document.write("|You pilot your mech forwards, and enter a room with two other exits. One leads off to the left, and one to the right. Enter 'left' into the terminal if you would like to head left, or 'right' if you would like to head right.|");
+  await sleep(3000);
+  
+  //choosing directions
+  properInput = 0;
+  while (properInput == 0) {
+    direction = prompt("Which direction do you choose?");
+    if (direction.toLowerCase() == "left") {
+      continueLeft();
+      properInput += 1;
+    } else if (direction.toLowerCase() == "right") {
+      continueRight();
+      properInput += 1;
+    } else {
+      sleep(1000);
+      document.write("<br>")
+      document.write("You did not put in one of the accepted commands!")
+      await sleep(1000)
+      properInput = 0;
+    }
+  }
 }
+
+async function continueLeft() {
+  await sleep(2000);
+  document.write("<br>");
+  document.write("|You pilot your mech through the tunnel leading to the left, and continue down it.|");
+}
+
+async function continueRight() {
+  await sleep(2000);
+  document.write("<br>");
+  document.write("|You pilot your mech through the tunnel leading to the right, and continue down it.|");
+}
+
 
 game();
