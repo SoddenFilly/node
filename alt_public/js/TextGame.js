@@ -341,7 +341,7 @@ async function continueLeftForward() {
       } else if (playerInput.toLowerCase() == "flee") {
         await sleep(1000);
         document.write("<br>");
-        document.write("You cannot flee in this battle, for there is nowhere for you to go.");
+        document.write("You cannot flee in this battle, for the bulk of your enemy blocks the passage in front of you.");
         await sleep(1000);
         properInput = 0;
       } else {
@@ -362,7 +362,7 @@ async function continueLeftForward() {
   document.write("<br>");
   document.write("My analysis determines that our armor is unlikely to hold out long enough to survive another fight. Hopefully we can make it out of this place soon.");
   await sleep(3000);
-  enemyHealth = 400;
+  enemyHealth = 1000;
   heal = enemyHealth * (Math.random() * 0.4)
   playerHealth += heal;
   document.write("<br>");
@@ -406,7 +406,7 @@ async function win() {
   document.write("|You smash through the doors, and step out into the sunlight. The charred, broken hulk of the training facility lies behind you, and a single road stretches out in front of you. Will you be able to warn planetary command in time? Have they been attacked as well? You don't know that, but you do know you still have a job to do...|");
   await sleep(5000);
   document.write("<br><br>");
-  document.write("<h1>GAME OVER - YOU HAVE WON<h1>")
+  document.write("<h1>GAME OVER - YOU HAVE WON</h1>")
 }
 
 
@@ -432,6 +432,67 @@ async function continueRight() {
   await sleep(2000);
   document.write("<br>");
   document.write("|You pilot your mech through the tunnel leading to the right, and continue down it.|");
+  await sleep(3000);
+  document.write("<br>");
+  document.write("|As you clank down the hallway, it starts to get tighter and tighter. Soon, it's so tight that you can only just walk forwards without scraping the sides.|");
+  await sleep(3500);
+  document.write("<br>");
+  document.write("This isn't good. If we get stuck in a fight, we won't be able to flee. However, we are left with no choice but to push onwards.");
+  await sleep(3000);
+  document.write("<br>");
+  document.write("Watch out " + playerName + "! My sensors have picked up something moving in front of us.")
+  document.write("<br><br>");
+  document.write("<b>|A jet black mech similar to the one you fought before emerges out of the darkness and slings a cannon over its robotic shoulders, aiming it at you.|</b>");
+  await sleep(3000);
+  document.write("<br>");
+
+  //attacking
+  enemyHealth = 500;
+  enemyAttack = 70;
+  fled = 0;
+  while (enemyHealth > 0) {
+    properInput = 0;
+    await sleep(400);
+
+    while (properInput == 0) {
+      playerInput = prompt("Input your chosen action into the terminal.");
+      if (playerInput.toLowerCase() == "attack") {
+        attack();
+        await sleep(2600);
+        properInput += 1;
+      } else if (playerInput.toLowerCase() == "flee") {
+        await sleep(1000);
+        document.write("<br>");
+        document.write("Unfortunately, the hallway you are in is too tight for you to flee!");
+        await sleep(1000);
+        properInput = 0;
+      } else {
+        await sleep(1000);
+        document.write("<br>");
+        document.write("You did not enter one of the accepted commands!");
+        await sleep(1000);
+        properInput = 0;
+      }
+    }
+  }
+
+  //battle finish
+  await sleep(2000);
+  document.write("<br><br>");
+  document.write("|You fire one last shot at the enemy mech, severing its power cable and sending sparks flying out around it. It falls to its knees, then collapses.|");
+  await sleep(3000);
+  enemyHealth = 400;
+  heal = enemyHealth * (Math.random() * 0.5)
+  playerHealth += heal;
+  document.write("<br>");
+  document.write("From the wreck of your defeated enemy, the autonomous repair drones built into your mech have been able to salvage enough material to repair " + heal + " health.");
+  await sleep(3000);
+  document.write("<br>");
+  document.write("Good job " + playerName + ". Hopefully, we are near the end of our journey.");
+  await sleep(3000);
+  document.write("<br>");
+  document.write("|You step over the sparking pile of metal and wire that was the enemy mech, and continue down the hallway. After a few more minutes of walking, the hallway opens up into another chamber. This chamber has one exit to the left and one straight ahead. Enter 'left' in the console if you would like to take the exit to the left, or 'straight' if you would like to take the exit straight ahead.|");
+  await sleep(5000);
 }
 
 
