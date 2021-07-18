@@ -409,6 +409,7 @@ async function continueLeftForward() {
   await sleep(2500);
 
   //breaking door
+  properInput = 0;
   while (properInput == 0) {
     playerInput = prompt("Input your chosen action into the terminal.");
     if (playerInput.toLowerCase() == "break") {
