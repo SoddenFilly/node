@@ -10,7 +10,6 @@ closes_up = []
 closes_down = []
 
 def RSI (closes, period):
-    # closes = [26.961, 26.954, 26.961, 26.958, 26.969, 26.958, 26.958, 26.963, 26.982, 26.975, 26.968, 26.945, 26.94, 26.949, 26.945]
     closes_up = 0
     closes_down = 0
 
@@ -24,9 +23,10 @@ def RSI (closes, period):
             dif = dif - dif*2
             closes_down += dif
 
-    rsi = 100 - (100/(1+(closes_up/period)/(closes_down/period)))
+    rs = (closes_up/period) / (closes_down/period)
 
-    # print("rsi", rsi)
+    rsi = 100 - ( 100/(1 + rs) )
+
     return rsi
 
 rsi_period = 5 # 14
@@ -73,12 +73,16 @@ def on_message(ws, message):
     close_price = candle['c']
     timestamp = candle['t']
 
-    if first_timestamp == 0:
-        first_timestamp = int(candle['t'])
-    
-
     if candle_closed:
-        closes.append(float(close_price))
+
+        if first_timestamp == 0:
+            first_timestamp = int(candle['t'])
+
+        print()
+        print(first_timestamp)
+        print(timestamp, int( (timestamp - first_timestamp)/60000))
+
+        closes.append( float( close_price))
         if len(closes) > rsi_period + 1:
             closes.pop(0)
 
@@ -88,9 +92,9 @@ def on_message(ws, message):
             # print("1", rsi_list)
             
             plot_rsi.append( float( RSI(closes, rsi_period)))
-            plot_timestamp.append((timestamp - first_timestamp)/60000)
+            plot_timestamp.append( int( (timestamp - first_timestamp)/60000))
             # print((timestamp - first_timestamp)/60000)
-            plot_closing_prices.append(float(close_price))
+            plot_closing_prices.append( float( close_price))
             # print(plot_closing_prices)
 
             with open("plot.txt", "r") as txt_file:
@@ -101,9 +105,12 @@ def on_message(ws, message):
             if plot == "True":
                 plt.clf()
                 plt.subplot(2,1,1)
+                plt.grid(color='grey', linestyle='-', linewidth=0.5)
                 plt.plot(plot_timestamp, plot_closing_prices, color="black", label="Price")
                 plt.legend()
                 plt.subplot(2,1,2)
+                plt.grid(color='grey', linestyle='-', linewidth=0.5)
+                plt.plot(plot_timestamp, plot_rsi, alpha=0)
                 plt.plot(plot_timestamp, plot_rsi, color="blue", label="RSI")
                 plt.legend()
                 # plt.plot(plot_timestamp, close_price)
@@ -123,6 +130,6 @@ def on_message(ws, message):
 
 if __name__ == "__main__":
     # websocket.enableTrace(True)
-    ws = websocket.WebSocketApp(socket, on_open=on_open, on_message=on_message, on_error=on_error, on_close=on_close)
-
-    ws.run_forever()
+    # ws = websocket.WebSocketApp(socket, on_open=on_open, on_message=on_message, on_error=on_error, on_close=on_close)
+    # ws.run_forever()
+    print(RSI([27.382, 27.359, 27.383, 27.42, 27.337, 27.32], 5))
