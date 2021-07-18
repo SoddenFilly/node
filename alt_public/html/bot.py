@@ -129,8 +129,9 @@ def on_message(ws, message):
                 plt.pause(.1)
             
             print("RSI plot length:", len(plot_rsi))
-
-        # print("closes", closes)
+        
+        else:
+            print("Closeslen:", len(closes), " Remaining:", rsi_period - len(closes))
 
 if __name__ == "__main__":
     # websocket.enableTrace(True)
