@@ -5,7 +5,7 @@ from matplotlib import pyplot as plt
 socket = "wss://stream.binance.com:9443/ws/solusdt@kline_1m"
 closes = []
 # closes = [26.961, 26.954, 26.961, 26.958, 26.969, 26.958, 26.958, 26.963, 26.982, 26.975, 26.968, 26.945, 26.94, 26.949, 26.945]
-# closes = [432.73, 432.8, 432.73, 432.7, 432.86, 432.19, 432.2, 432.16, 432.11, 432.31, 432.28, 432.93, 432.64, 432.57, 432.75]
+# closes = [432.73,432.8,432.73,432.7,432.86,432.19,432.2,432.16,432.11,432.31,432.28,432.93,432.64,432.57,432.75]
 closes_up = []
 closes_down = []
 
@@ -29,7 +29,7 @@ def RSI (closes, period):
     # print("rsi", rsi)
     return rsi
 
-rsi_period = 14 # 14
+rsi_period = 5 # 14
 rsi_overbought = 70
 rsi_oversold = 30
 plot_rsi = []
@@ -87,7 +87,7 @@ def on_message(ws, message):
         if len(closes) > rsi_period:
             # print("1", rsi_list)
             
-            plot_rsi.append( float(RSI(closes, rsi_period)) )
+            plot_rsi.append( float( RSI(closes, rsi_period)))
             plot_timestamp.append((timestamp - first_timestamp)/60000)
             # print((timestamp - first_timestamp)/60000)
             plot_closing_prices.append(float(close_price))
@@ -102,6 +102,7 @@ def on_message(ws, message):
                 plt.clf()
                 plt.subplot(2,1,1)
                 plt.plot(plot_timestamp, plot_closing_prices, color="black", label="Price")
+                plt.legend()
                 plt.subplot(2,1,2)
                 plt.plot(plot_timestamp, plot_rsi, color="blue", label="RSI")
                 plt.legend()
@@ -111,6 +112,11 @@ def on_message(ws, message):
                 plt.pause(.1)
             
             print("RSI plot length:", len(plot_rsi))
+
+            with open("alt_public/html/rsi_results.txt", "w") as txt_file:
+                txt_file.writelines(["Closes:\n", str(closes), "\nRSI:\n", str(plot_rsi), "\nTimestamps:\n", str(plot_timestamp)])
+                # txt_file.writelines(["foo", "ghhhhoo", "loo"])
+                # print("")
         
         else:
             print("Closeslen:", len(closes), " Remaining:", rsi_period - len(closes))
