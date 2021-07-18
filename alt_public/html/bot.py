@@ -29,22 +29,6 @@ def RSI (closes, period):
     # print("rsi", rsi)
     return rsi
 
-# for i in range(1, len(closes)):
-#     dif = closes[i] - closes[i-1]
-#     if dif >= 0:
-#         closes_up.append(dif)
-#     elif dif < 0:
-#         dif = dif - dif*2
-#         closes_down.append(dif)
-# closes_up = sum(closes_up)/14
-# closes_down = sum(closes_down)/14
-# rs = closes_up/closes_down
-# rsi = 100 - (100/(1+rs))
-# print(rsi)
-# plt.subplot(2,1,1)
-# plt.subplot(2,1,2)
-# plt.show()
-
 rsi_period = 14 # 14
 rsi_overbought = 70
 rsi_oversold = 30
@@ -55,11 +39,11 @@ plot_closing_prices = []
 first_timestamp = 0
 first_timest = 0
 
-rsi = {
-    "rsi_period" : 14,
-    "rsi_overbought" : 70,
-    "rsi_oversold" : 30,
-}
+# rsi = {
+#     "rsi_period" : 14,
+#     "rsi_overbought" : 70,
+#     "rsi_oversold" : 30,
+# }
 
 symbol = "solusdt"
 trade_quantity = 17
@@ -101,9 +85,7 @@ def on_message(ws, message):
         # print("closelen",len(closes))
         
         if len(closes) > rsi_period:
-            # print("aah2",len(closes))
             # print("1", rsi_list)
-            # print("APP")
             
             plot_rsi.append( float(RSI(closes, rsi_period)) )
             plot_timestamp.append((timestamp - first_timestamp)/60000)
