@@ -107,10 +107,6 @@ def on_message(ws, json_message):
 
 
 if __name__ == "__main__":
-    # websocket.enableTrace(True)
-    ws = websocket.WebSocketApp(socket, on_open=on_open, on_message=on_message, on_error=on_error, on_close=on_close)
-    ws.run_forever()
-    # print(RSI([27.382, 27.359, 27.383, 27.42, 27.337, 27.32], 5))
 
     socket = "wss://stream.binance.com:9443/ws/solusdt@kline_1m"
     closes = []
@@ -123,3 +119,8 @@ if __name__ == "__main__":
     plot_closing_prices = []
 
     first_timestamp = 0
+
+    # websocket.enableTrace(True)
+    ws = websocket.WebSocketApp(socket, on_open=on_open, on_message=on_message, on_error=on_error, on_close=on_close)
+    ws.run_forever()
+    # print(RSI([27.382, 27.359, 27.383, 27.42, 27.337, 27.32], 5))
