@@ -1,6 +1,7 @@
 import websocket, json, numpy
 from matplotlib import pyplot as plt
 
+
 def RSI (closes, period):
     avg_gain = 0
     avg_loss = 0
@@ -36,7 +37,7 @@ def RSI (closes, period):
 
 def on_open(ws):
     print("Opened connection")
-  
+
 def on_close(ws):
     print("Closed connection")
 
