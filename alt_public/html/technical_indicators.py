@@ -71,10 +71,21 @@ def RSI (closes, period):
             prv_gain = avg_gain
             prv_loss = avg_loss
 
-        rsi.append( 100 - ( 100/(1 + rs)))
+        rsi.append( float( 100 - ( 100/(1 + rs))))
 
     return rsi
 
-dataset = [ 1,2,4,4,2,9,5,7,2,9,4,1,5,3, 6,5,50,48,61,1,1 ]
+def RSI_binance (closes, period):
+    rsi = []
 
-print(RSI(dataset, 14))
+    for index in range(0, len(closes)):
+        rsi.append(float( 100 - ( 100/( 1+closes[index] ))))
+    
+    return rsi
+
+dataset = [ 1,2,4,4,2,9,5,7,2,9,4,1,5,3, 6,5,50,48,61,1,1 ]
+dataset = [25.987, 25.964, 25.982, 25.965, 26.059, 26.058, 26.117, 26.096, 26.064, 26.113, 26.129, 26.125, 26.098, 26.04, 26.034, 25.979, 26.019, 25.958, 25.968, 25.96, 25.981, 26.028, 26.006, 26.033, 25.971, 26.05, 26.117]
+period = 14
+
+print(RSI_binance(dataset, period))
+
