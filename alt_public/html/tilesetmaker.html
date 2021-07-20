@@ -26,6 +26,17 @@
             height:100%;
             position:fixed;
             width:100%;
+            z-index: -1;
+        }
+
+        #sidebar {
+            width: 50px;
+            height: 100%;
+            background: #9d978b;
+            transition: width 1s;
+        }
+        #sidebar:hover {
+            width: 200px;
         }
 
         </style>
@@ -35,15 +46,12 @@
     <body>
 
         <canvas></canvas>
-        <button id="but_rend" style="position: fixed;">RENDER</button>
-        <button id="but_clear" style="position: fixed; left: 65px">HIDE</button>
-        <button id="but_save" style="position: fixed; left: 120px">SAVE</button>
-        <button id="but_load" style="position: fixed; left: 162px">LOAD</button>
-        <p style="position: fixed; color: #fff; left: 220px;">STEP:</p>
-        <input type="number" id="value_step" value="1" style="position: fixed; left: 265px; width: 30px;">
 
+        <div id="sidebar"></div>
+        <div id="pallet"></div>
 
     </body>
+    
 
     <!-- scripts: -->
     
