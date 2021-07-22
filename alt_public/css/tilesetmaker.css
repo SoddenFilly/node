@@ -1,0 +1,132 @@
+:root {
+    --drop_down_duration: 300ms;
+    --pixcanvas_size: 320px;
+    --pixfromtop: 200px;
+    --pixel_size: 20px;
+}
+
+* {
+    margin:0;
+    padding:0;
+}
+
+html, body {
+    background-color:#141518;
+    height:100%;
+    position:relative;
+    width:100%;
+}
+
+canvas {
+    height:100%;
+    position:fixed;
+    width:100%;
+    z-index: -1;
+}
+
+#topbar {
+    /* margin-top: 20px; */
+    position: fixed;
+    width: 4%;
+    height: 8%;
+    /* background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%); */
+    background: linear-gradient(to bottom, #333333, #494949);
+    transition: height var(--drop_down_duration),
+                width 150ms;
+    border-radius: 0 0 20px 0;
+    z-index: 10;
+}
+#topbar:hover {
+    height: 100%;
+    width: 15%;
+}
+#topbar #but:first-child {
+    background-color: transparent;
+    height: 50px;
+    margin: 2%;
+    /* margin-top: 25%; */
+    transition: margin-top var(--drop_down_duration),
+                background-size 150ms;
+    /* transition: margin-top 1s; */
+    /* transition-delay: 1s; */
+    background-image: url("../resources/images/houseicon1.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 175px;
+    width: auto;
+    opacity: 100%;
+    
+}
+#topbar #but {
+    background-color: #ffffff;
+    height: 0px;
+    margin-right: 2%;
+    margin-left: 2%;
+    margin-top: 0%;
+    border-radius: 6px;
+    width: 80%;
+    margin-left: 10%;
+    opacity: 0%;
+
+    transition: height var(--drop_down_duration),
+                margin-top var(--drop_down_duration),
+                width var(--drop_down_duration),
+                margin-left var(--drop_down_duration),
+                opacity var(--drop_down_duration);
+}
+#topbar:hover #but:first-child {
+    height: 50px;
+    margin: 2%;
+    background-size: 220px;
+}
+#topbar:hover #but {
+    margin: 2%;
+    height: 15%;
+    width: 96%;
+    opacity: 100%;
+}
+
+#flex_canvas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    pointer-events: none;
+    position: fixed;
+}
+
+.pixcanvas {
+    left: auto;
+    top: var(--pixfromtop);
+    width: var(--pixcanvas_size);
+    height: var(--pixcanvas_size);
+    position: fixed;
+    background-image: url("../resources/images/transparentcanvas.png");
+    background-position: center;
+    /* background-repeat: no-repeat; */
+    background-size: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    /* flex-s */
+    pointer-events: all;
+
+    /* display: none; */
+}
+.pixcanvas div {
+    /* width: 18px;
+    height: 18px;
+    margin: 1px; */
+    width: var(--pixel_size);
+    height: var(--pixel_size);
+    background-color: transparent;
+}
+
+.savebutton {
+    width: 50%;
+    z-index: 2;
+}
+.loadbutton {
+    width: 50%;
+    align-self: flex-end;
+    z-index: 2;
+}

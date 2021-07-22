@@ -51,7 +51,8 @@ function resize_pixcanvas() {
         for (let x = 0; x < pixcanvas_size; x++){
 
             let tile = document.createElement('div');
-            tile.setAttribute("onclick","change_colorfunc(this)");
+            tile.setAttribute("onmouseup","change_colorfunc(this)");
+            tile.setAttribute("onmousedown","change_colorfunc(this)");
             
             let index = y * pixcanvas_size + x
             index = index.toString()
@@ -67,7 +68,7 @@ function resize_pixcanvas() {
 
 function loop() {
     
-    setTimeout(() => { window.requestAnimationFrame(loop); }, 1234);
+    setTimeout(() => { window.requestAnimationFrame(loop); }, 10);
 
     main()
     update_color()
@@ -108,7 +109,8 @@ for (let y = 0; y < pixcanvas_size; y++){
     for (let x = 0; x < pixcanvas_size; x++){
 
         var tile = document.createElement('div');
-        tile.setAttribute("onclick","change_colorfunc(this)");
+        tile.setAttribute("onmouseup","change_colorfunc(this)");
+        tile.setAttribute("onmousedown","change_colorfunc(this)");
         
         let index = y * pixcanvas_size + x
         index = index.toString()
@@ -124,6 +126,15 @@ for (let y = 0; y < pixcanvas_size; y++){
 //#endregion Set up
 
 //#region Procedural
+
+function savefunc(slot) {
+
+    localStorage.setItem("tilesetmaker_saveslot_" + slot, colormatrix);
+}
+function loadfunc(slot) {
+
+    colormatrix = localStorage.getItem("tilesetmaker_saveslot_" + slot).split(",")
+}
 
 document.getElementById("scalerange").oninput = function() {
 
@@ -150,7 +161,7 @@ function change_colorfunc(element_data) {
     colormatrix[element_index] = "#333333"
 }
 
-ctx.canvas.addEventListener("click", function posclick(event) {
+ctx.canvas.addEventListener("mousedown", function posclick(event) {
 
     let stepx = 32
     let stepy = 32
