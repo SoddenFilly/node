@@ -1,7 +1,9 @@
 :root {
     --drop_down_duration: 300ms;
     --pixcanvas_size: 320px;
-    --pixfromtop: 200px;
+    --pixfromtop_pixcanvas: 200px;
+    --pixfromtop_pallet: 165px;
+    --pixfromright: 50px;
     --pixel_size: 20px;
 }
 
@@ -21,7 +23,8 @@ canvas {
     height:100%;
     position:fixed;
     width:100%;
-    z-index: -1;
+    z-index: 99;
+    pointer-events: none;
 }
 
 #topbar {
@@ -97,7 +100,7 @@ canvas {
 
 .pixcanvas {
     left: auto;
-    top: var(--pixfromtop);
+    top: var(--pixfromtop_pixcanvas);
     width: var(--pixcanvas_size);
     height: var(--pixcanvas_size);
     position: fixed;
@@ -113,12 +116,61 @@ canvas {
     /* display: none; */
 }
 .pixcanvas div {
-    /* width: 18px;
-    height: 18px;
-    margin: 1px; */
     width: var(--pixel_size);
     height: var(--pixel_size);
     background-color: transparent;
+}
+
+.pixpallet {
+    top: var(--pixfromtop_pallet);
+    margin-right: var(--pixfromright);
+    position: fixed;
+    width: 180px;
+    height: 360px;
+    display: flex;
+    flex-flow: row wrap;
+    pointer-events: all;
+    align-self: flex-start;
+    background-color: #2E2E2E;
+}
+.pixpallet div {
+    width: 28px;
+    height: 28px;
+    margin: 1px;
+    background-color: #444444;
+}
+.pixpallet div:hover {
+    margin: 0;
+    width: 30px;
+    height: 30px;
+}
+
+.spripallet {
+    top: var(--pixfromtop_pallet);
+    /* float: right; */
+    /* margin-right: 15%; */
+    margin-left: var(--pixfromright);
+    position: fixed;
+    width: 180px;
+    height: 360px;
+    display: flex;
+    flex-flow: row wrap;
+    pointer-events: all;
+    align-self: flex-end;
+    background-color: #2E2E2E;
+}
+.spripallet div {
+    width: 28px;
+    height: 28px;
+    margin: 1px;
+    background-color: #444444;
+    background-position: center;
+    background-size: 426%;
+}
+.spripallet div:hover {
+    margin: 0;
+    width: 30px;
+    height: 30px;
 }
 
 .savebutton {

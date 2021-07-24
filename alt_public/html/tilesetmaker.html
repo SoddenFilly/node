@@ -17,15 +17,21 @@
 
     <canvas></canvas>
 
-    <div style="float: right; display: flex; flex-flow: row wrap; margin: 20px;width: 200px;">
-        <input id="scalerange" type="range" value="100" min="0" max="400" style="width: 75%; z-index: 2;">
-        <input id="pixcanvas_size" type="number" value="8" min="2" max="128" style="margin-top: 10px; width: 30px; align-self: flex-end; margin-left: auto; z-index: 2;">
+    <div style="float: right; display: flex; flex-flow: row wrap; margin: 20px;width: 200px; display: all;">
+        <input id="scalerange" type="range" value="150" min="0" max="400" style="width: 75%; z-index: 2;">
+        <input id="pixcanvas_size" type="number" value="16" min="2" max="128" style="margin-top: 10px; width: 30px; align-self: flex-end; margin-left: auto; z-index: 2;">
+        
         <button class="savebutton" onclick="savefunc(1)">Save slot1</button>
         <button class="loadbutton" onclick="loadfunc(1)">Load slot1</button>
         <button class="savebutton" onclick="savefunc(2)">Save slot2</button>
         <button class="loadbutton" onclick="loadfunc(2)">Load slot2</button>
         <button class="savebutton" onclick="savefunc(3)">Save slot3</button>
         <button class="loadbutton" onclick="loadfunc(3)">Load slot3</button>
+        <button onclick="loadsprite(3)" style="width: 100%;">sprite</button>
+
+        <div id="colorinput_prev" style="width: 140px; background-color: white; height: 20px; z-index: 2; background-position: center; background-size: 426%;"></div>
+        
+        <input id="colorinput" type="text" value="#ffffff" style="align-self: flex-end; margin-left: auto; width: 55px;">
         
     </div>
 
@@ -42,6 +48,10 @@
 
     <div id="flex_canvas">
         <div class="pixcanvas" id="pixcanvas_id"></div>
+
+        <div class="pixpallet" id="pixpallet_id"></div>
+
+        <div class="spripallet" id="spripallet_id"></div>
     </div>
 
 </body>
