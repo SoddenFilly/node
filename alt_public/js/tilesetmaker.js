@@ -31,6 +31,17 @@ function update_color() {
 }
 
 function resize_pixcanvas() {
+    // higher
+    colormatrix_temp = colormatrix
+    colormatrix_temp.splice(2, 0, undefined)
+    // for (let y = 0; y < pixcanvas_size-1; y++){
+        
+    //     for (let x = 0; x < pixcanvas_size-1; x++){
+            
+            
+    //     }
+    // }
+
     for (let y = 0; y < pixcanvas_size+1; y++){
         
         for (let x = 0; x < pixcanvas_size+1; x++){
@@ -61,6 +72,7 @@ function resize_pixcanvas() {
             document.getElementById("pixcanvas_id").appendChild(tile)
         }
     }
+    console.log(colormatrix)
 }
 
 function loop() {
